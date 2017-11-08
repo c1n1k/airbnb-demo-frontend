@@ -19,7 +19,8 @@ const CardAbout = styled.h3`
   margin: 0;
   padding: 0 25px;
   flex-grow: 1;
-  margin-bottom: 3px;
+  font-size: 17px;
+  line-height: 1.17647;
 `;
 
 export default props => {
