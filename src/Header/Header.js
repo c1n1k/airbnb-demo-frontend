@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Inner from "../Inner/Inner";
+import InnerGrid from "../Inner/InnerGrid";
 import Logo from "../Logo/Logo";
 import Search from "../Search/Search";
 import Nav from "../Nav/Nav";
@@ -31,7 +31,7 @@ const HeaderNav = styled.div`
 export default () => {
   return (
     <Header>
-      <Inner>
+      <InnerGrid>
         <HeaderLogo>
           <Logo />
         </HeaderLogo>
@@ -41,7 +41,7 @@ export default () => {
         <HeaderNav>
           <Nav />
         </HeaderNav>
-      </Inner>
+      </InnerGrid>
     </Header>
   );
 };
