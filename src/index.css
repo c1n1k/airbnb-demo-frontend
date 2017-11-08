@@ -29,6 +29,7 @@ html {
 body {
   height: 100%;
   font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #383838;
 }
 
 * {
@@ -42,4 +43,8 @@ body {
 figure {
   margin: 0;
   font-size: 0;
+}
+
+img {
+  max-width: 100%;
 }
