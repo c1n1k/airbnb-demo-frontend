@@ -1,21 +1,25 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Section from "../Section/Section";
 import Inner from "../Inner/Inner";
+import InnerGrid from "../Inner/InnerGrid";
 import Title from "../Title/Title";
-
-const SectionTitle = styled(Title)`
-  @supports (display: grid) {
-    grid-column: 1 / 11;
-  }
-`;
+import Card from "./Card";
+import homes from "./homes.png";
+import experiences from "./experiences.png";
+import restaurants from "./restaurants.png";
 
 export default () => {
   return (
     <Section>
       <Inner>
-        <SectionTitle>Explore Airbnb</SectionTitle>
+        <Title>Explore Airbnb</Title>
       </Inner>
+      <InnerGrid>
+        <Card name="Homes" to="" img={homes} />
+        <Card name="Experiences" to="" img={experiences} />
+        <Card name="Restaurants" to="" img={restaurants} />
+      </InnerGrid>
     </Section>
   );
 };
