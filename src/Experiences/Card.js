@@ -11,7 +11,7 @@ const Card = styled.a`
 const CardFig = styled.figure`margin-bottom: 8px;`;
 
 const CardAbout = styled.div`
-  margin: 0 0 5px;
+  margin: 0 0 3px;
   font-size: 15px;
   line-height: 1.2;
 `;
@@ -30,6 +30,8 @@ const CardName = styled.h3`
 const CardReview = styled.div``;
 
 const CardIcon = styled.span`
+  position: relative;
+  top: 1px;
   margin-right: 3px;
   display: inline-block;
 `;
