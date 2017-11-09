@@ -5,6 +5,7 @@ import Explore from "./Explore";
 import Experiences from "./Experiences";
 import Homes from "./Homes";
 import Popular from "./Popular";
+import Destination from "./Destination";
 import "./App.css";
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <Experiences />
           <Homes />
           <Popular />
+          <Destination />
         </Main>
       </div>
     );
