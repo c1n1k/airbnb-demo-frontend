@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import InnerGrid from "../Inner/InnerGrid";
-import Logo from "../Logo/Logo";
-import Search from "../Search/Search";
-import Nav from "../Nav/Nav";
+import Logo from "../Logo";
+import Search from "../Search";
+import Nav from "../Nav";
 
 const Header = styled.header`
   margin-bottom: 45px;

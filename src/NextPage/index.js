@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "../Icon/Icon";
+import Icon from "../Icon";
 
 const NextPage = styled.a`
   position: absolute;

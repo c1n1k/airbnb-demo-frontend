@@ -1,6 +1,6 @@
 // import React from "react";
 // import styled from "styled-components";
-import Inner from "./Inner";
+import Inner from "./index";
 
 export default Inner.extend`
   @supports (display: grid) {

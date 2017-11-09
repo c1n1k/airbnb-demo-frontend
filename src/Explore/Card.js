@@ -13,9 +13,9 @@ const Card = styled.a`
     0 2px 4px rgba(72, 72, 72, 0.08);
 `;
 
-const CardFig = styled.figure``;
+const Fig = styled.figure``;
 
-const CardAbout = styled.h3`
+const About = styled.h3`
   margin: 0;
   padding: 0 25px;
   flex-grow: 1;
@@ -25,11 +25,11 @@ const CardAbout = styled.h3`
 
 export default props => {
   return (
-    <Card href={props.to}>
-      <CardFig>
+    <Card href={props.href}>
+      <Fig>
         <img src={props.img} alt={props.name} />
-      </CardFig>
-      <CardAbout>{props.name}</CardAbout>
+      </Fig>
+      <About>{props.name}</About>
     </Card>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Input from "../Input/Input";
-import Icon from "../Icon/Icon";
+import Input from "../Input";
+import Icon from "../Icon";
 // import searchIcon from "./search.svg";
 
 const Search = styled.div`position: relative;`;

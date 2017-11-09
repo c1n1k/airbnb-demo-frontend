@@ -1,12 +1,12 @@
 import React from "react";
 // import styled from "styled-components";
-import Section from "../Section/Section";
-import Inner from "../Inner/Inner";
+import Section from "../Section";
+import Inner from "../Inner";
 import InnerGrid from "../Inner/InnerGrid";
-import Title from "../Title/Title";
-import LinkMore from "../LinkMore/LinkMore";
+import Title from "../Title";
+import LinkMore from "../LinkMore";
 import Card from "./Card";
-import NextPage from "../NextPage/NextPage";
+import NextPage from "../NextPage";
 import forest from "./forest.png";
 import whale from "./whale.png";
 import mountain from "./mountain.png";

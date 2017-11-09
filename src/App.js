@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Header from "./Header/Header";
-import Main from "./Main/Main";
-import Explore from "./Explore/Explore";
-import Experiences from "./Experiences/Experiences";
-import Homes from "./Homes/Homes";
+import Header from "./Header";
+import Main from "./Main";
+import Explore from "./Explore";
+import Experiences from "./Experiences";
+import Homes from "./Homes";
+import Popular from "./Popular";
 import "./App.css";
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           <Explore />
           <Experiences />
           <Homes />
+          <Popular />
         </Main>
       </div>
     );

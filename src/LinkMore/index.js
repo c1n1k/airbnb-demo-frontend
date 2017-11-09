@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "../Icon/Icon";
+import Icon from "../Icon";
 
 const Link = styled.a`
   display: inline-block;
@@ -9,7 +9,7 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const LinkText = styled.span`
+const Text = styled.span`
   display: inline-block;
   margin-right: 7px;
 `;
@@ -27,7 +27,7 @@ const LinkIconRight = props => {
 export default props => {
   return (
     <Link href={props.href}>
-      <LinkText>{props.text}</LinkText>
+      <Text>{props.text}</Text>
       <LinkIconRight />
     </Link>
   );
