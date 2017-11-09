@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.a`
-  grid-column: span 4;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -11,6 +10,9 @@ const Card = styled.a`
   border-radius: 4px;
   box-shadow: inset 0 0 0 1px rgba(72, 72, 72, 0.2),
     0 2px 4px rgba(72, 72, 72, 0.08);
+  @supports (display: grid) {
+    grid-column: span 4;
+  }
 `;
 
 const Fig = styled.figure``;

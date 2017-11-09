@@ -28,8 +28,14 @@ html {
 
 body {
   height: 100%;
+  overflow-x: hidden;
   font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #383838;
+}
+
+select,
+input {
+  font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 * {

@@ -17,7 +17,7 @@ const SearchIcon = styled.span`
   pointer-events: none;
 `;
 
-const SearchIconSearch = props => {
+const SearchIconSearch = () => {
   return (
     <SearchIcon>
       <Icon icon="search" width="22" height="22" fill="#3d3d3d" />

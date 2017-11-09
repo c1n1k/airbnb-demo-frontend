@@ -3,10 +3,7 @@ import styled from "styled-components";
 import Icon from "../Icon";
 
 const NextPage = styled.a`
-  position: absolute;
-  top: 50%;
-  right: -20px;
-  margin-top: -50px;
+  position: relative;
   display: block;
   width: 40px;
   height: 40px;

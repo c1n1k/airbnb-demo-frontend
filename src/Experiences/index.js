@@ -1,5 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import Section from "../Section";
 import Inner from "../Inner";
 import InnerGrid from "../Inner/InnerGrid";
@@ -11,6 +11,20 @@ import forest from "./forest.png";
 import whale from "./whale.png";
 import mountain from "./mountain.png";
 import salsa from "./salsa.png";
+
+const Pager = styled.span`
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  margin-top: -50px;
+  display: none;
+  width: 40px;
+  height: 40px;
+
+  @media (min-width: 980px) {
+    display: block
+  }
+`;
 
 export default () => {
   return (
@@ -48,7 +62,9 @@ export default () => {
           img={salsa}
           reviewCount="39"
         />
-        <NextPage href="" />
+        <Pager>
+          <NextPage href="" />
+        </Pager>
       </InnerGrid>
     </Section>
   );

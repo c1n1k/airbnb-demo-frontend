@@ -1,5 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import Section from "../Section";
 import Inner from "../Inner";
 import InnerGrid from "../Inner/InnerGrid";
@@ -12,6 +12,20 @@ import tokio from "./tokio.png";
 import capetown from "./capetown.png";
 import seoul from "./seoul.png";
 import losangeles from "./losangeles.png";
+
+const Pager = styled.span`
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  margin-top: -30px;
+  display: none;
+  width: 40px;
+  height: 40px;
+
+  @media (min-width: 980px) {
+    display: block
+  }
+`;
 
 export default () => {
   return (
@@ -26,7 +40,9 @@ export default () => {
         <Card img={capetown} name="Cape Town" href="" />
         <Card img={seoul} name="Seoul" href="" />
         <Card img={losangeles} name="Los Angeles" href="" />
-        <NextPage href="" />
+        <Pager>
+          <NextPage href="" />
+        </Pager>
       </InnerGrid>
     </Section>
   );

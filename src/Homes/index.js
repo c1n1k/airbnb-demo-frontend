@@ -1,5 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import Section from "../Section";
 import Inner from "../Inner";
 import InnerGrid from "../Inner/InnerGrid";
@@ -10,6 +10,20 @@ import NextPage from "../NextPage";
 import salentina from "./salentina.png";
 import riad from "./riad.png";
 import tropic from "./tropic.png";
+
+const Pager = styled.span`
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  margin-top: -55px;
+  display: none;
+  width: 40px;
+  height: 40px;
+
+  @media (min-width: 980px) {
+    display: block
+  }
+`;
 
 export default () => {
   return (
@@ -49,7 +63,9 @@ export default () => {
           hosterStatus="Superhost"
           reviewCount="364"
         />
-        <NextPage href="" />
+        <Pager>
+          <NextPage href="" />
+        </Pager>
       </InnerGrid>
     </Section>
   );

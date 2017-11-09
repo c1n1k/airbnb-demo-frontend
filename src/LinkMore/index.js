@@ -16,7 +16,7 @@ const Text = styled.span`
 
 const LinkIcon = styled.span`display: inline-block;`;
 
-const LinkIconRight = props => {
+const LinkIconRight = () => {
   return (
     <LinkIcon>
       <Icon icon="rightSmall" width="6" height="10" fill="#383838" />

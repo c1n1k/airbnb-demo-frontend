@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.a`
-  grid-column: span 2;
   text-decoration: none;
   color: inherit;
+
+  @supports (display: grid) {
+    grid-column: span 2;
+  }
 `;
 
 const Fig = styled.figure`margin-bottom: 10px;`;

@@ -3,9 +3,12 @@ import styled from "styled-components";
 import Icon from "../Icon";
 
 const Card = styled.a`
-  grid-column: span 3;
   text-decoration: none;
   color: inherit;
+
+  @supports (display: grid) {
+    grid-column: span 3;
+  }
 `;
 
 const Fig = styled.figure`margin-bottom: 8px;`;
