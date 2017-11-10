@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Picture from "../Picture";
 
 const Card = styled.a`
   text-decoration: none;
@@ -29,7 +30,7 @@ export default props => {
   return (
     <Card href={props.href}>
       <Fig>
-        <img src={props.img} alt={props.name} />
+        <Picture img={props.img} alt={props.name} />
       </Fig>
       <About>
         <Name>{props.name}</Name>

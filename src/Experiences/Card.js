@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import Picture from "../Picture";
 import Icon from "../Icon";
 
 const Card = styled.a`
   text-decoration: none;
   color: inherit;
-
-  @supports (display: grid) {
-    grid-column: span 3;
-  }
 `;
 
 const Fig = styled.figure`margin-bottom: 8px;`;
@@ -59,7 +56,7 @@ export default props => {
   return (
     <Card href={props.href}>
       <Fig>
-        <img src={props.img} alt={props.name} />
+        <Picture img={props.img} alt={props.name} />
       </Fig>
       <About>
         <Price>${props.price}</Price>

@@ -10,10 +10,15 @@ const Select = styled.span`
 const SelectIcon = styled.span`
   position: absolute;
   z-index: 1;
-  top: 15px;
-  right: 15px;
+  top: 13px;
+  right: 8px;
   display: inline-block;
   pointer-events: none;
+
+  @media (min-width: 768px) {
+    top: 15px;
+    right: 15px;
+  }
 `;
 
 const SelectIconDown = props => {
@@ -25,15 +30,22 @@ const SelectIconDown = props => {
 };
 
 const Control = styled.select`
-  padding: 0 40px 0 15px;
+  padding: 0 30px 0 10px;
   width: 100%;
-  height: 48px;
+  height: 40px;
   font-weight: 300;
-  font-size: 18px;
-  line-height: 48px;
+  font-size: 14px;
+  line-height: 40px;
   appearance: none;
   border: 1px solid #d8d8d8;
   border-radius: 4px;
+
+  @media (min-width: 768px) {
+    padding: 0 40px 0 15px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+  }
 `;
 
 export default props => {

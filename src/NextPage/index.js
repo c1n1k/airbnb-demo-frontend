@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Icon from "../Icon";
 
-const NextPage = styled.a`
+const NextPage = styled.span`
   position: relative;
   display: block;
   width: 40px;
   height: 40px;
   color: inherit;
+  cursor: pointer;
   background-color: #fff;
   border: 1px solid rgba(72, 72, 72, 0.2);
   border-radius: 50%;

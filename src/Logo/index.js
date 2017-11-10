@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Icon from "../Icon";
 import logo from "./logo.svg";
 
 const Logo = styled.a`
@@ -8,10 +9,31 @@ const Logo = styled.a`
   align-items: center;
 `;
 
+const IconWrap = styled.span`
+  display: inline-block;
+  width: 6px;
+  height: 10px;
+  margin-left: 15px;
+  transform: rotate(90deg);
+
+  @media (min-width: 980px) {
+    display: none;
+  }
+`;
+
+const DropIcon = () => {
+  return (
+    <IconWrap>
+      <Icon icon="rightSmall" width="6" height="10" fill="#767676" />
+    </IconWrap>
+  );
+};
+
 export default () => {
   return (
     <Logo href="/">
       <img src={logo} alt="AirBnBFake" />
+      <DropIcon />
     </Logo>
   );
 };

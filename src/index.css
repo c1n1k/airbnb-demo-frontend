@@ -38,6 +38,10 @@ input {
   font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+select::-ms-expand {
+  display: none;
+}
+
 * {
   box-sizing: border-box;
 }

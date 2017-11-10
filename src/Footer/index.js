@@ -13,11 +13,21 @@ import optionCurrency from "./optionCurrency.js";
 
 const Footer = styled.footer`
   margin-top: 48px;
-  padding-top: 48px;
+  padding-top: 15px;
   border-top: 1px solid rgba(72, 72, 72, 0.2);
+
+  @media (min-width: 768px) {
+    padding-top: 48px;
+  }
 `;
 
-const Nav = styled.nav`margin-bottom: 48px;`;
+const Nav = styled.nav`
+  margin-bottom: 15px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 48px;
+  }
+`;
 
 const Col = styled.div`
   @supports (display: block) {
@@ -25,31 +35,69 @@ const Col = styled.div`
     align-self: start;
 
     &:first-child {
-      grid-column: span 3;
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 16px;
+
+      @media (min-width: 768px) {
+        display: block;
+        grid-column: span 3;
+      }
     }
 
     &:nth-child(2) {
-      grid-column: 5 / span 2;
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+        grid-column: 5 / span 2;
+      }
     }
 
     &:nth-child(3) {
-      grid-column: 8 / span 2;
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+        grid-column: 8 / span 2;
+      }
     }
 
     &:nth-child(4) {
-      grid-column: 11 / span 2;
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+        grid-column: 11 / span 2;
+      }
     }
   }
 `;
 
-const FooterSelect = styled.div`margin-bottom: 16px;`;
+const FooterSelect = styled.div`
+  font-size: 14px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 16px;
+    width: auto;
+  }
+`;
 
 const CopyRow = Inner.extend`
-  height: 90px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 80px;
+  flex-wrap: wrap;
   align-items: center;
   font-size: 15px;
   color: #767676;
   border-top: 1px solid rgba(72, 72, 72, 0.2);
+
+  @media (min-width: 768px) {
+    height: 90px;
+    flex-wrap: no-wrap;
+  }
 `;
 
 const Logo = styled.span`
@@ -75,14 +123,25 @@ const Copy = () => {
   );
 };
 
-const Links = styled.div``;
+const Links = styled.div`
+  font-size: 14px;
+  margin-left: -11px;
+
+  @media (min-width: 768px) {
+    margin-left: 0;
+  }
+`;
 
 const Link = styled.a`
   padding: 5px 11px;
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
   color: inherit;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const LinkSocial = styled.a`

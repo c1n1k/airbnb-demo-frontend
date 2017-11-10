@@ -2,28 +2,25 @@ import React from "react";
 import styled from "styled-components";
 import Section from "../Section";
 import Inner from "../Inner";
-import InnerGrid from "../Inner/InnerGrid";
 import Title from "../Title";
 import Card from "./Card";
-import NextPage from "../NextPage";
-import paris from "./paris.png";
-import miami from "./miami.png";
-import tokio from "./tokio.png";
-import capetown from "./capetown.png";
-import seoul from "./seoul.png";
-import losangeles from "./losangeles.png";
+import Track from "../Track";
+import tile from "./tile";
 
-const Pager = styled.span`
-  position: absolute;
-  top: 50%;
-  right: -20px;
-  margin-top: -30px;
-  display: none;
-  width: 40px;
-  height: 40px;
+const CardWrap = styled.div`
+  padding: 0 8px 30px;
+  width: 33.3333%;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 25%;
+  }
 
   @media (min-width: 980px) {
-    display: block
+    padding-bottom: 0;
+    width: 16.6666%;
+    flex-shrink: 0;
+    flex-grow: 1;
   }
 `;
 
@@ -33,17 +30,28 @@ export default () => {
       <Inner>
         <Title>Featured destinations</Title>
       </Inner>
-      <InnerGrid>
-        <Card img={paris} name="Paris" href="" />
-        <Card img={miami} name="Miami" href="" />
-        <Card img={tokio} name="Tokyo" href="" />
-        <Card img={capetown} name="Cape Town" href="" />
-        <Card img={seoul} name="Seoul" href="" />
-        <Card img={losangeles} name="Los Angeles" href="" />
-        <Pager>
-          <NextPage href="" />
-        </Pager>
-      </InnerGrid>
+      <Inner>
+        <Track hasPager>
+          <CardWrap>
+            <Card img={tile.paris} name="Paris" href="" />
+          </CardWrap>
+          <CardWrap>
+            <Card img={tile.miami} name="Miami" href="" />
+          </CardWrap>
+          <CardWrap>
+            <Card img={tile.tokio} name="Tokyo" href="" />
+          </CardWrap>
+          <CardWrap>
+            <Card img={tile.capetown} name="Cape Town" href="" />
+          </CardWrap>
+          <CardWrap>
+            <Card img={tile.seoul} name="Seoul" href="" />
+          </CardWrap>
+          <CardWrap>
+            <Card img={tile.losangeles} name="Los Angeles" href="" />
+          </CardWrap>
+        </Track>
+      </Inner>
     </Section>
   );
 };

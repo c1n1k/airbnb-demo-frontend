@@ -11,9 +11,6 @@ export default styled.div`
   justify-content: space-between;
   align-items: baseline;
 
-  @media (min-width: 768px) {
-  }
-
   @media (min-width: 980px) {
     max-width: 962px;
     padding-left: 0;

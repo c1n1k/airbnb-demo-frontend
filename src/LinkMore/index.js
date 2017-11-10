@@ -5,6 +5,7 @@ import Icon from "../Icon";
 const Link = styled.a`
   display: inline-block;
   font-size: 14px;
+  white-space: nowrap;
   text-decoration: none;
   color: inherit;
 `;

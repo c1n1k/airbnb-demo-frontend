@@ -6,30 +6,93 @@ import Search from "../Search";
 import Nav from "../Nav";
 
 const Header = styled.header`
-  margin-bottom: 45px;
+  margin-bottom: 36px;
   height: 80px;
   border-bottom: 1px solid rgba(72, 72, 72, 0.2);
+
+  @media (min-width: 768px) {
+    margin-bottom: 45px;
+  }
 `;
 
 const HeaderLogo = styled.div`
+  align-self: center;
+
+  @media (min-width: 980px) {
+    width: 5%;
+    margin-right: 16px;
+  }
+
   @supports (display: grid) {
-    grid-column: 1 / 2;
+    width: auto;
+    grid-column: span 2;
     height: 100%;
+    align-self: center;
+
+    @media (min-width: 768px) {
+      grid-column: span 1;
+    }
+
+    @media (min-width: 980px) {
+      width: auto;
+      grid-column: span 1;
+      margin-right: 0;
+    }
   }
 `;
 
 const HeaderSearch = styled.div`
+  align-self: center;
+
+  @media (min-width: 980px) {
+    width: 40%;
+  }
+
   @supports (display: grid) {
-    grid-column: 2 / span 5;
+    grid-column: span 10;
     align-self: center;
+
+    @media (min-width: 768px) {
+      grid-column: span 7;
+    }
+
+    @media (min-width: 980px) {
+      grid-column: span 5;
+      width: auto;
+    }
   }
 `;
 
 const HeaderNav = styled.div`
-  @supports (display: grid) {
-    grid-column: -1 / -6;
+  position: absolute;
+  z-index: 50;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 1px;
+  overflow: hidden;
+  height: 0;
+  background-color: #fff;
+
+  @media (min-width: 980px) {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    margin-top: 0;
+    overflow: visible;
+    height: auto;
+    flex-grow: 1;
     align-self: center;
-    justify-self: end;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @supports (display: grid) {
+    @media (min-width: 980px) {
+      grid-column: -1 / -6;
+      justify-self: end;
+    }
   }
 `;
 
