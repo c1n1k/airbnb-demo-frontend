@@ -8,8 +8,8 @@ import Select from "../Select";
 import linksAirbnb from "./linksAirbnb";
 import linksDiscover from "./linksDiscover";
 import linksHosting from "./linksHosting";
-import optionLang from "./optionLang.js";
-import optionCurrency from "./optionCurrency.js";
+import optionLang from "./optionLang";
+import optionCurrency from "./optionCurrency";
 
 const Footer = styled.footer`
   margin-top: 48px;
@@ -33,53 +33,64 @@ const Col = styled.div`
   width: calc(100% / 6);
   padding-left: 16px;
 
-  &:first-child {
-    width: calc(100% / 4);
-  }
-
-  @supports (display: block) {
+  @supports (display: grid) {
     grid-column: span 2;
     align-self: start;
     width: auto;
+    padding-left: 0;
+  }
+`;
 
-    &:first-child {
-      grid-column: span 12;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column-gap: 16px;
-      width: auto;
+const ColSelect = Col.extend`
+  width: calc(100% / 4);
+  padding-left: 0;
 
-      @media (min-width: 768px) {
-        display: block;
-        grid-column: span 3;
-      }
+  @supports (display: grid) {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 16px;
+    width: auto;
+
+    @media (min-width: 768px) {
+      display: block;
+      grid-column: span 3;
     }
+  }
+`;
 
-    &:nth-child(2) {
-      display: none;
+const ColAirbnb = Col.extend`
+  display: none;
 
-      @media (min-width: 768px) {
-        display: block;
-        grid-column: 5 / span 2;
-      }
+  @media (min-width: 768px) {
+    display: block;
+
+    @supports (display: grid) {
+      grid-column: 5 / span 2;
     }
+  }
+`;
 
-    &:nth-child(3) {
-      display: none;
+const ColDiscover = Col.extend`
+  display: none;
 
-      @media (min-width: 768px) {
-        display: block;
-        grid-column: 8 / span 2;
-      }
+  @media (min-width: 768px) {
+    display: block;
+
+    @supports (display: grid) {
+      grid-column: 8 / span 2;
     }
+  }
+`;
 
-    &:nth-child(4) {
-      display: none;
+const ColHosting = Col.extend`
+  display: none;
 
-      @media (min-width: 768px) {
-        display: block;
-        grid-column: 11 / span 2;
-      }
+  @media (min-width: 768px) {
+    display: block;
+
+    @supports (display: grid) {
+      grid-column: 11 / span 2;
     }
   }
 `;
@@ -182,23 +193,23 @@ export default () => {
     <Footer>
       <Nav>
         <InnerGrid>
-          <Col>
+          <ColSelect>
             <FooterSelect>
               <Select options={optionLang} />
             </FooterSelect>
             <FooterSelect>
               <Select options={optionCurrency} />
             </FooterSelect>
-          </Col>
-          <Col>
+          </ColSelect>
+          <ColAirbnb>
             <LinkGroup name="Airbnb" group={linksAirbnb} />
-          </Col>
-          <Col>
+          </ColAirbnb>
+          <ColDiscover>
             <LinkGroup name="Discover" group={linksDiscover} />
-          </Col>
-          <Col>
+          </ColDiscover>
+          <ColHosting>
             <LinkGroup name="Hosting" group={linksHosting} />
-          </Col>
+          </ColHosting>
         </InnerGrid>
       </Nav>
       <CopyRow>
