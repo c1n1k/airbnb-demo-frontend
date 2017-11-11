@@ -30,15 +30,24 @@ const Nav = styled.nav`
 `;
 
 const Col = styled.div`
+  width: calc(100% / 6);
+  padding-left: 16px;
+
+  &:first-child {
+    width: calc(100% / 4);
+  }
+
   @supports (display: block) {
     grid-column: span 2;
     align-self: start;
+    width: auto;
 
     &:first-child {
       grid-column: span 12;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-column-gap: 16px;
+      width: auto;
 
       @media (min-width: 768px) {
         display: block;
