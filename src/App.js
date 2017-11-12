@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import Header from "./Header/Header";
-import Main from "./Main/Main";
-import Explore from "./Explore/Explore";
-import "./App.css";
+import Header from "./Header";
+import Main from "./Main";
+import Explore from "./Explore";
+import Experiences from "./Experiences";
+import Homes from "./Homes";
+import Popular from "./Popular";
+import Destination from "./Destination";
+import Footer from "./Footer";
 
 class App extends Component {
   render() {
@@ -12,7 +16,12 @@ class App extends Component {
         <Header />
         <Main>
           <Explore />
+          <Experiences />
+          <Homes />
+          <Popular />
+          <Destination />
         </Main>
+        <Footer />
       </div>
     );
   }

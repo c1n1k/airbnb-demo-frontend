@@ -28,7 +28,18 @@ html {
 
 body {
   height: 100%;
+  overflow-x: hidden;
   font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #383838;
+}
+
+select,
+input {
+  font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 * {
@@ -37,4 +48,17 @@ body {
 
 #root {
   height: 100%;
+}
+
+figure {
+  margin: 0;
+  font-size: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+p {
+  margin: 0 0 1em;
 }
