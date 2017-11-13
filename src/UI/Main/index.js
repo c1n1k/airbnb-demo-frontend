@@ -3,5 +3,5 @@ import styled from "styled-components";
 
 export default styled.main`
   position: relative;
-  margin-bottom: 66px;
+  padding-bottom: 66px;
 `;

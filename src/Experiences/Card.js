@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Picture from "../Picture";
-import Icon from "../Icon";
+import Picture from "../UI/Picture";
+import Icon from "../UI/Icon";
 
 const Card = styled.a`
   text-decoration: none;

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import Section from "../Section";
-import Inner from "../Inner";
-import Title from "../Title";
-import LinkMore from "../LinkMore";
+import Section from "../UI/Section";
+import Inner from "../UI/Inner";
+import Title from "../UI/Title";
+import LinkMore from "../UI/LinkMore";
 import Card from "./Card";
-import Track from "../Track";
+import Track from "../UI/Track";
 import tile from "./tile";
 
 const CardWrap = styled.div`
@@ -30,7 +30,7 @@ export default () => {
     <Section>
       <Inner>
         <Title>Popular reservations around the world</Title>
-        <LinkMore text="See all" href="" />
+        <LinkMore text="See all" to="" />
       </Inner>
       <Inner>
         <Track hasPager>

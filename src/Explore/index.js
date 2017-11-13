@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Section from "../Section";
-import Inner from "../Inner";
-import Title from "../Title";
+import Section from "../UI/Section";
+import Inner from "../UI/Inner";
+import Title from "../UI/Title";
 import Card from "./Card";
-import Track from "../Track";
+import Track from "../UI/Track";
 import tile from "./tile";
 
 const CardWrap = styled.div`

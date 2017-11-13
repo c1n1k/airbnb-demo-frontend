@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Picture from "../Picture";
+import Picture from "../UI/Picture";
 
 const Card = styled.a`
   overflow: hidden;
