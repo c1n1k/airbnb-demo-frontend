@@ -5,21 +5,43 @@ import Row from "../UI/Row";
 import Inner from "../UI/Inner";
 import InnerGrid from "../UI/Inner/InnerGrid";
 import Pagination from "../UI/Pagination";
+import Track from "../UI/Track";
 import GoogleMap from "google-map-react";
 import Filter from "./Filter";
 import Card from "./Card";
 import data from "./data";
 
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+const HomesMain = styled(Main)`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
 const Content = styled.div`
-  width: calc(100% * (2 / 3));
+  @media (min-width: 980px) {
+    width: calc(100% * (2 / 3));
+  }
 
   @supports (display: grid) {
-    grid-column: span 8;
     width: auto;
+    grid-column: 1 / -1;
+
+    @media (min-width: 980px) {
+      grid-column: span 8;
+    }
   }
 `;
 
-const HomesContent = styled.div`position: relative;`;
+const HomesContent = styled.div`
+  position: relative;
+  flex-grow: 1;
+`;
 
 const List = styled.ul`
   margin: 24px -8px 0;
@@ -31,17 +53,23 @@ const List = styled.ul`
   @supports (display: grid) {
     margin-left: 0;
     margin-right: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 16px;
+
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 16px;
+    }
   }
 `;
 
 const ListItem = styled.li`
   margin: 0 0 40px;
   padding: 0 8px;
-  width: 50%;
-  flex-basis: 50%;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 
   @supports (display: grid) {
     padding: 0;
@@ -60,8 +88,14 @@ const Map = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  left: 62.7%;
+  left: calc((100% - 980px + 16px) / 2);
   bottom: 0;
+  margin-left: calc((980px / 3) * 2);
+  display: none;
+
+  @media (min-width: 980px) {
+    display: block;
+  }
 `;
 
 export default () => {
@@ -82,31 +116,35 @@ export default () => {
     );
   });
   return (
-    <Main>
-      <Row>
-        <Inner>
-          <Filter />
-        </Inner>
-      </Row>
-      <HomesContent>
-        <InnerGrid>
-          <Content>
-            <List>{items}</List>
-            <Pagination all="300+" />
-            <Remark>
-              Enter dates to see full pricing. Additional fees apply. Taxes may
-              be added.
-            </Remark>
-          </Content>
-        </InnerGrid>
-        <Map>
-          <GoogleMap
-            apiKey="AIzaSyB77kaIrkclfyBpsyUh8glSGHkhICQDuOs"
-            center={[59.938043, 30.337157]}
-            zoom={9}
-          />
-        </Map>
-      </HomesContent>
-    </Main>
+    <Wrap>
+      <HomesMain>
+        <Row>
+          <Inner>
+            <Track>
+              <Filter />
+            </Track>
+          </Inner>
+        </Row>
+        <HomesContent>
+          <InnerGrid>
+            <Content>
+              <List>{items}</List>
+              <Pagination all="300+" />
+              <Remark>
+                Enter dates to see full pricing. Additional fees apply. Taxes
+                may be added.
+              </Remark>
+            </Content>
+          </InnerGrid>
+          <Map>
+            <GoogleMap
+              apiKey="AIzaSyB77kaIrkclfyBpsyUh8glSGHkhICQDuOs"
+              center={[59.938043, 30.337157]}
+              zoom={9}
+            />
+          </Map>
+        </HomesContent>
+      </HomesMain>
+    </Wrap>
   );
 };

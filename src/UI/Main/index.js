@@ -3,5 +3,5 @@ import styled from "styled-components";
 
 export default styled.main`
   position: relative;
-  padding-bottom: 66px;
+  flex-grow: 1;
 `;

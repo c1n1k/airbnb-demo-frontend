@@ -8,7 +8,7 @@ import Track from "../UI/Track";
 import tile from "./tile";
 
 const CardWrap = styled.div`
-  padding: 0 8px 30px;
+  padding: 0 8px;
   width: 33.3333%;
   flex-shrink: 0;
 
@@ -17,7 +17,6 @@ const CardWrap = styled.div`
   }
 
   @media (min-width: 980px) {
-    padding-bottom: 0;
     width: 16.6666%;
     flex-shrink: 0;
     flex-grow: 1;

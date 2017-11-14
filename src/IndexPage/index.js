@@ -9,6 +9,7 @@ import Destination from "../Destination";
 
 const IndexMain = Main.extend`
   margin-top: 36px;
+
   @media (min-width: 768px) {
     margin-top: 45px;
   }

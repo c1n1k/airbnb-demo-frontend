@@ -14,6 +14,7 @@ import optionCurrency from "./optionCurrency";
 const Footer = styled.footer`
   margin-top: 48px;
   padding-top: 15px;
+  background-color: #fff;
   border-top: 1px solid rgba(72, 72, 72, 0.2);
 
   @media (min-width: 768px) {
@@ -46,7 +47,7 @@ const ColSelect = Col.extend`
   padding-left: 0;
 
   @supports (display: grid) {
-    grid-column: span 3;
+    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 16px;
