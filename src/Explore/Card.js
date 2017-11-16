@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Picture from "../UI/Picture";
+import { Link } from "react-router-dom";
 
-const Card = styled.a`
+const Card = styled(Link)`
   overflow: hidden;
   display: flex;
   width: 100%;
@@ -42,7 +43,7 @@ const About = styled.h3`
 
 export default props => {
   return (
-    <Card href={props.href}>
+    <Card to={props.href}>
       <Fig>
         <Picture img={props.img} alt={props.name} />
       </Fig>

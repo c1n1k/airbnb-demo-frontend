@@ -1,12 +1,15 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import Main from "../UI/Main";
 import Explore from "../Explore";
 import Experiences from "../Experiences";
 import Homes from "../Homes/SectionForIndex";
 import Popular from "../Popular";
 import Destination from "../Destination";
+import Header from "../Header";
+import Footer from "../Footer";
 
+const IndexWrap = styled.div``;
 const IndexMain = Main.extend`
   margin-top: 36px;
 
@@ -17,12 +20,16 @@ const IndexMain = Main.extend`
 
 export default () => {
   return (
-    <IndexMain>
-      <Explore />
-      <Experiences />
-      <Homes />
-      <Popular />
-      <Destination />
-    </IndexMain>
+    <IndexWrap>
+      <Header />
+      <IndexMain>
+        <Explore />
+        <Experiences />
+        <Homes />
+        <Popular />
+        <Destination />
+      </IndexMain>
+      <Footer />
+    </IndexWrap>
   );
 };

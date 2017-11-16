@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
-import IndexPage from "./IndexPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Landing from "./Landing";
 import Homes from "./Homes";
 
 class App extends Component {
@@ -10,10 +8,8 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header />
-          <Route exact path="/" component={IndexPage} />
+          <Route exact path="/" component={Landing} />
           <Route path="/homes" component={Homes} />
-          <Footer />
         </div>
       </Router>
     );

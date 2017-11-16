@@ -9,8 +9,7 @@ export default [
     mastery: "Entire house",
     beds: 9,
     hosterStatus: "Superhost",
-    reviewCount: 97,
-    key: "sdf32"
+    reviewCount: 97
   },
   {
     name: "Your private 3 bedr. riad and exclusi…",
@@ -20,8 +19,7 @@ export default [
     mastery: "Entire house",
     beds: 5,
     hosterStatus: "Superhost",
-    reviewCount: 161,
-    key: "s42"
+    reviewCount: 161
   },
   {
     name: "Dreamy Tropical Tree House",
@@ -31,8 +29,7 @@ export default [
     mastery: "Entire treehouse",
     beds: 1,
     hosterStatus: "Superhost",
-    reviewCount: 364,
-    key: "s2232"
+    reviewCount: 364
   },
   {
     name: "Best location old town luxury loft",
@@ -42,8 +39,7 @@ export default [
     mastery: "Entrie apartment",
     beds: 1,
     hosterStatus: "Superhost",
-    reviewCount: 369,
-    key: "s2247"
+    reviewCount: 369
   },
   {
     name: "Lussuoso. Vista incantevole",
@@ -53,8 +49,7 @@ export default [
     mastery: "Entrie apartment",
     beds: 6,
     hosterStatus: "Superhost",
-    reviewCount: 105,
-    key: "sw231"
+    reviewCount: 105
   },
   {
     name: "In the historical center of Lecce",
@@ -64,7 +59,6 @@ export default [
     mastery: "Entrie house",
     beds: 3,
     hosterStatus: "Superhost",
-    reviewCount: 221,
-    key: "s2779"
+    reviewCount: 221
   }
 ];

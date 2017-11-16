@@ -37,36 +37,36 @@ export default () => {
             <Card
               name="La Salentina, see, nature & relax"
               to=""
-              price="82"
+              price={82}
               img={tile.salentina}
               mastery="Entire house"
-              beds="9"
+              beds={9}
               hosterStatus="Superhost"
-              reviewCount="97"
+              reviewCount={97}
             />
           </CardWrap>
           <CardWrap>
             <Card
               name="Your private 3 bedr. riad and exclusi…"
               to=""
-              price="82"
+              price={82}
               img={tile.riad}
               mastery="Entire house"
-              beds="5"
+              beds={5}
               hosterStatus="Superhost"
-              reviewCount="161"
+              reviewCount={161}
             />
           </CardWrap>
           <CardWrap>
             <Card
               name="Dreamy Tropical Tree House"
               to=""
-              price="200"
+              price={200}
               img={tile.tropic}
               mastery="Entire treehouse"
-              beds="1"
+              beds={1}
               hosterStatus="Superhost"
-              reviewCount="364"
+              reviewCount={364}
             />
           </CardWrap>
         </Track>

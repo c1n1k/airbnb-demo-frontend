@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Header from "../Header";
+import Footer from "../Footer";
 import Main from "../UI/Main";
 import Row from "../UI/Row";
 import Inner from "../UI/Inner";
@@ -17,7 +19,17 @@ const Wrap = styled.div`
   flex-grow: 1;
 `;
 
+const HomesHeader = styled.div`
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+`;
+
 const HomesMain = styled(Main)`
+  padding-top: 136px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -85,8 +97,8 @@ const Remark = styled.p`
 `;
 
 const Map = styled.div`
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 136px;
   right: 0;
   left: calc((100% - 980px + 16px) / 2);
   bottom: 0;
@@ -101,7 +113,7 @@ const Map = styled.div`
 export default () => {
   const items = data.map(item => {
     return (
-      <ListItem key={item.key}>
+      <ListItem key={item.name}>
         <Card
           name={item.name}
           to={item.to}
@@ -117,7 +129,8 @@ export default () => {
   });
   return (
     <Wrap>
-      <HomesMain>
+      <HomesHeader>
+        <Header />
         <Row>
           <Inner>
             <Track>
@@ -125,6 +138,8 @@ export default () => {
             </Track>
           </Inner>
         </Row>
+      </HomesHeader>
+      <HomesMain>
         <HomesContent>
           <InnerGrid>
             <Content>
@@ -145,6 +160,7 @@ export default () => {
           </Map>
         </HomesContent>
       </HomesMain>
+      <Footer />
     </Wrap>
   );
 };

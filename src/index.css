@@ -34,7 +34,8 @@ body {
 }
 
 select,
-input {
+input,
+button {
   font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 

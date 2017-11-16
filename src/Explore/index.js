@@ -36,7 +36,7 @@ export default () => {
       <Inner>
         <Track>
           <CardWrap>
-            <Card name="Homes" href="" img={tile.homes} />
+            <Card name="Homes" href="homes" img={tile.homes} />
           </CardWrap>
           <CardWrap>
             <Card name="Experiences" href="" img={tile.experiences} />
