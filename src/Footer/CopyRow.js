@@ -5,8 +5,8 @@ import Inner from "../UI/Inner";
 
 const CopyRow = Inner.extend`
   padding-top: 5px;
-  padding-bottom: 5px;
-  height: 80px;
+  padding-bottom: 50px;
+  height: 125px;
   flex-wrap: wrap;
   align-items: center;
   font-size: 15px;
@@ -14,8 +14,13 @@ const CopyRow = Inner.extend`
   border-top: 1px solid rgba(72, 72, 72, 0.2);
 
   @media (min-width: 768px) {
-    height: 90px;
+    height: 95px
     flex-wrap: no-wrap;
+  }
+
+  @media (min-width: 980px) {
+    padding-bottom: 5px;
+    height: 90px;
   }
 `;
 

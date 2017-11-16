@@ -50,8 +50,13 @@ const FooterInner = styled.footer`
 const Toggler = Button.extend`
   position: fixed;
   z-index: 55;
-  right: 15px;
+  left: 15px;
   bottom: 15px;
+
+  @media (min-width: 980px) {
+    right: 15px;
+    left: auto;
+  }
 
   ${props => {
     if (!props.isHiddble) {
