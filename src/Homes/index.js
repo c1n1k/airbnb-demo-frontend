@@ -8,12 +8,13 @@ import Inner from "../UI/Inner";
 import InnerGrid from "../UI/Inner/InnerGrid";
 import Pagination from "../UI/Pagination";
 import Track from "../UI/Track";
-import GoogleMap from "google-map-react";
 import Filter from "./Filter";
+import Map from "./Map";
 import Card from "./Card";
 import data from "./data";
 
 const Wrap = styled.div`
+  padding-bottom: 45px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -96,20 +97,6 @@ const Remark = styled.p`
   color: #636363;
 `;
 
-const Map = styled.div`
-  position: fixed;
-  top: 136px;
-  right: 0;
-  left: calc((100% - 980px + 16px) / 2);
-  bottom: 0;
-  margin-left: calc((980px / 3) * 2);
-  display: none;
-
-  @media (min-width: 980px) {
-    display: block;
-  }
-`;
-
 export default () => {
   const items = data.map(item => {
     return (
@@ -151,13 +138,7 @@ export default () => {
               </Remark>
             </Content>
           </InnerGrid>
-          <Map>
-            <GoogleMap
-              apiKey="AIzaSyB77kaIrkclfyBpsyUh8glSGHkhICQDuOs"
-              center={[59.938043, 30.337157]}
-              zoom={9}
-            />
-          </Map>
+          <Map />
         </HomesContent>
       </HomesMain>
       <Footer />
