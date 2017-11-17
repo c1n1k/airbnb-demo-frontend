@@ -53,7 +53,7 @@ const IconPin = () => {
 
 const ToggleMap = styled.button`
   position: fixed;
-  bottom: 15px;
+  bottom: 12px;
   right: 15px;
   width: 40px;
   height: 40px;
@@ -67,7 +67,7 @@ const ToggleMap = styled.button`
   }
 `;
 
-class Map extends Component {
+class GMap extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: false };
@@ -84,8 +84,7 @@ class Map extends Component {
       <Wrap className={this.props.className}>
         <MapInner isOpen={this.state.isOpen}>
           <GoogleMap
-            a
-            piKey="AIzaSyB77kaIrkclfyBpsyUh8glSGHkhICQDuOs"
+            apiKey={process.env.REACT_APP_MAP_APIKEY}
             center={[59.938043, 30.337157]}
             zoom={9}
           />
@@ -98,4 +97,4 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default GMap;

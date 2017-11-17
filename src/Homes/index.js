@@ -9,7 +9,7 @@ import InnerGrid from "../UI/Inner/InnerGrid";
 import Pagination from "../UI/Pagination";
 import Track from "../UI/Track";
 import Filter from "./Filter";
-import Map from "./Map";
+import GMap from "./GMap";
 import Card from "./Card";
 import data from "./data";
 
@@ -138,7 +138,7 @@ export default () => {
               </Remark>
             </Content>
           </InnerGrid>
-          <Map />
+          <GMap />
         </HomesContent>
       </HomesMain>
       <Footer />
