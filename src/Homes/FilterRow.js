@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Filter from "./Filter";
 import Calendar from "../UI/Calendar";
-import moment from "moment";
 
 const FilterRow = styled.div`
-  padding: 0 8px;
+  padding: 0;
   white-space: nowrap;
 `;
 
@@ -99,6 +98,16 @@ class Filters extends Component {
 
   onDatesChange = ({ startDate, endDate }) => {
     this.setState({ startDate, endDate });
+
+    const startDateString = startDate && startDate.format("MMM DD");
+    const endDateString = endDate && endDate.format("MMM DD");
+
+    this.setState({
+      label:
+        startDateString && endDateString
+          ? `${startDateString} - ${endDateString}`
+          : "Dates"
+    });
   };
 
   onFocusChange = focusedInput => {
@@ -109,19 +118,9 @@ class Filters extends Component {
   };
 
   render() {
-    const { startDate, endDate } = this.state;
-    const startDateString = startDate && startDate.format("MMM DD");
-    const endDateString = startDate && startDate.format("MMM DD");
-
-    const labelString = (startDateString, endDateString) => {
-      return startDateString && endDateString
-        ? `${startDateString} - ${endDateString}`
-        : "Dates";
-    };
-
     return (
       <FilterRow>
-        <FilterWrap label="Dates">
+        <FilterWrap label={this.state.label || "Dates"}>
           <DatesRange>
             <Calendar
               startDate={this.state.startDate}

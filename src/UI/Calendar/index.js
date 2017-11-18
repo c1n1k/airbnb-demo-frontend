@@ -10,6 +10,14 @@ export default class extends React.Component {
   }
 
   render() {
+    let orientation;
+    function resizeListener(e) {
+      const target = e.target;
+      orientation = target.outerWidth > 768 ? "horisontal" : "vertical";
+    }
+
+    window.addEventListener("resize", resizeListener);
+
     return (
       <DayPickerRangeController
         {...this.props}

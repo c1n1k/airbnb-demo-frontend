@@ -33,6 +33,7 @@ const FooterInner = styled.footer`
         left: 0;
         bottom: 0;
         margin-top: 0;
+        padding-bottom: 50px;
         transform: translate3D(0, 100%, 0);
       `;
     }

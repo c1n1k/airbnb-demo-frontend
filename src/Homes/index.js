@@ -7,7 +7,7 @@ import Row from "../UI/Row";
 import Inner from "../UI/Inner";
 import InnerGrid from "../UI/Inner/InnerGrid";
 import Pagination from "../UI/Pagination";
-import Track from "../UI/Track";
+// import Track from "../UI/Track";
 import Filter from "./FilterRow";
 import GMap from "./GMap";
 import Card from "./Card";
@@ -22,7 +22,7 @@ const Wrap = styled.div`
 
 const HomesHeader = styled.div`
   position: fixed;
-  z-index: 50;
+  z-index: 60;
   top: 0;
   left: 0;
   right: 0;
@@ -120,9 +120,7 @@ export default () => {
         <Header />
         <Row>
           <Inner>
-            <Track>
-              <Filter />
-            </Track>
+            <Filter />
           </Inner>
         </Row>
       </HomesHeader>

@@ -2,24 +2,41 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const Wrap = styled.div`
-  position: absolute;
-  margin-top: 8px;
-  left: -9999px;
-  top: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  overflow-y: auto;
   background-color: #fff;
+  transform: translate3D(0, 100%, 0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 50;
 
   @media (min-width: 768px) {
+    position: absolute;
+    top: 100%;
+    left: -9999px;
+    right: auto;
+    margin-top: 8px;
     min-width: 326px;
+    height: auto;
     overflow: hidden;
     border: 1px solid rgba(72, 72, 72, 0.2);
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(72, 72, 72, 0.08);
+    transition: none;
+    transform: none;
   }
 
   ${props => {
     if (props.isOpen) {
       return `
-        left: 0;
+        transform: translate3D(0, 0, 0);
+
+        @media (min-width: 768px) {
+          left: 0;
+        }
       `;
     }
   }};
