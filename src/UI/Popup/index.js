@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 const Wrap = styled.div`
   position: absolute;
-  width: 100%;
+  margin-top: 8px;
+  left: -9999px;
+  top: 100%;
   background-color: #fff;
-  display: none;
 
   @media (min-width: 768px) {
     min-width: 326px;
@@ -18,7 +19,7 @@ const Wrap = styled.div`
   ${props => {
     if (props.isOpen) {
       return `
-        display: block;
+        left: 0;
       `;
     }
   }};
@@ -32,33 +33,36 @@ const Body = styled.div`
   }
 `;
 
-const Footer = styled.div``;
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const Button = styled.button`
   padding: 0 32px;
   height: 64px;
   font-size: 16px;
   line-height: 64px;
+  cursor: pointer;
   border: 0;
   background-color: #fff;
   color: ${props => (props.primary ? "#008489" : "#636363")};
 `;
 
 class Popup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false
-    };
-  }
-
   render() {
+    const closePopup = this.props.forClose;
+
     return (
-      <Wrap className={this.props.className} isOpen={this.state.isOpen}>
+      <Wrap className={this.props.className} isOpen={this.props.isOpen}>
         <Body>{this.props.children}</Body>
         <Footer>
-          <Button>Cancel</Button>
-          <Button primary>Apply</Button>
+          <Button onClick={closePopup} type="button">
+            Cancel
+          </Button>
+          <Button primary type="button">
+            Apply
+          </Button>
         </Footer>
       </Wrap>
     );

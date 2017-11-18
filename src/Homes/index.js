@@ -8,7 +8,7 @@ import Inner from "../UI/Inner";
 import InnerGrid from "../UI/Inner/InnerGrid";
 import Pagination from "../UI/Pagination";
 import Track from "../UI/Track";
-import Filter from "./Filter";
+import Filter from "./FilterRow";
 import GMap from "./GMap";
 import Card from "./Card";
 import data from "./data";

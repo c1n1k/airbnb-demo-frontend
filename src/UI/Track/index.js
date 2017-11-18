@@ -17,8 +17,8 @@ const Pager = styled.span`
 `;
 
 const TrackRow = styled.div`
-  padding-bottom:30px;
-  display:flex;
+  padding-bottom: 30px;
+  display: flex;
   width: 100%;
 
   @media (min-width: 980px) {
@@ -35,6 +35,7 @@ const TrackInner = styled.div`
 
   @media (min-width: 980px) {
     margin-bottom: 0;
+    overflow: visible;
   }
 `;
 
@@ -55,9 +56,7 @@ export default props => {
   return (
     <Track>
       <TrackInner>
-        <TrackRow>
-          {props.children}
-        </TrackRow>
+        <TrackRow>{props.children}</TrackRow>
       </TrackInner>
       {hasPager && (
         <Pager>
