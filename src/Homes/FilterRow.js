@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Filter from "./Filter";
 import Calendar from "../UI/Calendar";
+import moment from "moment";
 
 const FilterRow = styled.div`
   padding: 0 8px;
@@ -35,16 +36,6 @@ const DatesRange = styled.div`
     padding-bottom: 40px;
   }
 `;
-
-/* const DateFilter = props => {
-  return (
-    <FilterWrap label="Dates">
-      <DatesRange>
-        <Calendar onDatesChange={props.onDatesChange} />
-      </DatesRange>
-    </FilterWrap>
-  );
-}; */
 
 const RoomType = styled.div``;
 
@@ -101,7 +92,8 @@ class Filters extends Component {
     super(props);
     this.state = {
       startDate: null,
-      endDate: null
+      endDate: null,
+      focusedInput: "startDate"
     };
   }
 
@@ -109,16 +101,34 @@ class Filters extends Component {
     this.setState({ startDate, endDate });
   };
 
+  onFocusChange = focusedInput => {
+    this.setState({
+      // Force the focusedInput to always be truthy so that dates are always selectable
+      focusedInput: focusedInput || "startDate"
+    });
+  };
+
   render() {
-    console.log(this.state);
+    const { startDate, endDate } = this.state;
+    const startDateString = startDate && startDate.format("MMM DD");
+    const endDateString = startDate && startDate.format("MMM DD");
+
+    const labelString = (startDateString, endDateString) => {
+      return startDateString && endDateString
+        ? `${startDateString} - ${endDateString}`
+        : "Dates";
+    };
+
     return (
       <FilterRow>
         <FilterWrap label="Dates">
           <DatesRange>
             <Calendar
-              // startDate={this.state.startDate}
-              // endDate={this.state.startDate}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              focusedInput={this.state.focusedInput}
               onDatesChange={this.onDatesChange}
+              onFocusChange={this.onFocusChange}
             />
           </DatesRange>
         </FilterWrap>

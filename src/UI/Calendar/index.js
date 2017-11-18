@@ -4,19 +4,6 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { DayPickerRangeController } from "react-dates";
 
-/* export default props => {
-  return (
-    <DayPickerRangeController
-      numberOfMonths={2}
-      hideKeyboardShortcutsPanel
-      startDate={props.startDate}
-      endDate={props.endDate}
-      onDatesChange={props.onDatesChange}
-      isDayBlocked={day => day.isBefore(moment(), "day")}
-    />
-  );
-}; */
-
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -25,10 +12,12 @@ export default class extends React.Component {
   render() {
     return (
       <DayPickerRangeController
+        {...this.props}
         numberOfMonths={2}
         hideKeyboardShortcutsPanel
         startDate={this.props.startDate}
         endDate={this.props.endDate}
+        focusedInput={this.props.focusedInput}
         onDatesChange={this.props.onDatesChange}
         isDayBlocked={day => day.isBefore(moment(), "day")}
       />
