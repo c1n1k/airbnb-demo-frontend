@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Icon from "../UI/Icon";
 import Inner from "../UI/Inner";
+import { Link } from "react-router-dom";
 
-const CopyRow = Inner.extend`
-  padding-top: 5px;
-  padding-bottom: 50px;
-  height: 125px;
+const CopyrightRow = Inner.extend`
+  padding-top: 15px;
+  padding-bottom: 15px;
   flex-wrap: wrap;
   align-items: center;
   font-size: 15px;
@@ -14,17 +14,17 @@ const CopyRow = Inner.extend`
   border-top: 1px solid rgba(72, 72, 72, 0.2);
 
   @media (min-width: 768px) {
-    height: 95px
+    padding-top: 34px;
+    padding-bottom: 50px;
     flex-wrap: no-wrap;
   }
 
   @media (min-width: 980px) {
-    padding-bottom: 5px;
-    height: 90px;
+    padding-bottom: 50px;
   }
 `;
 
-const Logo = styled.span`
+const Logo = styled.div`
   position: relative;
   top: 5px;
   display: inline-block;
@@ -39,15 +39,9 @@ const LogoIcon = () => {
   );
 };
 
-const Copy = () => {
-  return (
-    <div>
-      <LogoIcon /> © Airbnb Inc.
-    </div>
-  );
-};
+const CopyText = styled.div`@media (min-width: 768px) {margin-top: -10px;}`;
 
-const Links = styled.div`
+const Nav = styled.div`
   font-size: 14px;
   margin-left: -11px;
 
@@ -56,7 +50,7 @@ const Links = styled.div`
   }
 `;
 
-const Link = styled.a`
+const NavLink = styled(Link)`
   padding: 5px 11px;
   display: inline-block;
   font-size: 12px;
@@ -94,15 +88,17 @@ const LinkSocialTwi = props => {
 
 export default () => {
   return (
-    <CopyRow>
-      <Copy />
-      <Links>
-        <Link href="">Terms</Link>
-        <Link href="">Privacy</Link>
-        <Link href="">Site map</Link>
+    <CopyrightRow>
+      <CopyText>
+        <LogoIcon /> © Airbnb Inc.
+      </CopyText>
+      <Nav>
+        <NavLink to="">Terms</NavLink>
+        <NavLink to="">Privacy</NavLink>
+        <NavLink to="">Site map</NavLink>
         <LinkSocialFb href="" />
         <LinkSocialTwi href="" />
-      </Links>
-    </CopyRow>
+      </Nav>
+    </CopyrightRow>
   );
 };

@@ -36,13 +36,13 @@ export default () => {
       <Inner>
         <Track>
           <CardWrap>
-            <Card name="Homes" href="homes" img={tile.homes} />
+            <Card name="Homes" to="homes" img={tile.homes} />
           </CardWrap>
           <CardWrap>
-            <Card name="Experiences" href="" img={tile.experiences} />
+            <Card name="Experiences" to="" img={tile.experiences} />
           </CardWrap>
           <CardWrap>
-            <Card name="Restaurants" href="" img={tile.restaurants} />
+            <Card name="Restaurants" to="" img={tile.restaurants} />
           </CardWrap>
         </Track>
       </Inner>

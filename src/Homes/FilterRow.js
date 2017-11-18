@@ -8,7 +8,7 @@ const FilterRow = styled.div`
   white-space: nowrap;
 `;
 
-const FilterItem = styled(Filter)`
+const FilterWrap = styled(Filter)`
   position: relative;
   display: inline-block;
   margin: 0 6px;
@@ -36,23 +36,23 @@ const DatesRange = styled.div`
   }
 `;
 
-const DateFilter = props => {
+/* const DateFilter = props => {
   return (
-    <FilterItem buttonText="Dates">
+    <FilterWrap label="Dates">
       <DatesRange>
-        <Calendar />
+        <Calendar onDatesChange={props.onDatesChange} />
       </DatesRange>
-    </FilterItem>
+    </FilterWrap>
   );
-};
+}; */
 
 const RoomType = styled.div``;
 
 const RoomFilter = props => {
   return (
-    <FilterItem buttonText="Room type">
+    <FilterWrap label="Room type">
       <RoomType />
-    </FilterItem>
+    </FilterWrap>
   );
 };
 
@@ -60,9 +60,9 @@ const Guest = styled.div``;
 
 const GuestFilter = props => {
   return (
-    <FilterItem buttonText="Guests">
+    <FilterWrap label="Guests">
       <Guest />
-    </FilterItem>
+    </FilterWrap>
   );
 };
 
@@ -70,9 +70,9 @@ const Price = styled.div``;
 
 const PriceFilter = props => {
   return (
-    <FilterItem buttonText="Price">
+    <FilterWrap label="Price">
       <Price />
-    </FilterItem>
+    </FilterWrap>
   );
 };
 
@@ -80,9 +80,9 @@ const InstantBook = styled.div``;
 
 const InstantBookFilter = props => {
   return (
-    <FilterItem buttonText="Instant book">
+    <FilterWrap label="Instant book">
       <InstantBook />
-    </FilterItem>
+    </FilterWrap>
   );
 };
 
@@ -90,21 +90,46 @@ const Other = styled.div``;
 
 const OtherFilter = props => {
   return (
-    <FilterItem buttonText="More filters">
+    <FilterWrap label="More filters">
       <Other />
-    </FilterItem>
+    </FilterWrap>
   );
 };
 
-export default () => {
-  return (
-    <FilterRow>
-      <DateFilter />
-      <GuestFilter />
-      <RoomFilter />
-      <PriceFilter />
-      <InstantBookFilter />
-      <OtherFilter />
-    </FilterRow>
-  );
-};
+class Filters extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: null,
+      endDate: null
+    };
+  }
+
+  onDatesChange = ({ startDate, endDate }) => {
+    this.setState({ startDate, endDate });
+  };
+
+  render() {
+    console.log(this.state);
+    return (
+      <FilterRow>
+        <FilterWrap label="Dates">
+          <DatesRange>
+            <Calendar
+              // startDate={this.state.startDate}
+              // endDate={this.state.startDate}
+              onDatesChange={this.onDatesChange}
+            />
+          </DatesRange>
+        </FilterWrap>
+        <GuestFilter />
+        <RoomFilter />
+        <PriceFilter />
+        <InstantBookFilter />
+        <OtherFilter />
+      </FilterRow>
+    );
+  }
+}
+
+export default Filters;

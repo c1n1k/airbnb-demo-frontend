@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Icon from "../Icon";
 
-const Item = styled(Link)`
+const Button = styled(Link)`
   position: relative;
   margin: 0 8px;
   display: inline-block;
@@ -18,17 +18,17 @@ const Item = styled(Link)`
   color: #008489;
 `;
 
-const Next = styled(Item)`
+const Next = styled(Button)`
   margin-right: 0;
   border: solid 1px #008489;
 `;
 
-const Prev = styled(Item)`
+const Prev = styled(Button)`
   margin-left: 0;
   border: solid 1px #008489;
 `;
 
-const ItemIcon = styled.span`
+const ButtonIcon = styled.span`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -37,7 +37,7 @@ const ItemIcon = styled.span`
   display: inline-block;
   line-height: 1;
 `;
-const PrevIcon = styled(ItemIcon)`
+const PrevIcon = styled(ButtonIcon)`
   transform: rotate(180deg);
   margin-top: -7px;
   margin-left: -4px;
@@ -45,9 +45,9 @@ const PrevIcon = styled(ItemIcon)`
 
 const IconRight = () => {
   return (
-    <ItemIcon>
+    <ButtonIcon>
       <Icon icon="rightSmall" width="6" height="10" fill="currentColor" />
-    </ItemIcon>
+    </ButtonIcon>
   );
 };
 
@@ -74,11 +74,11 @@ export default props => {
       <Prev to="">
         <IconLeft />
       </Prev>
-      <Item to="">1</Item>
-      <Item to="">2</Item>
-      <Item to="">3</Item>
-      <Item to="">…</Item>
-      <Item to="">17</Item>
+      <Button to="">1</Button>
+      <Button to="">2</Button>
+      <Button to="">3</Button>
+      <Button to="">…</Button>
+      <Button to="">17</Button>
       <Next to="">
         <IconRight />
       </Next>

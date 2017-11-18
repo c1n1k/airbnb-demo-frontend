@@ -43,7 +43,7 @@ const About = styled.h3`
 
 export default props => {
   return (
-    <Card to={props.href}>
+    <Card to={props.to}>
       <Fig>
         <Picture img={props.img} alt={props.name} />
       </Fig>

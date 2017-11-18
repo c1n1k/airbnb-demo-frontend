@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import InnerGrid from "../UI/Inner/InnerGrid";
 import LinkGroup from "../UI/LinkGroup";
-import CopyRow from "./CopyRow";
+import Copyright from "./Copyright";
 import Select from "../UI/Select";
 import Button from "../UI/Button";
 import linksAirbnb from "./linksAirbnb";
@@ -162,7 +162,7 @@ class Footer extends Component {
 
   componentWillMount() {
     const pathname = this.props.location.pathname;
-    const check = pathname === "/homes";
+    const check = pathname !== "/";
 
     this.setState({ isHiddble: check });
   }
@@ -201,7 +201,7 @@ class Footer extends Component {
               </ColHosting>
             </InnerGrid>
           </Nav>
-          <CopyRow />
+          <Copyright />
         </FooterInner>
         <Toggler isHiddble={this.state.isHiddble} onClick={this.toggle}>
           Lang and currency

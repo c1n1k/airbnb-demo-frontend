@@ -38,7 +38,7 @@ class Filter extends Component {
           onClick={this.toggle}
           isOpen={this.state.isOpen}
         >
-          {this.props.buttonText}
+          {this.props.label}
         </FilterToggler>
         <Popup isOpen={this.state.isOpen} forClose={this.toggle}>
           {this.props.children}
