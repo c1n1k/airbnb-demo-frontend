@@ -8,6 +8,7 @@ import Popular from "../Popular";
 import Destination from "../Destination";
 import Header from "../Header";
 import Footer from "../Footer";
+import { Helmet } from "react-helmet";
 
 const IndexWrap = styled.div``;
 const IndexMain = Main.extend`
@@ -21,6 +22,9 @@ const IndexMain = Main.extend`
 export default () => {
   return (
     <IndexWrap>
+      <Helmet>
+        <title>Airbnb demo frontend</title>
+      </Helmet>
       <Header />
       <IndexMain>
         <Explore />

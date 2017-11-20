@@ -7,6 +7,7 @@ import Row from "../UI/Row";
 import Inner from "../UI/Inner";
 import InnerGrid from "../UI/Inner/InnerGrid";
 import Pagination from "../UI/Pagination";
+import { Helmet } from "react-helmet";
 // import Track from "../UI/Track";
 import Filter from "./FilterRow";
 import GMap from "./GMap";
@@ -116,6 +117,9 @@ export default () => {
   });
   return (
     <Wrap>
+      <Helmet>
+        <title>Homes</title>
+      </Helmet>
       <HomesHeader>
         <Header />
         <Row>
