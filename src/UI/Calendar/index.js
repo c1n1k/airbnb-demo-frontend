@@ -7,20 +7,33 @@ import { DayPickerRangeController } from "react-dates";
 export default class extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      orientation: "horizontal"
+    };
+  }
+
+  resizeListener = e => {
+    const target = e.target;
+    const orientation = target.outerWidth > 768 ? "horizontal" : "vertical";
+    this.setState(orientation => ({
+      orientation: orientation
+    }));
+    console.log(this.state.orientation);
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resizeListener);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeListener);
   }
 
   render() {
-    let orientation;
-    function resizeListener(e) {
-      const target = e.target;
-      orientation = target.outerWidth > 768 ? "horisontal" : "vertical";
-    }
-
-    window.addEventListener("resize", resizeListener);
-
     return (
       <DayPickerRangeController
         {...this.props}
+        orientation={this.state.orientation}
         numberOfMonths={2}
         hideKeyboardShortcutsPanel
         startDate={this.props.startDate}
