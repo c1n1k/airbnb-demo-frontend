@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Filter from "./Filter";
 import Calendar from "../UI/Calendar";
+import Counter from "../UI/Counter";
 
 const FilterRow = styled.div`
   padding: 0;
@@ -47,12 +48,49 @@ const RoomFilter = props => {
 };
 
 const Guest = styled.div``;
+const GuestRow = styled.div`
+  margin-bottom: 23px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: normal;
+`;
+
+const GuestLabel = styled.div`
+  display: block;
+
+  span {
+    margin-top: 5px;
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+  }
+`;
 
 const GuestFilter = props => {
   return (
-    <FilterWrap label="Guests">
-      <Guest />
-    </FilterWrap>
+    <Guest>
+      <GuestRow>
+        <GuestLabel>Adults</GuestLabel>
+        <Counter />
+      </GuestRow>
+      <GuestRow>
+        <GuestLabel>
+          Children
+          <span>Ages 2 — 12</span>
+        </GuestLabel>
+        <Counter />
+      </GuestRow>
+      <GuestRow>
+        <GuestLabel>
+          Infants
+          <span>Under 2</span>
+        </GuestLabel>
+        <Counter />
+      </GuestRow>
+    </Guest>
   );
 };
 
@@ -92,7 +130,8 @@ class Filters extends Component {
     this.state = {
       startDate: null,
       endDate: null,
-      focusedInput: "startDate"
+      focusedInput: "startDate",
+      openedFilter: ""
     };
   }
 
@@ -120,7 +159,7 @@ class Filters extends Component {
   render() {
     return (
       <FilterRow>
-        <FilterWrap label={this.state.label || "Dates"}>
+        <FilterWrap label="Dates" openedFilter="dates">
           <DatesRange>
             <Calendar
               startDate={this.state.startDate}
@@ -131,7 +170,9 @@ class Filters extends Component {
             />
           </DatesRange>
         </FilterWrap>
-        <GuestFilter />
+        <FilterWrap label="Guests" openedFilter="guest">
+          <GuestFilter />
+        </FilterWrap>
         <RoomFilter />
         <PriceFilter />
         <InstantBookFilter />

@@ -13,15 +13,15 @@ export default class extends React.Component {
   }
 
   resizeListener = e => {
-    const target = e.target;
+    const target = window;
     const orientation = target.outerWidth > 768 ? "horizontal" : "vertical";
-    this.setState(orientation => ({
+    this.setState(() => ({
       orientation: orientation
     }));
-    console.log(this.state.orientation);
   };
 
   componentDidMount() {
+    this.resizeListener();
     window.addEventListener("resize", this.resizeListener);
   }
 
