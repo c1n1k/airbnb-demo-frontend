@@ -71,7 +71,11 @@ class Popup extends Component {
     const closePopup = this.props.forClose;
 
     return (
-      <Wrap className={this.props.className} isOpen={this.props.isOpen}>
+      <Wrap
+        className={this.props.className}
+        isOpen={this.props.isOpen}
+        openFilter={this.props.openedFilter}
+      >
         <Body>{this.props.children}</Body>
         <Footer>
           <Button onClick={closePopup} type="button">
