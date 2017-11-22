@@ -8,6 +8,7 @@ const Wrap = styled.div`
   right: 0;
   height: 100vh;
   overflow-y: auto;
+  white-space: normal;
   background-color: #fff;
   transform: translate3D(0, 100%, 0);
   transition: transform 0.3s ease-in-out;

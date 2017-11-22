@@ -6,13 +6,13 @@ const Checkbox = styled.label`
   padding-left: 36px;
   padding-top: 4px;
   display: block;
+`;
 
-  input {
-    position: absolute;
-    z-index: -1;
-    margin: 0;
-    opacity: 0;
-  }
+const Control = styled.input`
+  position: absolute;
+  z-index: -1;
+  margin: 0;
+  opacity: 0;
 `;
 
 const Text = styled.span`
@@ -44,7 +44,7 @@ const Text = styled.span`
     opacity: 0;
   }
 
-  input:checked + &:after {
+  ${Control}:checked + &:after {
     opacity: 1;
   }
 
@@ -56,9 +56,20 @@ const Text = styled.span`
 `;
 
 export default props => {
+  const handleChange = e => {
+    const name = e.target.name;
+    const checked = e.target.checked;
+    props.changeHandle(name, checked);
+  };
   return (
     <Checkbox className={props.className}>
-      <input type="checkbox" name={props.name} />
+      <Control
+        type="checkbox"
+        name={props.name}
+        checked={props.checked}
+        changeHandle={props.changeHandle}
+        onChange={handleChange}
+      />
       <Text>{props.children}</Text>
     </Checkbox>
   );

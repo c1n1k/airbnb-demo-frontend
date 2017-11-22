@@ -12,7 +12,7 @@ export default class extends React.Component {
     };
   }
 
-  resizeListener = e => {
+  getOrientation = e => {
     const target = window;
     const orientation = target.outerWidth > 768 ? "horizontal" : "vertical";
     this.setState(() => ({
@@ -21,12 +21,12 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
-    this.resizeListener();
-    window.addEventListener("resize", this.resizeListener);
+    this.getOrientation();
+    window.addEventListener("resize", this.getOrientation);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeListener);
+    window.removeEventListener("resize", this.getOrientation);
   }
 
   render() {

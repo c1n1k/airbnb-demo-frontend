@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+const Wrap = styled.div``;
+
 const Button = styled.button`
   position: relative;
   width: 32px;
@@ -69,38 +71,23 @@ const Count = styled.span`
 `;
 
 class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      counter: 0
-    };
-  }
-
-  componentDidMount() {}
-
   incCounter = () => {
-    this.setState(state => ({
-      counter: state.counter + 1
-    }));
+    this.props.onChange(this.props.counter + 1, this.props.name);
   };
 
   decCounter = () => {
-    this.setState(state => ({
-      counter: state.counter !== 0 ? state.counter - 1 : 0
-    }));
-  };
-
-  isDisable = () => {
-    return this.state.counter === 0;
+    const value = this.props.counter > 0 ? this.props.counter - 1 : 0;
+    this.props.onChange(value, this.props.name);
   };
 
   render() {
+    const isDisable = this.props.counter === 0;
     return (
-      <div>
-        <ButtonMinus onClick={this.decCounter} disabled={this.isDisable()} />
-        <Count counter={this.state.counter}>{this.state.counter}</Count>
+      <Wrap>
+        <ButtonMinus onClick={this.decCounter} disabled={isDisable} />
+        <Count>{this.props.counter}</Count>
         <ButtonPlus onClick={this.incCounter} />
-      </div>
+      </Wrap>
     );
   }
 }

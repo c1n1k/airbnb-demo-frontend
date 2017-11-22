@@ -17,30 +17,24 @@ const FilterToggler = styled(Button)`
 `;
 
 class Filter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false
-    };
-  }
-
-  toggle = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen
-    }));
+  handelToggle = () => {
+    this.props.toggle(this.props.openedFilter);
   };
 
   render() {
     return (
-      <Wrap className={this.props.className}>
+      <Wrap
+        className={this.props.className}
+        openedFilter={this.props.openedFilter}
+      >
         <FilterToggler
           type="button"
-          onClick={this.toggle}
-          isOpen={this.state.isOpen}
+          onClick={this.handelToggle}
+          isOpen={this.props.isOpen}
         >
           {this.props.label}
         </FilterToggler>
-        <Popup isOpen={this.state.isOpen} forClose={this.toggle}>
+        <Popup isOpen={this.props.isOpen} forClose={this.props.toggle}>
           {this.props.children}
         </Popup>
       </Wrap>
