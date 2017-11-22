@@ -17,7 +17,7 @@ const FilterToggler = styled(Button)`
 `;
 
 class Filter extends Component {
-  handelToggle = () => {
+  handleToggle = () => {
     this.props.toggle(this.props.openedFilter);
   };
 
@@ -29,12 +29,16 @@ class Filter extends Component {
       >
         <FilterToggler
           type="button"
-          onClick={this.handelToggle}
+          onClick={this.handleToggle}
           isOpen={this.props.isOpen}
         >
           {this.props.label}
         </FilterToggler>
-        <Popup isOpen={this.props.isOpen} forClose={this.props.toggle}>
+        <Popup
+          isOpen={this.props.isOpen}
+          forClose={this.props.toggle}
+          bodyLike={this.props.bodyLike}
+        >
           {this.props.children}
         </Popup>
       </Wrap>

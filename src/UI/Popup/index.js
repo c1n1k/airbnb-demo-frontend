@@ -41,6 +41,25 @@ const Wrap = styled.div`
       `;
     }
   }};
+
+  ${props => {
+    if (props.bodyLike) {
+      return `
+
+        @media (min-width: 768px) {
+          margin-top: 13px;
+          width: 100%;
+          border: none;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        @media (min-width: 980px) {
+          width: calc(100% / 3 * 2)
+        }
+      `;
+    }
+  }};
 `;
 
 const Body = styled.div`
@@ -76,6 +95,7 @@ class Popup extends Component {
         className={this.props.className}
         isOpen={this.props.isOpen}
         openFilter={this.props.openedFilter}
+        bodyLike={this.props.bodyLike}
       >
         <Body>{this.props.children}</Body>
         <Footer>

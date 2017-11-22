@@ -57,9 +57,7 @@ const Text = styled.span`
 
 export default props => {
   const handleChange = e => {
-    const name = e.target.name;
-    const checked = e.target.checked;
-    props.changeHandle(name, checked);
+    props.changeHandle(e.target.name, e.target.checked);
   };
   return (
     <Checkbox className={props.className}>

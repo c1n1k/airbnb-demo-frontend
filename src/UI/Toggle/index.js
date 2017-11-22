@@ -79,9 +79,18 @@ const Slider = styled.span`
 `;
 
 export default props => {
+  const toggle = e => {
+    props.onChange(e.target.checked);
+  };
   return (
     <Toggle>
-      <Control type="checkbox" name={props.name} />
+      <Control
+        type="checkbox"
+        name={props.name}
+        checked={props.isActive}
+        change={props.onChange}
+        onChange={toggle}
+      />
       <Slider />
     </Toggle>
   );

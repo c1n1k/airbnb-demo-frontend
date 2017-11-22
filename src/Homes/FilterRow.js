@@ -6,10 +6,15 @@ import Counter from "../UI/Counter";
 import Checkbox from "../UI/Checkbox";
 import Toggle from "../UI/Toggle";
 import Icon from "../UI/Icon";
+import Link from "../UI/Link";
 import Rheostat from "rheostat";
 import "rheostat/css/slider.css";
 import "rheostat/css/slider-horizontal.css";
 import "./rheostat.css";
+
+const FilterLink = styled(Link)`
+  font-size: 16px;
+`;
 
 const FilterRow = styled.div`
   padding: 0;
@@ -29,6 +34,10 @@ const FilterWrap = styled(Filter)`
   &:last-child {
     margin-right: 0;
   }
+`;
+
+const FilterMore = styled(FilterWrap)`
+  position: static;
 `;
 
 const DatesRange = styled.div`
@@ -183,11 +192,43 @@ const InstantHead = styled.div`
   font-size: 18px;
 `;
 
-const Other = styled.div``;
+const Section = styled.div`
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(72, 72, 72, 0.3);
+`;
 
-const MoreFilter = props => {
-  return <Other>s</Other>;
-};
+const SectionTitle = styled.h3`
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: normal;
+`;
+
+const SectionRow = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  font-size: 20px;
+`;
+
+const SectionLabel = styled.span`
+  padding-top: 8px;
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.16;
+`;
+
+const SectionCol = styled.div`
+  width: 50%;
+`;
+
+const SectionRemark = styled.div`
+  margin: 3px 0;
+  display: block;
+  font-size: 16px;
+  line-height: 1.16;
+`;
+
+const MoreFilter = styled.div``;
 
 class Filters extends Component {
   constructor(props) {
@@ -205,14 +246,36 @@ class Filters extends Component {
       },
       price: {
         minPrice: 0,
-        maxPrice: 1000
+        maxPrice: 1000,
+        values: this.props.values || [0, 1000]
       },
       roomType: {
         entire: false,
         private: false,
         shared: false
+      },
+      instantBook: false,
+      rooms: {
+        bedroom: 0,
+        bed: 0,
+        bath: 0
+      },
+      superhost: false,
+      amenities: {
+        heating: false,
+        kitchen: false,
+        tv: false,
+        wifi: false
+      },
+      facilities: {
+        elebator: false,
+        parking: false,
+        pool: false,
+        wheelchair: false
       }
     };
+
+    this.updateValue = this.updateValue.bind(this);
   }
 
   onDatesChange = ({ startDate, endDate }) => {
@@ -220,17 +283,6 @@ class Filters extends Component {
       startDate,
       endDate
     });
-  };
-
-  dateLabelFormat = () => {
-    const { startDate, endDate } = this.state;
-
-    const startDateString = startDate && startDate.format("MMM DD");
-    const endDateString = endDate && endDate.format("MMM DD");
-
-    return startDateString && endDateString
-      ? `${startDateString} - ${endDateString}`
-      : "Dates";
   };
 
   onFocusChange = focusedInput => {
@@ -243,6 +295,15 @@ class Filters extends Component {
     this.setState({
       guest: {
         ...this.state.guest,
+        [name]: count
+      }
+    });
+  };
+
+  changeCounterRooms = (count, name) => {
+    this.setState({
+      rooms: {
+        ...this.state.rooms,
         [name]: count
       }
     });
@@ -264,11 +325,61 @@ class Filters extends Component {
     });
   };
 
+  changeAmenities = (name, checked) => {
+    this.setState({
+      amenities: {
+        ...this.state.amenities,
+        [name]: checked
+      }
+    });
+  };
+
+  changeFacilities = (name, checked) => {
+    this.setState({
+      facilities: {
+        ...this.state.facilities,
+        [name]: checked
+      }
+    });
+  };
+
+  updateInstant = value => {
+    this.setState({
+      instantBook: value
+    });
+  };
+
+  updateSuperhost = value => {
+    this.setState({
+      superhost: value
+    });
+  };
+
+  updateValue(sliderState) {
+    this.setState({
+      price: {
+        ...this.state.price,
+        values: sliderState.values
+      }
+    });
+  }
+
   render() {
+    const dateLabelFormat = () => {
+      const { startDate, endDate } = this.state;
+
+      const startDateString = startDate && startDate.format("MMM DD");
+      const endDateString = endDate && endDate.format("MMM DD");
+
+      return startDateString && endDateString
+        ? `${startDateString} - ${endDateString}`
+        : "Dates";
+    };
+
     return (
       <FilterRow>
         <FilterWrap
-          label={this.dateLabelFormat()}
+          label={dateLabelFormat()}
           isOpen={this.state.isOpen && this.state.openedFilter === "dates"}
           openedFilter="dates"
           toggle={this.toggle}
@@ -343,10 +454,17 @@ class Filters extends Component {
         >
           <Price>
             <div>
-              <PriceMin>{}</PriceMin>$ — <PriceMax>{}</PriceMax>$
+              <PriceMin>{this.state.price.values[0]} $</PriceMin> —{" "}
+              <PriceMax>{this.state.price.values[1]} $</PriceMax>
             </div>
             <PriceRemark>The average nightly price is 75$</PriceRemark>
-            <Rheostat min={10} max={1000} values={[0, 1000]} />
+            <Rheostat
+              {...this.props}
+              min={this.state.price.minPrice}
+              max={this.state.price.maxPrice}
+              values={this.state.price.values}
+              onValuesUpdated={this.updateValue}
+            />
           </Price>
         </FilterWrap>
         <FilterWrap
@@ -364,19 +482,169 @@ class Filters extends Component {
                 Listings you can book without waiting for host approval.
               </InstantText>
               <InstantToggle>
-                <Toggle />
+                <Toggle
+                  name="instantBook"
+                  onChange={this.updateInstant}
+                  isActive={this.state.instantBook}
+                />
               </InstantToggle>
             </InstantRow>
           </InstantBook>
         </FilterWrap>
-        <FilterWrap
+        <FilterMore
           label="More filters"
           openedFilter="moreFilter"
           isOpen={this.state.isOpen && this.state.openedFilter === "moreFilter"}
           toggle={this.toggle}
+          bodyLike={true}
         >
-          <MoreFilter />
-        </FilterWrap>
+          <MoreFilter>
+            <Section>
+              <SectionTitle>Rooms and beds</SectionTitle>
+              <SectionRow>
+                <SectionCol>
+                  <SectionLabel>Bedrooms</SectionLabel>
+                </SectionCol>
+                <SectionCol>
+                  <Counter
+                    onChange={this.changeCounterRooms}
+                    name="bedroom"
+                    counter={this.state.rooms.bedroom}
+                  />
+                </SectionCol>
+              </SectionRow>
+              <SectionRow>
+                <SectionCol>
+                  <SectionLabel>Beds</SectionLabel>
+                </SectionCol>
+                <SectionCol>
+                  <Counter
+                    onChange={this.changeCounterRooms}
+                    name="bed"
+                    counter={this.state.rooms.bed}
+                  />
+                </SectionCol>
+              </SectionRow>
+              <SectionRow>
+                <SectionCol>
+                  <SectionLabel>Bathrooms</SectionLabel>
+                </SectionCol>
+                <SectionCol>
+                  <Counter
+                    onChange={this.changeCounterRooms}
+                    name="bath"
+                    counter={this.state.rooms.bath}
+                  />
+                </SectionCol>
+              </SectionRow>
+            </Section>
+            <Section>
+              <SectionTitle>More options</SectionTitle>
+              <SectionRow>
+                <SectionCol>
+                  <SectionLabel>
+                    Superhost
+                    <SectionRemark>Stay with recognized</SectionRemark>
+                    <FilterLink to="">Learn more</FilterLink>
+                  </SectionLabel>
+                </SectionCol>
+                <SectionCol>
+                  <Toggle
+                    name="superhost"
+                    onChange={this.updateSuperhost}
+                    isActive={this.state.superhost}
+                  />
+                </SectionCol>
+              </SectionRow>
+            </Section>
+            <Section>
+              <SectionTitle>Amenities</SectionTitle>
+              <SectionRow>
+                <SectionCol>
+                  <Checkbox
+                    name="heating"
+                    checked={this.state.amenities.heating}
+                    changeHandle={this.changeAmenities}
+                  >
+                    Heating
+                  </Checkbox>
+                </SectionCol>
+                <SectionCol>
+                  <Checkbox
+                    name="kitchen"
+                    checked={this.state.amenities.kitchen}
+                    changeHandle={this.changeAmenities}
+                  >
+                    Kitchen
+                  </Checkbox>
+                </SectionCol>
+              </SectionRow>
+              <SectionRow>
+                <SectionCol>
+                  <Checkbox
+                    name="tv"
+                    checked={this.state.amenities.tv}
+                    changeHandle={this.changeAmenities}
+                  >
+                    TV
+                  </Checkbox>
+                </SectionCol>
+                <SectionCol>
+                  <Checkbox
+                    name="wifi"
+                    checked={this.state.amenities.wifi}
+                    changeHandle={this.changeAmenities}
+                  >
+                    Wireless Internet
+                  </Checkbox>
+                </SectionCol>
+              </SectionRow>
+            </Section>
+            <Section>
+              <SectionTitle>Facilities</SectionTitle>
+              <SectionRow>
+                <SectionCol>
+                  <Checkbox
+                    name="elebator"
+                    checked={this.state.facilities.elebator}
+                    changeHandle={this.changeFacilities}
+                  >
+                    Elebator
+                  </Checkbox>
+                </SectionCol>
+                <SectionCol>
+                  <Checkbox
+                    name="parking"
+                    checked={this.state.facilities.parking}
+                    changeHandle={this.changeFacilities}
+                  >
+                    Free parking on premises
+                  </Checkbox>
+                </SectionCol>
+              </SectionRow>
+              <SectionRow>
+                <SectionCol>
+                  <Checkbox
+                    name="pool"
+                    checked={this.state.facilities.pool}
+                    changeHandle={this.changeFacilities}
+                  >
+                    Pool
+                  </Checkbox>
+                </SectionCol>
+                <SectionCol>
+                  <Checkbox
+                    name="wheelchair"
+                    checked={this.state.facilities.wheelchair}
+                    changeHandle={this.changeFacilities}
+                  >
+                    Wheelchair accessible
+                  </Checkbox>
+                </SectionCol>
+              </SectionRow>
+            </Section>
+          </MoreFilter>
+        </FilterMore>
       </FilterRow>
     );
   }
