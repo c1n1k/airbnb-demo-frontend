@@ -230,6 +230,15 @@ const SectionRemark = styled.div`
 
 const MoreFilter = styled.div``;
 
+const dateLabelFormat = (startDate, endDate) => {
+  const startDateString = startDate && startDate.format("MMM DD");
+  const endDateString = endDate && endDate.format("MMM DD");
+
+  return startDateString && endDateString
+    ? `${startDateString} - ${endDateString}`
+    : "Dates";
+};
+
 class Filters extends Component {
   constructor(props) {
     super(props);
@@ -365,21 +374,10 @@ class Filters extends Component {
   }
 
   render() {
-    const dateLabelFormat = () => {
-      const { startDate, endDate } = this.state;
-
-      const startDateString = startDate && startDate.format("MMM DD");
-      const endDateString = endDate && endDate.format("MMM DD");
-
-      return startDateString && endDateString
-        ? `${startDateString} - ${endDateString}`
-        : "Dates";
-    };
-
     return (
       <FilterRow>
         <FilterWrap
-          label={dateLabelFormat()}
+          label={dateLabelFormat(this.state.startDate, this.state.endDate)}
           isOpen={this.state.isOpen && this.state.openedFilter === "dates"}
           openedFilter="dates"
           toggle={this.toggle}
