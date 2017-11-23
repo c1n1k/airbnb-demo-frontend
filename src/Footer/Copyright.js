@@ -20,7 +20,7 @@ const CopyrightRow = Inner.extend`
   }
 
   @media (min-width: 980px) {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
   }
 `;
 
@@ -39,7 +39,11 @@ const LogoIcon = () => {
   );
 };
 
-const CopyText = styled.div`@media (min-width: 768px) {margin-top: -10px;}`;
+const CopyText = styled.div`
+  @media (min-width: 768px) {
+    margin-top: -10px;
+  }
+`;
 
 const Nav = styled.div`
   font-size: 14px;
