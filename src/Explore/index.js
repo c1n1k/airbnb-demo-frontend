@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Section from "../Section";
-import Inner from "../Inner";
-import Title from "../Title";
+import Section from "../UI/Section";
+import Inner from "../UI/Inner";
+import Title from "../UI/Title";
 import Card from "./Card";
-import Track from "../Track";
+import Track from "../UI/Track";
 import tile from "./tile";
 
 const CardWrap = styled.div`
-  padding: 0 8px 30px;
+  padding: 0 8px;
   width: 50%;
   flex-shrink: 0;
 
@@ -21,7 +21,6 @@ const CardWrap = styled.div`
   }
 
   @media (min-width: 980px) {
-    padding-bottom: 0;
     width: 33%;
     flex-shrink: 0;
     flex-grow: 1;
@@ -37,13 +36,13 @@ export default () => {
       <Inner>
         <Track>
           <CardWrap>
-            <Card name="Homes" href="" img={tile.homes} />
+            <Card name="Homes" to="homes" img={tile.homes} />
           </CardWrap>
           <CardWrap>
-            <Card name="Experiences" href="" img={tile.experiences} />
+            <Card name="Experiences" to="" img={tile.experiences} />
           </CardWrap>
           <CardWrap>
-            <Card name="Restaurants" href="" img={tile.restaurants} />
+            <Card name="Restaurants" to="" img={tile.restaurants} />
           </CardWrap>
         </Track>
       </Inner>

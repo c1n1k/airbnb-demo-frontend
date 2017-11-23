@@ -1,0 +1,30 @@
+.rheostat-horizontal {
+  height: 6px;
+}
+
+.rheostat-horizontal .rheostat-background {
+  height: 6px;
+  border: none;
+  background-color: #d8d8d8;
+}
+
+.rheostat-horizontal .rheostat-progress {
+  height: 6px;
+  top: 0;
+  background-color: #008489;
+}
+
+.rheostat .rheostat-handle {
+  margin-top: -8px;
+  margin-left: -16px;
+  width: 32px;
+  height: 32px;
+  /* background-color: #fff; */
+  border: 1px solid #008489;
+  border-radius: 50%;
+}
+
+.rheostat-handle::before,
+.rheostat-handle::after {
+  display: none;
+}

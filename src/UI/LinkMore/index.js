@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Icon from "../Icon";
 
-const Link = styled.a`
+const LinkMore = styled(Link)`
   display: inline-block;
   font-size: 14px;
   white-space: nowrap;
@@ -27,9 +28,9 @@ const LinkIconRight = () => {
 
 export default props => {
   return (
-    <Link href={props.href}>
+    <LinkMore to={props.to}>
       <Text>{props.text}</Text>
       <LinkIconRight />
-    </Link>
+    </LinkMore>
   );
 };

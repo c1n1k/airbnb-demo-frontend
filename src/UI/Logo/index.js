@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Icon from "../Icon";
 import logo from "./logo.svg";
 
-const Logo = styled.a`
+const Logo = styled(Link)`
   display: flex;
   height: 100%;
   align-items: center;
@@ -31,7 +32,7 @@ const DropIcon = () => {
 
 export default () => {
   return (
-    <Logo href="/">
+    <Logo to="/">
       <img src={logo} alt="AirBnBFake" />
       <DropIcon />
     </Logo>

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "../Icon";
-import Picture from "../Picture";
+import Icon from "../UI/Icon";
+import Picture from "../UI/Picture";
+import { Link } from "react-router-dom";
 
-const Card = styled.a`
+const Card = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
@@ -60,7 +61,7 @@ const ReviewCount = styled.span`
 
 export default props => {
   return (
-    <Card href={props.href}>
+    <Card to={props.to}>
       <Fig>
         <Picture img={props.img} alt={props.name} />
       </Fig>

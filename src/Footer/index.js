@@ -1,24 +1,71 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import Inner from "../Inner";
-import InnerGrid from "../Inner/InnerGrid";
-import LinkGroup from "../LinkGroup";
-import Icon from "../Icon";
-import Select from "../Select";
+import InnerGrid from "../UI/Inner/InnerGrid";
+import LinkGroup from "../UI/LinkGroup";
+import Copyright from "./Copyright";
+import Select from "../UI/Select";
+import Button from "../UI/Button";
 import linksAirbnb from "./linksAirbnb";
 import linksDiscover from "./linksDiscover";
 import linksHosting from "./linksHosting";
 import optionLang from "./optionLang";
 import optionCurrency from "./optionCurrency";
+import { withRouter } from "react-router-dom";
 
-const Footer = styled.footer`
+const Wrap = styled.div``;
+
+const FooterInner = styled.footer`
   margin-top: 48px;
   padding-top: 15px;
+  background-color: #fff;
   border-top: 1px solid rgba(72, 72, 72, 0.2);
+  transition: transform 0.2s ease-out;
 
   @media (min-width: 768px) {
     padding-top: 48px;
   }
+
+  ${props => {
+    if (props.isHiddble) {
+      return `
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin-top: 0;
+        padding-bottom: 50px;
+        transform: translate3D(0, 100%, 0);
+      `;
+    }
+  }};
+
+  ${props => {
+    if (props.hideFooter) {
+      return `
+        transform: translate3D(0, 0, 0);
+      `;
+    }
+  }};
+`;
+
+const Toggler = Button.extend`
+  position: fixed;
+  z-index: 55;
+  left: 15px;
+  bottom: 15px;
+
+  @media (min-width: 980px) {
+    right: 15px;
+    left: auto;
+  }
+
+  ${props => {
+    if (!props.isHiddble) {
+      return `
+        display: none;
+      `;
+    }
+  }};
 `;
 
 const Nav = styled.nav`
@@ -46,7 +93,7 @@ const ColSelect = Col.extend`
   padding-left: 0;
 
   @supports (display: grid) {
-    grid-column: span 3;
+    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 16px;
@@ -104,124 +151,65 @@ const FooterSelect = styled.div`
   }
 `;
 
-const CopyRow = Inner.extend`
-  padding-top: 5px;
-  padding-bottom: 5px;
-  height: 80px;
-  flex-wrap: wrap;
-  align-items: center;
-  font-size: 15px;
-  color: #767676;
-  border-top: 1px solid rgba(72, 72, 72, 0.2);
-
-  @media (min-width: 768px) {
-    height: 90px;
-    flex-wrap: no-wrap;
+class Footer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+      isHiddble: true
+    };
+    // this.toggle = this.toggle.bind(this);
   }
-`;
 
-const Logo = styled.span`
-  position: relative;
-  top: 5px;
-  display: inline-block;
-  margin-right: 10px;
-`;
+  componentWillMount() {
+    const pathname = this.props.location.pathname;
+    const check = pathname !== "/";
 
-const LogoIcon = () => {
-  return (
-    <Logo>
-      <Icon icon="logo" width="21" height="24" fill="#767676" />
-    </Logo>
-  );
-};
-
-const Copy = () => {
-  return (
-    <div>
-      <LogoIcon /> © Airbnb Inc.
-    </div>
-  );
-};
-
-const Links = styled.div`
-  font-size: 14px;
-  margin-left: -11px;
-
-  @media (min-width: 768px) {
-    margin-left: 0;
+    this.setState({ isHiddble: check });
   }
-`;
 
-const Link = styled.a`
-  padding: 5px 11px;
-  display: inline-block;
-  font-size: 12px;
-  text-decoration: none;
-  color: inherit;
+  toggle = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }));
+  };
 
-  @media (min-width: 768px) {
-    font-size: 14px;
+  render() {
+    return (
+      <Wrap>
+        <FooterInner
+          isHiddble={this.state.isHiddble}
+          hideFooter={this.state.isOpen}
+        >
+          <Nav>
+            <InnerGrid>
+              <ColSelect>
+                <FooterSelect>
+                  <Select options={optionLang} />
+                </FooterSelect>
+                <FooterSelect>
+                  <Select options={optionCurrency} />
+                </FooterSelect>
+              </ColSelect>
+              <ColAirbnb>
+                <LinkGroup name="Airbnb" group={linksAirbnb} />
+              </ColAirbnb>
+              <ColDiscover>
+                <LinkGroup name="Discover" group={linksDiscover} />
+              </ColDiscover>
+              <ColHosting>
+                <LinkGroup name="Hosting" group={linksHosting} />
+              </ColHosting>
+            </InnerGrid>
+          </Nav>
+          <Copyright />
+        </FooterInner>
+        <Toggler isHiddble={this.state.isHiddble} onClick={this.toggle}>
+          Lang and currency
+        </Toggler>
+      </Wrap>
+    );
   }
-`;
+}
 
-const LinkSocial = styled.a`
-  position: relative;
-  top: 4px;
-  margin-left: 15px;
-  display: inline-block;
-  text-decoration: none;
-`;
-
-const LinkSocialFb = props => {
-  return (
-    <LinkSocial href={props.href}>
-      <Icon icon="facebook" width="20" height="20" fill="#767676" />
-    </LinkSocial>
-  );
-};
-
-const LinkSocialTwi = props => {
-  return (
-    <LinkSocial href={props.href}>
-      <Icon icon="twitter" width="19" height="17" fill="#767676" />
-    </LinkSocial>
-  );
-};
-
-export default () => {
-  return (
-    <Footer>
-      <Nav>
-        <InnerGrid>
-          <ColSelect>
-            <FooterSelect>
-              <Select options={optionLang} />
-            </FooterSelect>
-            <FooterSelect>
-              <Select options={optionCurrency} />
-            </FooterSelect>
-          </ColSelect>
-          <ColAirbnb>
-            <LinkGroup name="Airbnb" group={linksAirbnb} />
-          </ColAirbnb>
-          <ColDiscover>
-            <LinkGroup name="Discover" group={linksDiscover} />
-          </ColDiscover>
-          <ColHosting>
-            <LinkGroup name="Hosting" group={linksHosting} />
-          </ColHosting>
-        </InnerGrid>
-      </Nav>
-      <CopyRow>
-        <Copy />
-        <Links>
-          <Link href="">Terms</Link>
-          <Link href="">Privacy</Link>
-          <Link href="">Site map</Link>
-          <LinkSocialFb href="" />
-          <LinkSocialTwi href="" />
-        </Links>
-      </CopyRow>
-    </Footer>
-  );
-};
+export default withRouter(Footer);

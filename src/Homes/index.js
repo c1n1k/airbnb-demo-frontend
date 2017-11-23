@@ -1,77 +1,149 @@
 import React from "react";
 import styled from "styled-components";
-import Section from "../Section";
-import Inner from "../Inner";
-import Title from "../Title";
-import LinkMore from "../LinkMore";
+import Header from "../Header";
+import Footer from "../Footer";
+import Main from "../UI/Main";
+import Row from "../UI/Row";
+import Inner from "../UI/Inner";
+import InnerGrid from "../UI/Inner/InnerGrid";
+import Pagination from "../UI/Pagination";
+import { Helmet } from "react-helmet";
+// import Track from "../UI/Track";
+import Filter from "./FilterRow";
+import GMap from "./GMap";
 import Card from "./Card";
-import Track from "../Track";
-import tile from "./tile";
+import data from "./data";
 
-const CardWrap = styled.div`
-  padding: 0 8px 30px;
-  width: 66%;
-  flex-shrink: 0;
+const Wrap = styled.div`
+  padding-bottom: 45px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
 
-  @media (min-width: 768px) {
-    width: 40%;
+const HomesHeader = styled.div`
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+`;
+
+const HomesMain = styled(Main)`
+  padding-top: 136px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+const Content = styled.div`
+  @media (min-width: 980px) {
+    width: calc(100% * (2 / 3));
   }
 
-  @media (min-width: 980px) {
-    padding-bottom: 0;
-    width: 33.3333%;
-    flex-shrink: 0;
-    flex-grow: 1;
+  @supports (display: grid) {
+    width: auto;
+    grid-column: 1 / -1;
+
+    @media (min-width: 980px) {
+      grid-column: span 8;
+    }
   }
 `;
 
+const HomesContent = styled.div`
+  position: relative;
+  flex-grow: 1;
+`;
+
+const List = styled.ul`
+  margin: 24px -8px 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+
+  @supports (display: grid) {
+    margin-left: 0;
+    margin-right: 0;
+
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 16px;
+    }
+  }
+`;
+
+const ListItem = styled.li`
+  margin: 0 0 40px;
+  padding: 0 8px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+
+  @supports (display: grid) {
+    padding: 0;
+    width: auto;
+  }
+`;
+
+const Remark = styled.p`
+  margin-top: 40px;
+  font-size: 16px;
+  text-align: center;
+  color: #636363;
+`;
+
 export default () => {
+  const items = data.map(item => {
+    return (
+      <ListItem key={item.name}>
+        <Card
+          name={item.name}
+          to={item.to}
+          price={item.price}
+          img={item.img}
+          mastery={item.mastery}
+          beds={item.beds}
+          hosterStatus={item.hosterStatus}
+          reviewCount={item.reviewCount}
+        />
+      </ListItem>
+    );
+  });
   return (
-    <Section>
-      <Inner>
-        <Title>Homes</Title>
-        <LinkMore text="See all" href="" />
-      </Inner>
-      <Inner>
-        <Track hasPager>
-          <CardWrap>
-            <Card
-              name="La Salentina, see, nature & relax"
-              href=""
-              price="82"
-              img={tile.salentina}
-              mastery="Entire house"
-              beds="9"
-              hosterStatus="Superhost"
-              reviewCount="97"
-            />
-          </CardWrap>
-          <CardWrap>
-            <Card
-              name="Your private 3 bedr. riad and exclusi…"
-              href=""
-              price="82"
-              img={tile.riad}
-              mastery="Entire house"
-              beds="5"
-              hosterStatus="Superhost"
-              reviewCount="161"
-            />
-          </CardWrap>
-          <CardWrap>
-            <Card
-              name="Dreamy Tropical Tree House"
-              href=""
-              price="200"
-              img={tile.tropic}
-              mastery="Entire treehouse"
-              beds="1"
-              hosterStatus="Superhost"
-              reviewCount="364"
-            />
-          </CardWrap>
-        </Track>
-      </Inner>
-    </Section>
+    <Wrap>
+      <Helmet>
+        <title>Homes</title>
+      </Helmet>
+      <HomesHeader>
+        <Header />
+        <Row>
+          <Inner>
+            <Filter />
+          </Inner>
+        </Row>
+      </HomesHeader>
+      <HomesMain>
+        <HomesContent>
+          <InnerGrid>
+            <Content>
+              <List>{items}</List>
+              <Pagination all="300+" />
+              <Remark>
+                Enter dates to see full pricing. Additional fees apply. Taxes
+                may be added.
+              </Remark>
+            </Content>
+          </InnerGrid>
+          <GMap />
+        </HomesContent>
+      </HomesMain>
+      <Footer />
+    </Wrap>
   );
 };

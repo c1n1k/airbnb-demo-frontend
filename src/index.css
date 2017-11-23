@@ -34,7 +34,8 @@ body {
 }
 
 select,
-input {
+input,
+button {
   font-family: "Circular Air", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -61,4 +62,10 @@ img {
 
 p {
   margin: 0 0 1em;
+}
+
+.App {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
