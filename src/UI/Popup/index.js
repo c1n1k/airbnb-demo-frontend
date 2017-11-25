@@ -23,6 +23,7 @@ const Wrap = styled.div`
     right: auto;
     margin-top: 8px;
     padding-top: 0;
+    padding-bottom: 0;
     min-width: 326px;
     height: auto;
     overflow: hidden;
@@ -160,7 +161,7 @@ const MobileReset = styled.button`
   height: 48px;
   font-weight: 300;
   line-height: 48px;
-  color: #0F7276;
+  color: #0f7276;
   background-color: transparent;
   border: none;
 `;
@@ -170,26 +171,28 @@ class Popup extends Component {
     const closePopup = this.props.forClose;
 
     return (
-      <Wrap
-        className={this.props.className}
-        isOpen={this.props.isOpen}
-        openFilter={this.props.openedFilter}
-        bodyLike={this.props.bodyLike}
-      >
-        <Header>
-          <MobileClose onClick={closePopup} type="button" />
-          <MobileReset type="button">Reset</MobileReset>
-        </Header>
-        <Body>{this.props.children}</Body>
-        <Footer>
-          <Button onClick={closePopup} type="button">
-            Cancel
-          </Button>
-          <Button primary type="button">
-            Apply
-          </Button>
-        </Footer>
-      </Wrap>
+      <div>
+        <Wrap
+          className={this.props.className}
+          isOpen={this.props.isOpen}
+          openFilter={this.props.openedFilter}
+          bodyLike={this.props.bodyLike}
+        >
+          <Header>
+            <MobileClose onClick={closePopup} type="button" />
+            <MobileReset type="button">Reset</MobileReset>
+          </Header>
+          <Body>{this.props.children}</Body>
+          <Footer>
+            <Button onClick={closePopup} type="button">
+              Cancel
+            </Button>
+            <Button primary type="button">
+              Apply
+            </Button>
+          </Footer>
+        </Wrap>
+      </div>
     );
   }
 }

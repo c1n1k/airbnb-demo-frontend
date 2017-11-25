@@ -29,29 +29,27 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      adults: this.props.adults || 0,
-      children: this.props.children || 0,
-      infants: this.props.infants || 0
+      adults: this.props.currentGuest.adults || 1,
+      children: this.props.currentGuest.children || 0,
+      infants: this.props.currentGuest.infants || 0
     };
   }
 
   changeCounterGuest = (count, name) => {
-    this.setState({
-      ...this.state,
-      [name]: count
-    });
+    this.setState(
+      {
+        ...this.state,
+        [name]: name === "adults" && count < 1 ? 1 : count
+      },
+      () => {
+        this.props.onChange(this.state);
+      }
+    );
   };
-
-  // componentWillMount()
-
-  componentDidUpdate() {
-    console.log(this.state);
-    this.props.onChange(this.state);
-  }
 
   render() {
     return (
-      <Guest>
+      <Guest initialGuest={this.props.currentGuest}>
         <GuestRow>
           <GuestLabel>Adults</GuestLabel>
           <Counter
