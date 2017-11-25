@@ -109,55 +109,56 @@ const guestLabelFormat = guest => {
   return "Guest";
 };
 
-const priceLabelFormat = price => {
-  return;
+const priceLabelFormat = (price, maxPrice) => {
+  return price !== maxPrice ? `Up to ${price}$` : "Price";
 };
 
 class Filters extends Component {
+  initialValues = {
+    startDate: null,
+    endDate: null,
+    focusedInput: "startDate",
+    openedFilter: null,
+    isOpen: false,
+    guest: {
+      adults: 1,
+      children: 0,
+      infants: 0
+    },
+    price: {
+      minPrice: 0,
+      maxPrice: 1000,
+      values: this.props.values || [0, 1000]
+    },
+    roomType: {
+      entire: false,
+      private: false,
+      shared: false
+    },
+    instantBook: false,
+    rooms: {
+      bedroom: 0,
+      bed: 0,
+      bath: 0
+    },
+    superhost: false,
+    amenities: {
+      heating: false,
+      kitchen: false,
+      tv: false,
+      wifi: false
+    },
+    facilities: {
+      elevator: false,
+      parking: false,
+      pool: false,
+      wheelchair: false
+    }
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      startDate: null,
-      endDate: null,
-      focusedInput: "startDate",
-      openedFilter: null,
-      isOpen: false,
-      guest: {
-        adults: 1,
-        children: 0,
-        infants: 0
-      },
-      price: {
-        minPrice: 0,
-        maxPrice: 1000,
-        values: this.props.values || [0, 1000]
-      },
-      roomType: {
-        entire: false,
-        private: false,
-        shared: false
-      },
-      instantBook: false,
-      rooms: {
-        bedroom: 0,
-        bed: 0,
-        bath: 0
-      },
-      superhost: false,
-      amenities: {
-        heating: false,
-        kitchen: false,
-        tv: false,
-        wifi: false
-      },
-      facilities: {
-        elevator: false,
-        parking: false,
-        pool: false,
-        wheelchair: false
-      }
-    };
-
+    this.state = this.initialValues;
     this.updatePrice = this.updatePrice.bind(this);
   }
 
@@ -295,7 +296,10 @@ class Filters extends Component {
             />
           </FilterWrap>
           <FilterWrap
-            label="Price"
+            label={priceLabelFormat(
+              this.state.price.values[1],
+              this.state.price.maxPrice
+            )}
             openedFilter="price"
             isOpen={this.state.isOpen && this.state.openedFilter === "price"}
             toggle={this.toggle}

@@ -1,26 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import Rheostat from "rheostat";
-import log10 from "rheostat/lib/algorithms/log10";
 import "rheostat/css/slider.css";
 import "rheostat/css/slider-horizontal.css";
 import "./rheostat.css";
-
-const Price = styled.div`
-  position: relative;
-  font-weight: 300;
-  font-size: 12px;
-`;
-
-const PriceMin = styled.span`
-  font-size: 16px;
-`;
-const PriceMax = styled.span`
-  font-size: 16px;
-`;
-const PriceRemark = styled.div`
-  margin: 10px 0 30px;
-`;
+import { Price, PriceMin, PriceMax, PriceRemark } from "./styled";
 
 export default props => {
   return (

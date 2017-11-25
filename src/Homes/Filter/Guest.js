@@ -1,29 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Counter from "../../UI/Counter";
-
-const Guest = styled.div``;
-
-const GuestRow = styled.div`
-  margin-bottom: 23px;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 20px;
-  font-weight: normal;
-`;
-
-const GuestLabel = styled.div`
-  display: block;
-
-  span {
-    margin-top: 5px;
-    display: block;
-    font-size: 16px;
-    font-weight: 300;
-  }
-`;
+import { Guest, GuestRow, GuestLabel } from "./styled";
 
 export default class extends Component {
   constructor(props) {

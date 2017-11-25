@@ -1,48 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Checkbox from "../../UI/Checkbox";
-import Icon from "../../UI/Icon";
-
-const RoomType = styled.div`
-  margin-bottom: 15px;
-  padding-right: 60px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-const RoomIcon = styled.span`
-  position: absolute;
-  top: 5px;
-  right: -60px;
-  width: 32px;
-  height: 32px;
-`;
-
-const IconHome = () => {
-  return (
-    <RoomIcon>
-      <Icon icon="home" fill="currentColor" />
-    </RoomIcon>
-  );
-};
-
-const IconPrivate = () => {
-  return (
-    <RoomIcon>
-      <Icon icon="private" fill="currentColor" />
-    </RoomIcon>
-  );
-};
-
-const IconShared = () => {
-  return (
-    <RoomIcon>
-      <Icon icon="shared" fill="currentColor" />
-    </RoomIcon>
-  );
-};
+import { RoomType, IconHome, IconPrivate, IconShared } from "./styled";
 
 export default class extends Component {
   render() {
