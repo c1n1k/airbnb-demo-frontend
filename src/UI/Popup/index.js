@@ -70,7 +70,7 @@ const Body = styled.div`
   padding: 20px 8px;
 
   @media (min-width: 768px) {
-    padding: 24px 16px;
+    padding: 24px 16px 0;
   }
 `;
 

@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Filter from "./Filter";
 import Guest from "./Filter/Guest";
-import Calendar from "../UI/Calendar";
+import Room from "./Filter/Room";
+import InstantBook from "./Filter/InstantBook";
+import Price from "./Filter/Price";
+import Dates from "./Filter/Dates.js";
 import Counter from "../UI/Counter";
 import Checkbox from "../UI/Checkbox";
 import Toggle from "../UI/Toggle";
-import Icon from "../UI/Icon";
 import Link from "../UI/Link";
-import Rheostat from "rheostat";
-import "rheostat/css/slider.css";
-import "rheostat/css/slider-horizontal.css";
-import "./rheostat.css";
 
 const FilterLink = styled(Link)`
   font-size: 16px;
@@ -39,137 +37,6 @@ const FilterWrap = styled(Filter)`
 
 const FilterMore = styled(FilterWrap)`
   position: static;
-`;
-
-const DatesRange = styled.div`
-  margin-left: -10px;
-  margin-right: -10px;
-
-  & .DayPicker__horizontal {
-    box-shadow: none;
-  }
-
-  & .CalendarMonth_caption {
-    padding-bottom: 40px;
-  }
-`;
-
-const RoomType = styled.div`
-  margin-bottom: 15px;
-  padding-right: 60px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-const RoomIcon = styled.span`
-  position: absolute;
-  top: 5px;
-  right: -60px;
-  width: 32px;
-  height: 32px;
-`;
-
-const IconHome = () => {
-  return (
-    <RoomIcon>
-      <Icon icon="home" fill="currentColor" />
-    </RoomIcon>
-  );
-};
-
-const IconPrivate = () => {
-  return (
-    <RoomIcon>
-      <Icon icon="private" fill="currentColor" />
-    </RoomIcon>
-  );
-};
-
-const IconShared = () => {
-  return (
-    <RoomIcon>
-      <Icon icon="shared" fill="currentColor" />
-    </RoomIcon>
-  );
-};
-
-class RoomFilter extends Component {
-  render() {
-    return (
-      <div>
-        <RoomType>
-          <Checkbox
-            name="entire"
-            checked={this.props.entire}
-            changeHandle={this.props.changeRoom}
-          >
-            Entire home
-            <span>Have a place to yourplace</span>
-            <IconHome />
-          </Checkbox>
-        </RoomType>
-        <RoomType>
-          <Checkbox
-            name="private"
-            checked={this.props.private}
-            changeHandle={this.props.changeRoom}
-          >
-            Private room
-            <span>Have your own room and share some common space</span>
-            <IconPrivate />
-          </Checkbox>
-        </RoomType>
-        <RoomType>
-          <Checkbox
-            name="shared"
-            checked={this.props.shared}
-            changeHandle={this.props.changeRoom}
-          >
-            Shared room
-            <span>Stay in a shared space, like a common room</span>
-            <IconShared />
-          </Checkbox>
-        </RoomType>
-      </div>
-    );
-  }
-}
-
-const Price = styled.span`
-  font-weight: 300;
-  font-size: 12px;
-`;
-const PriceMin = styled.span`
-  font-size: 16px;
-`;
-const PriceMax = styled.span`
-  font-size: 16px;
-`;
-const PriceRemark = styled.div`
-  margin: 10px 0 30px;
-`;
-
-const InstantBook = styled.div``;
-
-const InstantRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  line-height: 1.14286;
-`;
-
-const InstantText = styled.div``;
-const InstantToggle = styled.div`
-  margin-left: 10px;
-  flex-shrink: 1;
-`;
-
-const InstantHead = styled.div`
-  margin-bottom: 7px;
-  width: 100%;
-  font-size: 18px;
 `;
 
 const Section = styled.div`
@@ -242,6 +109,10 @@ const guestLabelFormat = guest => {
   return "Guest";
 };
 
+const priceLabelFormat = price => {
+  return;
+};
+
 class Filters extends Component {
   constructor(props) {
     super(props);
@@ -287,7 +158,7 @@ class Filters extends Component {
       }
     };
 
-    this.updateValue = this.updateValue.bind(this);
+    this.updatePrice = this.updatePrice.bind(this);
   }
 
   onDatesChange = ({ startDate, endDate }) => {
@@ -372,7 +243,7 @@ class Filters extends Component {
     });
   };
 
-  updateValue(sliderState) {
+  updatePrice(sliderState) {
     this.setState({
       price: {
         ...this.state.price,
@@ -391,15 +262,13 @@ class Filters extends Component {
             openedFilter="dates"
             toggle={this.toggle}
           >
-            <DatesRange>
-              <Calendar
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-                focusedInput={this.state.focusedInput}
-                onDatesChange={this.onDatesChange}
-                onFocusChange={this.onFocusChange}
-              />
-            </DatesRange>
+            <Dates
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              focusedInput={this.state.focusedInput}
+              onDatesChange={this.onDatesChange}
+              onFocusChange={this.onFocusChange}
+            />
           </FilterWrap>
           <FilterWrap
             label={guestLabelFormat(this.state.guest)}
@@ -418,7 +287,7 @@ class Filters extends Component {
             isOpen={this.state.isOpen && this.state.openedFilter === "roomType"}
             toggle={this.toggle}
           >
-            <RoomFilter
+            <Room
               changeRoom={this.changeRoom}
               entire={this.state.roomType.entire}
               private={this.state.roomType.private}
@@ -431,20 +300,12 @@ class Filters extends Component {
             isOpen={this.state.isOpen && this.state.openedFilter === "price"}
             toggle={this.toggle}
           >
-            <Price>
-              <div>
-                <PriceMin>{this.state.price.values[0]} $</PriceMin> —{" "}
-                <PriceMax>{this.state.price.values[1]} $</PriceMax>
-              </div>
-              <PriceRemark>The average nightly price is 75$</PriceRemark>
-              <Rheostat
-                {...this.props}
-                min={this.state.price.minPrice}
-                max={this.state.price.maxPrice}
-                values={this.state.price.values}
-                onValuesUpdated={this.updateValue}
-              />
-            </Price>
+            <Price
+              minPrice={this.state.price.minPrice}
+              maxPrice={this.state.price.maxPrice}
+              values={this.state.price.values}
+              onValuesUpdated={this.updatePrice}
+            />
           </FilterWrap>
           <FilterWrap
             label="Instant book"
@@ -454,21 +315,11 @@ class Filters extends Component {
             }
             toggle={this.toggle}
           >
-            <InstantBook>
-              <InstantRow>
-                <InstantText>
-                  <InstantHead>Instant Book</InstantHead>
-                  Listings you can book without waiting for host approval.
-                </InstantText>
-                <InstantToggle>
-                  <Toggle
-                    name="instantBook"
-                    onChange={this.updateInstant}
-                    isActive={this.state.instantBook}
-                  />
-                </InstantToggle>
-              </InstantRow>
-            </InstantBook>
+            <InstantBook
+              name="instantBook"
+              onChange={this.updateInstant}
+              isActive={this.state.instantBook}
+            />
           </FilterWrap>
           <FilterMore
             label="More filters"
