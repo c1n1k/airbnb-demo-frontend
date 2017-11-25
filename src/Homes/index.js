@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 // import Track from "../UI/Track";
 import Filter from "./FilterRow";
 import GMap from "./GMap";
-import Card from "./Card";
+import Card from "../Card";
 import data from "./data";
 
 const Wrap = styled.div`
@@ -143,7 +143,7 @@ export default () => {
           <GMap />
         </HomesContent>
       </HomesMain>
-      <Footer />
+      <Footer isHiddble={true} />
     </Wrap>
   );
 };

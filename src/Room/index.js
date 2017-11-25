@@ -8,8 +8,16 @@ import Inner from "../UI/Inner";
 import InnerGrid from "../UI/Inner/InnerGrid";
 import { Helmet } from "react-helmet";
 import Link from "../UI/Link";
+import Text from "../UI/Text";
 import Section from "./Section";
 import Summary from "./Summary";
+import Review from "./Review";
+import Owner from "./Owner";
+import Neighborhood from "./Neighborhood";
+import Location from "./Location";
+import Similar from "./Similar";
+import Other from "./Other";
+import Book from "./Book";
 import imgRoom from "./room.png";
 
 const LinkPage = styled(Link)`
@@ -74,6 +82,15 @@ const Content = styled.div`
   }
 `;
 
+const Aside = styled.div`
+  width: calc(100% / 3 - 16px);
+
+  @supports (display: grid) {
+    width: auto;
+    grid-column: span 4;
+  }
+`;
+
 const Bar = styled.div`
   margin-bottom: 24px;
   padding: 16px 0;
@@ -114,11 +131,6 @@ const FeatureItem = styled.li`
   font-weight: 300;
 `;
 
-const Text = styled.div`
-  font-weight: 300;
-  line-height: 1.16667;
-`;
-
 const List = styled.ul`
   margin: 0 0 16px;
   padding: 0;
@@ -140,6 +152,18 @@ const Separator = styled.hr`
   height: 1px;
   background-color: rgba(118, 118, 118, 0.2);
   border: none;
+`;
+
+const RoomLocation = styled(Location)`
+  grid-column: 1 / -1;
+`;
+
+const SimilarRooms = styled(Similar)`
+  grid-column: 1 / -1;
+`;
+
+const Explore = styled(Other)`
+  grid-column: 1 / -1;
 `;
 
 export default () => {
@@ -229,10 +253,19 @@ export default () => {
                 </p>
               </Text>
             </Section>
+            <Review />
+            <Owner />
+            <Neighborhood />
           </Content>
+          <Aside>
+            <Book />
+          </Aside>
+          <RoomLocation />
+          <SimilarRooms />
+          <Explore />
         </InnerGrid>
       </Main>
-      <Footer />
+      <Footer isHiddble={false} />
     </Wrap>
   );
 };

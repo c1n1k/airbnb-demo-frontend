@@ -16,12 +16,16 @@ const Text = styled.span`
   margin-right: 7px;
 `;
 
-const LinkIcon = styled.span`display: inline-block;`;
+const LinkIcon = styled.span`
+  display: inline-block;
+  width: 5px;
+  height: 9px;
+`;
 
 const LinkIconRight = () => {
   return (
     <LinkIcon>
-      <Icon icon="rightSmall" width="6" height="10" fill="#383838" />
+      <Icon icon="right" fill="#383838" />
     </LinkIcon>
   );
 };

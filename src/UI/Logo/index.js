@@ -25,7 +25,7 @@ const IconWrap = styled.span`
 const DropIcon = () => {
   return (
     <IconWrap>
-      <Icon icon="rightSmall" width="6" height="10" fill="#767676" />
+      <Icon icon="right" fill="#767676" />
     </IconWrap>
   );
 };

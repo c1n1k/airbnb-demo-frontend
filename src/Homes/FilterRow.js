@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Filter from "./Filter";
+import Guest from "./Filter/Guest";
 import Calendar from "../UI/Calendar";
 import Counter from "../UI/Counter";
 import Checkbox from "../UI/Checkbox";
@@ -134,29 +135,6 @@ class RoomFilter extends Component {
   }
 }
 
-const Guest = styled.div``;
-
-const GuestRow = styled.div`
-  margin-bottom: 23px;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 20px;
-  font-weight: normal;
-`;
-
-const GuestLabel = styled.div`
-  display: block;
-
-  span {
-    margin-top: 5px;
-    display: block;
-    font-size: 16px;
-    font-weight: 300;
-  }
-`;
-
 const Price = styled.span`
   font-weight: 300;
   font-size: 12px;
@@ -277,7 +255,7 @@ class Filters extends Component {
         wifi: false
       },
       facilities: {
-        elebator: false,
+        elevator: false,
         parking: false,
         pool: false,
         wheelchair: false
@@ -300,15 +278,6 @@ class Filters extends Component {
     });
   };
 
-  changeCounterGuest = (count, name) => {
-    this.setState({
-      guest: {
-        ...this.state.guest,
-        [name]: count
-      }
-    });
-  };
-
   changeCounterRooms = (count, name) => {
     this.setState({
       rooms: {
@@ -323,6 +292,16 @@ class Filters extends Component {
       isOpen: !prevState.isOpen,
       openedFilter: key
     }));
+  };
+
+  changeGuest = guest => {
+    console.log(guest);
+    // this.setState({
+    //   guest: {
+    //     ...this.state.guest,
+    //     guest
+    //   }
+    // });
   };
 
   changeRoom = (name, checked) => {
@@ -398,38 +377,7 @@ class Filters extends Component {
           isOpen={this.state.isOpen && this.state.openedFilter === "guest"}
           toggle={this.toggle}
         >
-          <Guest>
-            <GuestRow>
-              <GuestLabel>Adults</GuestLabel>
-              <Counter
-                onChange={this.changeCounterGuest}
-                name="adults"
-                counter={this.state.guest.adults}
-              />
-            </GuestRow>
-            <GuestRow>
-              <GuestLabel>
-                Children
-                <span>Ages 2 — 12</span>
-              </GuestLabel>
-              <Counter
-                onChange={this.changeCounterGuest}
-                name="children"
-                counter={this.state.guest.children}
-              />
-            </GuestRow>
-            <GuestRow>
-              <GuestLabel>
-                Infants
-                <span>Under 2</span>
-              </GuestLabel>
-              <Counter
-                onChange={this.changeCounterGuest}
-                name="infants"
-                counter={this.state.guest.infants}
-              />
-            </GuestRow>
-          </Guest>
+          <Guest onChange={this.changeGuest} currentGuest={this.state.guest} />
         </FilterWrap>
         <FilterWrap
           label="Room type"
@@ -603,8 +551,8 @@ class Filters extends Component {
               <SectionRow>
                 <SectionCol>
                   <Checkbox
-                    name="elebator"
-                    checked={this.state.facilities.elebator}
+                    name="elevator"
+                    checked={this.state.facilities.elevator}
                     changeHandle={this.changeFacilities}
                   >
                     Elebator

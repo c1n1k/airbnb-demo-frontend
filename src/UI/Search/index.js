@@ -4,9 +4,22 @@ import Input from "../Input";
 import Icon from "../Icon";
 // import searchIcon from "./search.svg";
 
-const Search = styled.div`position: relative;`;
+const Search = styled.div`
+  position: relative;
+`;
 
-const SearchInput = styled(Input)`padding-left: 50px;`;
+const SearchInput = styled(Input)`
+  padding-left: 50px;
+  ${props => {
+    if (props.size === "s") {
+      return `
+        padding-left:34px;
+        height: 32px;
+        font-size: 14px;
+      `;
+    }
+  }};
+`;
 
 const SearchIcon = styled.span`
   position: absolute;
@@ -14,22 +27,36 @@ const SearchIcon = styled.span`
   left: 16px;
   display: inline-block;
   opacity: 0.6;
+  width: 22px;
+  height: 22px;
   pointer-events: none;
+
+  ${props => {
+    console.log(props.size);
+    if (props.size === "s") {
+      return `
+        top: 8px;
+        left: 10px;
+        width: 16px;
+        height: 16px;
+      `;
+    }
+  }};
 `;
 
-const SearchIconSearch = () => {
+const SearchIconSearch = props => {
   return (
-    <SearchIcon>
-      <Icon icon="search" width="22" height="22" fill="#3d3d3d" />
+    <SearchIcon size={props.size}>
+      <Icon icon="search" fill="#3d3d3d" />
     </SearchIcon>
   );
 };
 
-export default () => {
+export default props => {
   return (
-    <Search>
-      <SearchIconSearch />
-      <SearchInput placeholder="Try Miami" />
+    <Search className={props.className}>
+      <SearchIconSearch size={props.size} />
+      <SearchInput placeholder="Try Miami" size={props.size} />
     </Search>
   );
 };

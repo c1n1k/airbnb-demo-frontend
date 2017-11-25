@@ -40,6 +40,7 @@ const TrackInner = styled.div`
 `;
 
 const Track = styled.div`
+  position: relative;
   margin: 0 -8px;
   overflow-y: hidden;
   min-width: 100%;

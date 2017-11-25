@@ -33,7 +33,7 @@ export default () => {
         <Popular />
         <Destination />
       </IndexMain>
-      <Footer />
+      <Footer isHiddble={false} />
     </IndexWrap>
   );
 };

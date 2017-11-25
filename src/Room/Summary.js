@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Link from "../UI/Link";
+import Badge from "./Badge";
 import imgOwner from "./owner.png";
 
 const Summary = styled.div`
@@ -54,24 +54,6 @@ const Title = styled.h1`
   line-height: 1.16667;
 `;
 
-const Badge = styled(Link)`
-  text-decoration: none;
-`;
-
-const BadgePhoto = styled.div`
-  margin: 0 auto 10px;
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-  border-radius: 50%;
-`;
-
-const BadgeName = styled.span`
-  font-size: 18px;
-  font-weight: 300;
-  color: #767676;
-`;
-
 export default props => {
   return (
     <Summary>
@@ -86,12 +68,7 @@ export default props => {
         </SummaryFeature>
       </SummaryText>
       <SummaryOwner>
-        <Badge to="">
-          <BadgePhoto>
-            <img src={imgOwner} alt="Yudi & Victoria" />
-          </BadgePhoto>
-          <BadgeName>Yudi & Victoria</BadgeName>
-        </Badge>
+        <Badge to="" img={imgOwner} name="Yudi & Victoria" size={64} />
       </SummaryOwner>
     </Summary>
   );

@@ -4,7 +4,7 @@ import Section from "../UI/Section";
 import Inner from "../UI/Inner";
 import Title from "../UI/Title";
 import LinkMore from "../UI/LinkMore";
-import Card from "./Card";
+import Card from "../Card";
 import Track from "../UI/Track";
 import tile from "./tile";
 
