@@ -3,14 +3,41 @@ import Checkbox from "../../UI/Checkbox";
 import { RoomType, IconHome, IconPrivate, IconShared } from "./styled";
 
 export default class extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      entire: this.props.value.entire,
+      private: this.props.value.private,
+      shared: this.props.value.shared
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ...this.state,
+      ...nextProps.value
+    });
+  }
+
+  changeState = (name, checked) => {
+    this.setState(
+      {
+        [name]: checked
+      },
+      () => {
+        this.props.onChange(this.props.name, this.state);
+      }
+    );
+  };
+
   render() {
     return (
       <div>
         <RoomType>
           <Checkbox
             name="entire"
-            checked={this.props.entire}
-            changeHandle={this.props.changeRoom}
+            checked={this.state.entire}
+            changeHandle={this.changeState}
           >
             Entire home
             <span>Have a place to yourplace</span>
@@ -20,8 +47,8 @@ export default class extends Component {
         <RoomType>
           <Checkbox
             name="private"
-            checked={this.props.private}
-            changeHandle={this.props.changeRoom}
+            checked={this.state.private}
+            changeHandle={this.changeState}
           >
             Private room
             <span>Have your own room and share some common space</span>
@@ -31,8 +58,8 @@ export default class extends Component {
         <RoomType>
           <Checkbox
             name="shared"
-            checked={this.props.shared}
-            changeHandle={this.props.changeRoom}
+            checked={this.state.shared}
+            changeHandle={this.changeState}
           >
             Shared room
             <span>Stay in a shared space, like a common room</span>

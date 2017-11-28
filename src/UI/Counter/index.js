@@ -72,12 +72,12 @@ const Count = styled.span`
 
 class Counter extends Component {
   incCounter = () => {
-    this.props.onChange(this.props.counter + 1, this.props.name);
+    this.props.onChange(this.props.name, this.props.counter + 1);
   };
 
   decCounter = () => {
     const value = this.props.counter > 0 ? this.props.counter - 1 : 0;
-    this.props.onChange(value, this.props.name);
+    this.props.onChange(this.props.name, value);
   };
 
   render() {

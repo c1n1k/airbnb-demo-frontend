@@ -80,7 +80,7 @@ const Slider = styled.span`
 
 export default props => {
   const toggle = e => {
-    props.onChange(e.target.checked);
+    props.onChange(props.name, e.target.checked);
   };
   return (
     <Toggle>

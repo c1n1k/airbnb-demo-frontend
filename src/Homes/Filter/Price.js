@@ -1,25 +1,48 @@
-import React from "react";
+import React, { Component } from "react";
 import Rheostat from "rheostat";
 import "rheostat/css/slider.css";
 import "rheostat/css/slider-horizontal.css";
 import "./rheostat.css";
 import { Price, PriceMin, PriceMax, PriceRemark } from "./styled";
 
-export default props => {
-  return (
-    <Price>
-      <div>
-        <PriceMin>{props.values[0]} $</PriceMin> —{" "}
-        <PriceMax>{props.values[1]} $</PriceMax>
-      </div>
-      <PriceRemark>The average nightly price is 75$</PriceRemark>
-      <Rheostat
-        {...props}
-        min={props.minPrice}
-        max={props.maxPrice}
-        values={props.values}
-        onValuesUpdated={props.onValuesUpdated}
-      />
-    </Price>
-  );
-};
+export default class extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      minPrice: this.props.minPrice,
+      maxPrice: this.props.maxPrice,
+      values: this.props.values || [0, 1000]
+    };
+    this.updatePrice = this.updatePrice.bind(this);
+  }
+
+  updatePrice(sliderState) {
+    this.setState(
+      {
+        values: sliderState.values
+      },
+      () => {
+        this.props.onValuesUpdated(this.props.name, this.state);
+      }
+    );
+  }
+
+  render() {
+    return (
+      <Price>
+        <div>
+          <PriceMin>{this.props.values[0]} $</PriceMin> —{" "}
+          <PriceMax>{this.props.values[1]} $</PriceMax>
+        </div>
+        <PriceRemark>The average nightly price is 75$</PriceRemark>
+        <Rheostat
+          {...this.props}
+          min={this.props.minPrice}
+          max={this.props.maxPrice}
+          values={this.props.values}
+          onValuesUpdated={this.updatePrice}
+        />
+      </Price>
+    );
+  }
+}

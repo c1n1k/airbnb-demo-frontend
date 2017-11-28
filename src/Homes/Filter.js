@@ -1,20 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import Button from "../UI/Button";
 import Popup from "../UI/Popup";
-
-const Wrap = styled.div``;
-
-const FilterToggler = styled(Button)`
-  ${props => {
-    if (props.isOpen) {
-      return `
-        color: #fff;
-        background-color: #008489;
-      `;
-    }
-  }};
-`;
+import { Wrap, FilterToggler } from "./styled";
 
 class Filter extends Component {
   handleToggle = () => {
@@ -31,13 +17,17 @@ class Filter extends Component {
           type="button"
           onClick={this.handleToggle}
           isOpen={this.props.isOpen}
+          isFill={this.props.isFill}
         >
           {this.props.label}
         </FilterToggler>
         <Popup
+          label={this.props.label}
           isOpen={this.props.isOpen}
           forClose={this.props.toggle}
           bodyLike={this.props.bodyLike}
+          name={this.props.openedFilter}
+          onReset={this.props.reset}
         >
           {this.props.children}
         </Popup>

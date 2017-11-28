@@ -1,92 +1,11 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import Filter from "./Filter";
 import Guest from "./Filter/Guest";
 import Room from "./Filter/Room";
 import InstantBook from "./Filter/InstantBook";
 import Price from "./Filter/Price";
 import Dates from "./Filter/Dates.js";
-import Counter from "../UI/Counter";
-import Checkbox from "../UI/Checkbox";
-import Toggle from "../UI/Toggle";
-import Link from "../UI/Link";
-
-const FilterLink = styled(Link)`
-  font-size: 16px;
-`;
-
-const FilterRow = styled.div`
-  padding: 0;
-  white-space: nowrap;
-`;
-
-const FilterWrap = styled(Filter)`
-  position: relative;
-  display: inline-block;
-  margin: 0 6px;
-  vertical-align: top;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
-`;
-
-const FilterMore = styled(FilterWrap)`
-  position: static;
-`;
-
-const Section = styled.div`
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(72, 72, 72, 0.3);
-`;
-
-const SectionTitle = styled.h3`
-  margin-bottom: 20px;
-  font-size: 20px;
-  font-weight: normal;
-`;
-
-const SectionRow = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-  font-size: 20px;
-`;
-
-const SectionLabel = styled.span`
-  padding-top: 8px;
-  flex-grow: 1;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.16;
-`;
-
-const SectionCol = styled.div`
-  width: 50%;
-`;
-
-const SectionRemark = styled.div`
-  margin: 3px 0;
-  display: block;
-  font-size: 16px;
-  line-height: 1.16;
-`;
-
-const MoreFilter = styled.div``;
-
-const Overlay = styled.div`
-  position: fixed;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  display: ${props => (props.isOpen ? "block" : "none")};
-  background-color: rgba(255, 255, 255, 0.8);
-`;
+import More from "./Filter/More.js";
+import { FilterRow, FilterWrap, FilterMore, Overlay, Md } from "./styled";
 
 const dateLabelFormat = (startDate, endDate) => {
   const startDateString = startDate && startDate.format("MMM DD");
@@ -109,15 +28,44 @@ const guestLabelFormat = guest => {
   return "Guest";
 };
 
-const priceLabelFormat = (price, maxPrice) => {
-  return price !== maxPrice ? `Up to ${price}$` : "Price";
+const priceLabelFormat = (values, initialValues) => {
+  if (values[0] !== initialValues[0] && values[1] !== initialValues[1]) {
+    return `${values[0]}$ \u2013 ${values[1]}$`;
+  }
+  if (values[0] !== initialValues[0] && values[1] === initialValues[1]) {
+    return `${values[0]}$+`;
+  }
+  if (values[0] === initialValues[0] && values[1] !== initialValues[1]) {
+    return `Up to ${values[1]}$`;
+  }
+  return "Price";
+};
+
+const roomTypeLabelFormat = values => {
+  const count = Object.keys(values).reduce((prev, current) => {
+    return values[current] ? prev + 1 : prev;
+  }, 0);
+  if (count > 1) {
+    return `Room type \u0387 ${count}`;
+  }
+  if (values.entire) return "Entire home";
+  if (values.private) return "Private room";
+  if (values.shared) return "Shared room";
+  return "Room type";
 };
 
 class Filters extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.initialValues;
+  }
+
   initialValues = {
-    startDate: null,
-    endDate: null,
-    focusedInput: "startDate",
+    dates: {
+      startDate: null,
+      endDate: null,
+      focusedInput: null
+    },
     openedFilter: null,
     isOpen: false,
     guest: {
@@ -128,7 +76,7 @@ class Filters extends Component {
     price: {
       minPrice: 0,
       maxPrice: 1000,
-      values: this.props.values || [0, 1000]
+      values: [0, 1000]
     },
     roomType: {
       entire: false,
@@ -138,7 +86,7 @@ class Filters extends Component {
     instantBook: false,
     rooms: {
       bedroom: 0,
-      bed: 0,
+      bed: 1,
       bath: 0
     },
     superhost: false,
@@ -156,32 +104,15 @@ class Filters extends Component {
     }
   };
 
-  constructor(props) {
-    super(props);
-    this.state = this.initialValues;
-    this.updatePrice = this.updatePrice.bind(this);
-  }
-
-  onDatesChange = ({ startDate, endDate }) => {
-    this.setState({
-      startDate,
-      endDate
-    });
-  };
-
-  onFocusChange = focusedInput => {
-    this.setState({
-      focusedInput: focusedInput || "startDate"
-    });
-  };
-
-  changeCounterRooms = (count, name) => {
-    this.setState({
-      rooms: {
-        ...this.state.rooms,
-        [name]: count
+  updateFilter = (name, value) => {
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        console.log(this.state[name]);
       }
-    });
+    );
   };
 
   toggle = key => {
@@ -198,77 +129,33 @@ class Filters extends Component {
     }));
   };
 
-  changeGuest = guest => {
+  reset = name => {
     this.setState({
-      ...this.state,
-      guest: guest
+      [name]: this.initialValues[name]
     });
   };
-
-  changeRoom = (name, checked) => {
-    this.setState({
-      roomType: {
-        ...this.state.roomType,
-        [name]: checked
-      }
-    });
-  };
-
-  changeAmenities = (name, checked) => {
-    this.setState({
-      amenities: {
-        ...this.state.amenities,
-        [name]: checked
-      }
-    });
-  };
-
-  changeFacilities = (name, checked) => {
-    this.setState({
-      facilities: {
-        ...this.state.facilities,
-        [name]: checked
-      }
-    });
-  };
-
-  updateInstant = value => {
-    this.setState({
-      instantBook: value
-    });
-  };
-
-  updateSuperhost = value => {
-    this.setState({
-      superhost: value
-    });
-  };
-
-  updatePrice(sliderState) {
-    this.setState({
-      price: {
-        ...this.state.price,
-        values: sliderState.values
-      }
-    });
-  }
 
   render() {
     return (
       <div>
         <FilterRow>
           <FilterWrap
-            label={dateLabelFormat(this.state.startDate, this.state.endDate)}
+            label={dateLabelFormat(
+              this.state.dates.startDate,
+              this.state.dates.endDate
+            )}
             isOpen={this.state.isOpen && this.state.openedFilter === "dates"}
             openedFilter="dates"
             toggle={this.toggle}
+            isFill={this.state.dates.startDate && this.state.dates.endDate}
+            reset={this.reset}
           >
             <Dates
+              name="dates"
               startDate={this.state.startDate}
               endDate={this.state.endDate}
               focusedInput={this.state.focusedInput}
-              onDatesChange={this.onDatesChange}
-              onFocusChange={this.onFocusChange}
+              onChange={this.updateFilter}
             />
           </FilterWrap>
           <FilterWrap
@@ -276,55 +163,73 @@ class Filters extends Component {
             openedFilter="guest"
             isOpen={this.state.isOpen && this.state.openedFilter === "guest"}
             toggle={this.toggle}
+            isFill={
+              this.state.guest.adults > 1 || this.state.guest.children > 0
+            }
+            reset={this.reset}
           >
             <Guest
-              onChange={this.changeGuest}
+              name="guest"
+              onChange={this.updateFilter}
               currentGuest={this.state.guest}
             />
           </FilterWrap>
-          <FilterWrap
-            label="Room type"
-            openedFilter="roomType"
-            isOpen={this.state.isOpen && this.state.openedFilter === "roomType"}
-            toggle={this.toggle}
-          >
-            <Room
-              changeRoom={this.changeRoom}
-              entire={this.state.roomType.entire}
-              private={this.state.roomType.private}
-              shared={this.state.roomType.shared}
-            />
-          </FilterWrap>
-          <FilterWrap
-            label={priceLabelFormat(
-              this.state.price.values[1],
-              this.state.price.maxPrice
-            )}
-            openedFilter="price"
-            isOpen={this.state.isOpen && this.state.openedFilter === "price"}
-            toggle={this.toggle}
-          >
-            <Price
-              minPrice={this.state.price.minPrice}
-              maxPrice={this.state.price.maxPrice}
-              values={this.state.price.values}
-              onValuesUpdated={this.updatePrice}
-            />
-          </FilterWrap>
-          <FilterWrap
-            label="Instant book"
-            openedFilter="instantbook"
-            isOpen={
-              this.state.isOpen && this.state.openedFilter === "instantbook"
-            }
-            toggle={this.toggle}
-          >
-            <InstantBook
-              name="instantBook"
-              onChange={this.updateInstant}
-              isActive={this.state.instantBook}
-            />
-          </FilterWrap>
+          <Md>
+            <FilterWrap
+              label={roomTypeLabelFormat(this.state.roomType)}
+              openedFilter="roomType"
+              isOpen={
+                this.state.isOpen && this.state.openedFilter === "roomType"
+              }
+              toggle={this.toggle}
+              isFill={roomTypeLabelFormat(this.state.roomType) !== "Room type"}
+              reset={this.reset}
+            >
+              <Room
+                name="roomType"
+                onChange={this.updateFilter}
+                value={this.state.roomType}
+              />
+            </FilterWrap>
+            <FilterWrap
+              label={priceLabelFormat(
+                this.state.price.values,
+                this.initialValues.price.values
+              )}
+              openedFilter="price"
+              isOpen={this.state.isOpen && this.state.openedFilter === "price"}
+              toggle={this.toggle}
+              isFill={
+                this.state.price.values[0] !== this.state.price.minPrice ||
+                this.state.price.values[1] !== this.state.price.maxPrice
+              }
+              reset={this.reset}
+            >
+              <Price
+                name="price"
+                minPrice={this.state.price.minPrice}
+                maxPrice={this.state.price.maxPrice}
+                values={this.state.price.values}
+                onValuesUpdated={this.updateFilter}
+              />
+            </FilterWrap>
+            <FilterWrap
+              label="Instant book"
+              openedFilter="instantbook"
+              isOpen={
+                this.state.isOpen && this.state.openedFilter === "instantbook"
+              }
+              toggle={this.toggle}
+              isFill={this.state.instantBook}
+              reset={this.reset}
+            >
+              <InstantBook
+                name="instantBook"
+                onChange={this.updateFilter}
+                isActive={this.state.instantBook}
+              />
+            </FilterWrap>
+          </Md>
           <FilterMore
             label="More filters"
             openedFilter="moreFilter"
@@ -334,152 +239,13 @@ class Filters extends Component {
             toggle={this.toggle}
             bodyLike={true}
           >
-            <MoreFilter>
-              <Section>
-                <SectionTitle>Rooms and beds</SectionTitle>
-                <SectionRow>
-                  <SectionCol>
-                    <SectionLabel>Bedrooms</SectionLabel>
-                  </SectionCol>
-                  <SectionCol>
-                    <Counter
-                      onChange={this.changeCounterRooms}
-                      name="bedroom"
-                      counter={this.state.rooms.bedroom}
-                    />
-                  </SectionCol>
-                </SectionRow>
-                <SectionRow>
-                  <SectionCol>
-                    <SectionLabel>Beds</SectionLabel>
-                  </SectionCol>
-                  <SectionCol>
-                    <Counter
-                      onChange={this.changeCounterRooms}
-                      name="bed"
-                      counter={this.state.rooms.bed}
-                    />
-                  </SectionCol>
-                </SectionRow>
-                <SectionRow>
-                  <SectionCol>
-                    <SectionLabel>Bathrooms</SectionLabel>
-                  </SectionCol>
-                  <SectionCol>
-                    <Counter
-                      onChange={this.changeCounterRooms}
-                      name="bath"
-                      counter={this.state.rooms.bath}
-                    />
-                  </SectionCol>
-                </SectionRow>
-              </Section>
-              <Section>
-                <SectionTitle>More options</SectionTitle>
-                <SectionRow>
-                  <SectionCol>
-                    <SectionLabel>
-                      Superhost
-                      <SectionRemark>Stay with recognized</SectionRemark>
-                      <FilterLink to="">Learn more</FilterLink>
-                    </SectionLabel>
-                  </SectionCol>
-                  <SectionCol>
-                    <Toggle
-                      name="superhost"
-                      onChange={this.updateSuperhost}
-                      isActive={this.state.superhost}
-                    />
-                  </SectionCol>
-                </SectionRow>
-              </Section>
-              <Section>
-                <SectionTitle>Amenities</SectionTitle>
-                <SectionRow>
-                  <SectionCol>
-                    <Checkbox
-                      name="heating"
-                      checked={this.state.amenities.heating}
-                      changeHandle={this.changeAmenities}
-                    >
-                      Heating
-                    </Checkbox>
-                  </SectionCol>
-                  <SectionCol>
-                    <Checkbox
-                      name="kitchen"
-                      checked={this.state.amenities.kitchen}
-                      changeHandle={this.changeAmenities}
-                    >
-                      Kitchen
-                    </Checkbox>
-                  </SectionCol>
-                </SectionRow>
-                <SectionRow>
-                  <SectionCol>
-                    <Checkbox
-                      name="tv"
-                      checked={this.state.amenities.tv}
-                      changeHandle={this.changeAmenities}
-                    >
-                      TV
-                    </Checkbox>
-                  </SectionCol>
-                  <SectionCol>
-                    <Checkbox
-                      name="wifi"
-                      checked={this.state.amenities.wifi}
-                      changeHandle={this.changeAmenities}
-                    >
-                      Wireless Internet
-                    </Checkbox>
-                  </SectionCol>
-                </SectionRow>
-              </Section>
-              <Section>
-                <SectionTitle>Facilities</SectionTitle>
-                <SectionRow>
-                  <SectionCol>
-                    <Checkbox
-                      name="elevator"
-                      checked={this.state.facilities.elevator}
-                      changeHandle={this.changeFacilities}
-                    >
-                      Elebator
-                    </Checkbox>
-                  </SectionCol>
-                  <SectionCol>
-                    <Checkbox
-                      name="parking"
-                      checked={this.state.facilities.parking}
-                      changeHandle={this.changeFacilities}
-                    >
-                      Free parking on premises
-                    </Checkbox>
-                  </SectionCol>
-                </SectionRow>
-                <SectionRow>
-                  <SectionCol>
-                    <Checkbox
-                      name="pool"
-                      checked={this.state.facilities.pool}
-                      changeHandle={this.changeFacilities}
-                    >
-                      Pool
-                    </Checkbox>
-                  </SectionCol>
-                  <SectionCol>
-                    <Checkbox
-                      name="wheelchair"
-                      checked={this.state.facilities.wheelchair}
-                      changeHandle={this.changeFacilities}
-                    >
-                      Wheelchair accessible
-                    </Checkbox>
-                  </SectionCol>
-                </SectionRow>
-              </Section>
-            </MoreFilter>
+            <More
+              rooms={this.state.rooms}
+              amenities={this.state.amenities}
+              superhost={this.state.superhost}
+              facilities={this.state.facilities}
+              onChange={this.updateFilter}
+            />
           </FilterMore>
         </FilterRow>
         <Overlay isOpen={this.state.isOpen} onClick={this.close} />

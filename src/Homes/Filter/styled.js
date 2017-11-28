@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "../../UI/Icon";
+import Link from "../../UI/Link";
+
+export const FilterLink = styled(Link)`
+  font-size: 16px;
+`;
 
 export const InstantBook = styled.div``;
 
@@ -115,3 +120,41 @@ export const IconShared = () => {
     </RoomIcon>
   );
 };
+
+export const Section = styled.div`
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(72, 72, 72, 0.3);
+`;
+
+export const SectionTitle = styled.h3`
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: normal;
+`;
+
+export const SectionRow = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  font-size: 20px;
+`;
+
+export const SectionLabel = styled.span`
+  padding-top: 8px;
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.16;
+`;
+
+export const SectionCol = styled.div`
+  width: 50%;
+`;
+
+export const SectionRemark = styled.div`
+  margin: 3px 0;
+  display: block;
+  font-size: 16px;
+  line-height: 1.16;
+`;
+
+export const MoreFilter = styled.div``;

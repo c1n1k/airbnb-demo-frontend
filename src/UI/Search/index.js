@@ -32,7 +32,6 @@ const SearchIcon = styled.span`
   pointer-events: none;
 
   ${props => {
-    console.log(props.size);
     if (props.size === "s") {
       return `
         top: 8px;

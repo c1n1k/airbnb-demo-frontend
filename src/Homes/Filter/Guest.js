@@ -12,26 +12,33 @@ export default class extends Component {
     };
   }
 
-  changeCounterGuest = (count, name) => {
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ...this.state,
+      ...nextProps.currentGuest
+    });
+  }
+
+  changeCounterGuest = (name, count) => {
     this.setState(
       {
         ...this.state,
         [name]: name === "adults" && count < 1 ? 1 : count
       },
       () => {
-        this.props.onChange(this.state);
+        this.props.onChange(this.props.name, this.state);
       }
     );
   };
 
   render() {
     return (
-      <Guest initialGuest={this.props.currentGuest}>
+      <Guest>
         <GuestRow>
           <GuestLabel>Adults</GuestLabel>
           <Counter
-            onChange={this.changeCounterGuest}
             name="adults"
+            onChange={this.changeCounterGuest}
             counter={this.state.adults}
           />
         </GuestRow>
@@ -41,8 +48,8 @@ export default class extends Component {
             <span>Ages 2 — 12</span>
           </GuestLabel>
           <Counter
-            onChange={this.changeCounterGuest}
             name="children"
+            onChange={this.changeCounterGuest}
             counter={this.state.children}
           />
         </GuestRow>
@@ -52,8 +59,8 @@ export default class extends Component {
             <span>Under 2</span>
           </GuestLabel>
           <Counter
-            onChange={this.changeCounterGuest}
             name="infants"
+            onChange={this.changeCounterGuest}
             counter={this.state.infants}
           />
         </GuestRow>

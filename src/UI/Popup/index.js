@@ -67,10 +67,21 @@ const Wrap = styled.div`
 `;
 
 const Body = styled.div`
+  height: 100%;
+  @media (min-width: 768px) {
+    height: auto;
+  }
+`;
+
+const Inner = styled.div`
   padding: 20px 8px;
+  height: 100%;
+  overflow-y: auto;
 
   @media (min-width: 768px) {
     padding: 24px 16px 0;
+    height: auto;
+    overflow: visible;
   }
 `;
 
@@ -167,6 +178,10 @@ const MobileReset = styled.button`
 `;
 
 class Popup extends Component {
+  handleReset = () => {
+    this.props.onReset(this.props.name);
+  };
+
   render() {
     const closePopup = this.props.forClose;
 
@@ -177,12 +192,18 @@ class Popup extends Component {
           isOpen={this.props.isOpen}
           openFilter={this.props.openedFilter}
           bodyLike={this.props.bodyLike}
+          // reset={this.props.onReset}
         >
           <Header>
             <MobileClose onClick={closePopup} type="button" />
-            <MobileReset type="button">Reset</MobileReset>
+            {this.props.label}
+            <MobileReset onClick={this.handleReset} type="button">
+              Reset
+            </MobileReset>
           </Header>
-          <Body>{this.props.children}</Body>
+          <Body>
+            <Inner>{this.props.children}</Inner>
+          </Body>
           <Footer>
             <Button onClick={closePopup} type="button">
               Cancel
