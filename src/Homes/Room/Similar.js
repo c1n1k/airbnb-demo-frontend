@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Track from "../UI/Track";
-import Card from "../Card";
-import tile from "../Homes/tile";
+import Track from "../../UI/Track";
+import Card from "../../Card";
+import tile from "../tile";
 
 const Wrap = styled.section`
   margin-bottom: 48px;

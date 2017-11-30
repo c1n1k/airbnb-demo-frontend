@@ -1,31 +1,19 @@
 import React, { Component } from "react";
 import Toggle from "../../UI/Toggle";
-import {
-  Section,
-  SectionTitle,
-  SectionRow,
-  SectionLabel,
-  SectionCol,
-  SectionRemark,
-  FilterLink
-} from "./styled";
+import { Section, Title, Row, Label, Col, Remark, FilterLink } from "./styled";
 
 export default class Superhost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      superhost: this.props.superhost || false
-    };
-  }
+  state = {
+    superhost: this.props.superhost || false
+  };
 
   updateState = (name, value) => {
     this.setState(
       {
-        ...this.state,
         [name]: value
       },
       () => {
-        this.props.onChangeHandle(this.props.name, this.state);
+        this.props.onChange(this.props.name, this.state);
       }
     );
   };
@@ -33,23 +21,23 @@ export default class Superhost extends Component {
   render() {
     return (
       <Section>
-        <SectionTitle>More options</SectionTitle>
-        <SectionRow>
-          <SectionCol>
-            <SectionLabel>
+        <Title>More options</Title>
+        <Row>
+          <Col>
+            <Label>
               Superhost
-              <SectionRemark>Stay with recognized</SectionRemark>
+              <Remark>Stay with recognized</Remark>
               <FilterLink to="">Learn more</FilterLink>
-            </SectionLabel>
-          </SectionCol>
-          <SectionCol>
+            </Label>
+          </Col>
+          <Col>
             <Toggle
               name="superhost"
               onChange={this.updateState}
               isActive={this.state.superhost}
             />
-          </SectionCol>
-        </SectionRow>
+          </Col>
+        </Row>
       </Section>
     );
   }

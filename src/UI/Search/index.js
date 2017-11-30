@@ -10,6 +10,7 @@ const Search = styled.div`
 
 const SearchInput = styled(Input)`
   padding-left: 50px;
+
   ${props => {
     if (props.size === "s") {
       return `
@@ -23,6 +24,7 @@ const SearchInput = styled(Input)`
 
 const SearchIcon = styled.span`
   position: absolute;
+  z-index: 1;
   top: 13px;
   left: 16px;
   display: inline-block;

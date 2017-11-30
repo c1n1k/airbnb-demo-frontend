@@ -124,21 +124,25 @@ export const IconShared = () => {
 export const Section = styled.div`
   padding-bottom: 12px;
   border-bottom: 1px solid rgba(72, 72, 72, 0.3);
+
+  &:last-child {
+    border-bottom: 0;
+  }
 `;
 
-export const SectionTitle = styled.h3`
+export const Title = styled.h3`
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: normal;
 `;
 
-export const SectionRow = styled.div`
+export const Row = styled.div`
   display: flex;
   margin-bottom: 20px;
   font-size: 20px;
 `;
 
-export const SectionLabel = styled.span`
+export const Label = styled.span`
   padding-top: 8px;
   flex-grow: 1;
   font-size: 18px;
@@ -146,11 +150,11 @@ export const SectionLabel = styled.span`
   line-height: 1.16;
 `;
 
-export const SectionCol = styled.div`
+export const Col = styled.div`
   width: 50%;
 `;
 
-export const SectionRemark = styled.div`
+export const Remark = styled.div`
   margin: 3px 0;
   display: block;
   font-size: 16px;

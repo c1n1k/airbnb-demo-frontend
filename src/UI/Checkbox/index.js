@@ -44,6 +44,10 @@ const Text = styled.span`
     opacity: 0;
   }
 
+  ${Control}:focus + &:before {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+
   ${Control}:checked + &:after {
     opacity: 1;
   }
@@ -57,7 +61,7 @@ const Text = styled.span`
 
 export default props => {
   const handleChange = e => {
-    props.changeHandle(e.target.name, e.target.checked);
+    props.onChange(e.target.name, e.target.checked);
   };
   return (
     <Checkbox className={props.className}>
@@ -65,7 +69,6 @@ export default props => {
         type="checkbox"
         name={props.name}
         checked={props.checked}
-        changeHandle={props.changeHandle}
         onChange={handleChange}
       />
       <Text>{props.children}</Text>

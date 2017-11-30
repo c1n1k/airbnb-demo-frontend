@@ -3,21 +3,18 @@ import Calendar from "../../UI/Calendar";
 import { DatesRange } from "./styled";
 
 export default class Dates extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: this.props.startDate || null,
-      endDate: this.props.endDate || null,
-      focusedInput: "startDate"
-    };
-  }
+  state = {
+    startDate: this.props.dates.startDate || null,
+    endDate: this.props.dates.endDate || null,
+    focusedInput: "startDate"
+  };
 
   componentWillReceiveProps(nextProps) {
-    /* this.setState({
-      startDate: nextProps.startDate,
-      endDate: nextProps.endDate,
-      focusedInput: "startDate"
-    }); */
+    console.log(nextProps);
+    this.setState({
+      startDate: nextProps.dates.startDate,
+      endDate: nextProps.dates.endDate
+    });
   }
 
   onDatesChange = ({ startDate, endDate }) => {

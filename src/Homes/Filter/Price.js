@@ -6,13 +6,14 @@ import "./rheostat.css";
 import { Price, PriceMin, PriceMax, PriceRemark } from "./styled";
 
 export default class extends Component {
+  state = {
+    minPrice: this.props.minPrice,
+    maxPrice: this.props.maxPrice,
+    values: this.props.values || [0, 1000]
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      minPrice: this.props.minPrice,
-      maxPrice: this.props.maxPrice,
-      values: this.props.values || [0, 1000]
-    };
     this.updatePrice = this.updatePrice.bind(this);
   }
 
@@ -36,7 +37,6 @@ export default class extends Component {
         </div>
         <PriceRemark>The average nightly price is 75$</PriceRemark>
         <Rheostat
-          {...this.props}
           min={this.props.minPrice}
           max={this.props.maxPrice}
           values={this.props.values}

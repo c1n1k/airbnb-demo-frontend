@@ -57,6 +57,10 @@ const Slider = styled.span`
     transform: rotate(45deg);
   }
 
+  ${Control}:focus + & {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+
   ${Control}:checked + & {
     color: #fff;
     background-color: #008489;

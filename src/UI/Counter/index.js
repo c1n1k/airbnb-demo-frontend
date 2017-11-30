@@ -9,6 +9,7 @@ const Button = styled.button`
   height: 32px;
   line-height: 30px;
   text-align: center;
+  cursor: pointer;
   background-color: transparent;
   color: #008489;
   border: 1px solid;
@@ -84,9 +85,13 @@ class Counter extends Component {
     const isDisable = this.props.counter === 0;
     return (
       <Wrap>
-        <ButtonMinus onClick={this.decCounter} disabled={isDisable} />
+        <ButtonMinus
+          type="button"
+          onClick={this.decCounter}
+          disabled={isDisable}
+        />
         <Count>{this.props.counter}</Count>
-        <ButtonPlus onClick={this.incCounter} />
+        <ButtonPlus type="button" onClick={this.incCounter} />
       </Wrap>
     );
   }

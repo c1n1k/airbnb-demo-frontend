@@ -28,9 +28,13 @@ export const FilterRow = styled.div`
 
 export const FilterWrap = styled(Filter)`
   position: relative;
-  display: inline-block;
+  display: ${props => (props.hideOnTablet ? "none" : "inline-block")};
   margin: 0 6px;
   vertical-align: top;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   &:first-child {
     margin-left: 0;
@@ -54,13 +58,4 @@ export const Overlay = styled.div`
   width: 100%;
   display: ${props => (props.isOpen ? "block" : "none")};
   background-color: rgba(255, 255, 255, 0.8);
-`;
-
-export const Md = styled.div`
-  display: none;
-
-  @media (min-width: 768px) {
-    display: block;
-    margin: 0 6px;
-  }
 `;

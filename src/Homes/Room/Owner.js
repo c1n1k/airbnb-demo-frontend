@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
-import Text from "../UI/Text";
-import Link from "../UI/Link";
+import Text from "../../UI/Text";
+import Link from "../../UI/Link";
 import imgOwner from "./owner.png";
 
 const Wrap = styled.section`

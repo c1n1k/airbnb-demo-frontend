@@ -3,14 +3,11 @@ import Counter from "../../UI/Counter";
 import { Guest, GuestRow, GuestLabel } from "./styled";
 
 export default class extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      adults: this.props.currentGuest.adults || 1,
-      children: this.props.currentGuest.children || 0,
-      infants: this.props.currentGuest.infants || 0
-    };
-  }
+  state = {
+    adults: this.props.currentGuest.adults || 1,
+    children: this.props.currentGuest.children || 0,
+    infants: this.props.currentGuest.infants || 0
+  };
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -22,7 +19,6 @@ export default class extends Component {
   changeCounterGuest = (name, count) => {
     this.setState(
       {
-        ...this.state,
         [name]: name === "adults" && count < 1 ? 1 : count
       },
       () => {

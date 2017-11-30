@@ -3,14 +3,11 @@ import Checkbox from "../../UI/Checkbox";
 import { RoomType, IconHome, IconPrivate, IconShared } from "./styled";
 
 export default class extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      entire: this.props.value.entire,
-      private: this.props.value.private,
-      shared: this.props.value.shared
-    };
-  }
+  state = {
+    entire: this.props.value.entire,
+    private: this.props.value.private,
+    shared: this.props.value.shared
+  };
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -37,7 +34,7 @@ export default class extends Component {
           <Checkbox
             name="entire"
             checked={this.state.entire}
-            changeHandle={this.changeState}
+            onChange={this.changeState}
           >
             Entire home
             <span>Have a place to yourplace</span>
@@ -48,7 +45,7 @@ export default class extends Component {
           <Checkbox
             name="private"
             checked={this.state.private}
-            changeHandle={this.changeState}
+            onChange={this.changeState}
           >
             Private room
             <span>Have your own room and share some common space</span>
@@ -59,7 +56,7 @@ export default class extends Component {
           <Checkbox
             name="shared"
             checked={this.state.shared}
-            changeHandle={this.changeState}
+            onChange={this.changeState}
           >
             Shared room
             <span>Stay in a shared space, like a common room</span>

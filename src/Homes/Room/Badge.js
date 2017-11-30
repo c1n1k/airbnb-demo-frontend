@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Link from "../UI/Link";
+import Link from "../../UI/Link";
 
 const Badge = styled(Link)`
   text-decoration: none;

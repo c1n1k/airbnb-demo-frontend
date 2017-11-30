@@ -25,5 +25,11 @@ const Input = styled.input`
 `;
 
 export default props => {
-  return <Input className={props.className} size={props.size} />;
+  return (
+    <Input
+      className={props.className}
+      size={props.size}
+      placeholder={props.placeholder}
+    />
+  );
 };

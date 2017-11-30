@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Guest from "./Filter/Guest";
-import Room from "./Filter/Room";
+import RoomType from "./Filter/RoomType";
 import InstantBook from "./Filter/InstantBook";
 import Price from "./Filter/Price";
 import Dates from "./Filter/Dates.js";
 import More from "./Filter/More.js";
-import { FilterRow, FilterWrap, FilterMore, Overlay, Md } from "./styled";
+import { FilterRow, FilterWrap, FilterMore, Overlay } from "./styled";
 
 const dateLabelFormat = (startDate, endDate) => {
   const startDateString = startDate && startDate.format("MMM DD");
@@ -149,12 +149,11 @@ class Filters extends Component {
             toggle={this.toggle}
             isFill={this.state.dates.startDate && this.state.dates.endDate}
             reset={this.reset}
+            onApply={this.close}
           >
             <Dates
               name="dates"
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              focusedInput={this.state.focusedInput}
+              dates={this.state.dates}
               onChange={this.updateFilter}
             />
           </FilterWrap>
@@ -167,6 +166,7 @@ class Filters extends Component {
               this.state.guest.adults > 1 || this.state.guest.children > 0
             }
             reset={this.reset}
+            onApply={this.close}
           >
             <Guest
               name="guest"
@@ -174,62 +174,64 @@ class Filters extends Component {
               currentGuest={this.state.guest}
             />
           </FilterWrap>
-          <Md>
-            <FilterWrap
-              label={roomTypeLabelFormat(this.state.roomType)}
-              openedFilter="roomType"
-              isOpen={
-                this.state.isOpen && this.state.openedFilter === "roomType"
-              }
-              toggle={this.toggle}
-              isFill={roomTypeLabelFormat(this.state.roomType) !== "Room type"}
-              reset={this.reset}
-            >
-              <Room
-                name="roomType"
-                onChange={this.updateFilter}
-                value={this.state.roomType}
-              />
-            </FilterWrap>
-            <FilterWrap
-              label={priceLabelFormat(
-                this.state.price.values,
-                this.initialValues.price.values
-              )}
-              openedFilter="price"
-              isOpen={this.state.isOpen && this.state.openedFilter === "price"}
-              toggle={this.toggle}
-              isFill={
-                this.state.price.values[0] !== this.state.price.minPrice ||
-                this.state.price.values[1] !== this.state.price.maxPrice
-              }
-              reset={this.reset}
-            >
-              <Price
-                name="price"
-                minPrice={this.state.price.minPrice}
-                maxPrice={this.state.price.maxPrice}
-                values={this.state.price.values}
-                onValuesUpdated={this.updateFilter}
-              />
-            </FilterWrap>
-            <FilterWrap
-              label="Instant book"
-              openedFilter="instantbook"
-              isOpen={
-                this.state.isOpen && this.state.openedFilter === "instantbook"
-              }
-              toggle={this.toggle}
-              isFill={this.state.instantBook}
-              reset={this.reset}
-            >
-              <InstantBook
-                name="instantBook"
-                onChange={this.updateFilter}
-                isActive={this.state.instantBook}
-              />
-            </FilterWrap>
-          </Md>
+          <FilterWrap
+            label={roomTypeLabelFormat(this.state.roomType)}
+            openedFilter="roomType"
+            isOpen={this.state.isOpen && this.state.openedFilter === "roomType"}
+            toggle={this.toggle}
+            isFill={roomTypeLabelFormat(this.state.roomType) !== "Room type"}
+            reset={this.reset}
+            hideOnTablet
+            onApply={this.close}
+          >
+            <RoomType
+              name="roomType"
+              onChange={this.updateFilter}
+              value={this.state.roomType}
+            />
+          </FilterWrap>
+          <FilterWrap
+            label={priceLabelFormat(
+              this.state.price.values,
+              this.initialValues.price.values
+            )}
+            openedFilter="price"
+            isOpen={this.state.isOpen && this.state.openedFilter === "price"}
+            toggle={this.toggle}
+            isFill={
+              this.state.price.values[0] !== this.state.price.minPrice ||
+              this.state.price.values[1] !== this.state.price.maxPrice
+            }
+            reset={this.reset}
+            hideOnTablet
+            onApply={this.close}
+          >
+            <Price
+              name="price"
+              minPrice={this.state.price.minPrice}
+              maxPrice={this.state.price.maxPrice}
+              values={this.state.price.values}
+              onValuesUpdated={this.updateFilter}
+            />
+          </FilterWrap>
+          <FilterWrap
+            label="Instant book"
+            openedFilter="instantbook"
+            isOpen={
+              this.state.isOpen && this.state.openedFilter === "instantbook"
+            }
+            toggle={this.toggle}
+            isFill={this.state.instantBook}
+            reset={this.reset}
+            hideOnTablet
+            onApply={this.close}
+          >
+            <InstantBook
+              name="instantBook"
+              onChange={this.updateFilter}
+              isActive={this.state.instantBook}
+            />
+          </FilterWrap>
           <FilterMore
             label="More filters"
             openedFilter="moreFilter"
@@ -238,6 +240,7 @@ class Filters extends Component {
             }
             toggle={this.toggle}
             bodyLike={true}
+            onApply={this.close}
           >
             <More
               rooms={this.state.rooms}

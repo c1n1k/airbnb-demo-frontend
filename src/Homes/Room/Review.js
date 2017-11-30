@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import Search from "../UI/Search";
-import Pagination from "../UI/Pagination";
+import Search from "../../UI/Search";
+import Pagination from "../../UI/Pagination";
 import Section from "./Section";
-import Icon from "../UI/Icon";
-import Link from "../UI/Link";
-import Text from "../UI/Text";
+import Icon from "../../UI/Icon";
+import Link from "../../UI/Link";
+import Text from "../../UI/Text";
 import marlee from "./marlee.png";
 import michele from "./michele.png";
 
