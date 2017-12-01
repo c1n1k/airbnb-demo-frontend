@@ -52,7 +52,7 @@ export const Wrap = styled.div`
         @media (min-width: 768px) {
           margin-top: 13px;
           width: 100%;
-          height: 100%;
+          height: ${props.height}px;
           padding-bottom: 64px;
           border: none;
           border-radius: 0;

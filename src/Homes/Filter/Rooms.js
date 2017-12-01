@@ -9,7 +9,7 @@ export default class Beds extends Component {
     bath: this.props.rooms.bath || 0
   };
 
-  updateState = (name, value) => {
+  handleChange = (name, value) => {
     this.setState(
       {
         [name]: name === "bed" && value < 1 ? 1 : value
@@ -19,6 +19,13 @@ export default class Beds extends Component {
       }
     );
   };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ...this.state,
+      ...nextProps.rooms
+    });
+  }
 
   render() {
     return (
@@ -31,7 +38,7 @@ export default class Beds extends Component {
           <Col>
             <Counter
               name="bedroom"
-              onChange={this.updateState}
+              onChange={this.handleChange}
               counter={this.state.bedroom}
             />
           </Col>
@@ -43,7 +50,7 @@ export default class Beds extends Component {
           <Col>
             <Counter
               name="bed"
-              onChange={this.updateState}
+              onChange={this.handleChange}
               counter={this.state.bed}
             />
           </Col>
@@ -55,7 +62,7 @@ export default class Beds extends Component {
           <Col>
             <Counter
               name="bath"
-              onChange={this.updateState}
+              onChange={this.handleChange}
               counter={this.state.bath}
             />
           </Col>

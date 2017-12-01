@@ -10,7 +10,7 @@ export default class Amenities extends Component {
     wifi: this.props.amenities.wifi || false
   };
 
-  updateState = (name, value) => {
+  handleChange = (name, value) => {
     this.setState(
       {
         [name]: value
@@ -21,6 +21,13 @@ export default class Amenities extends Component {
     );
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ...this.state,
+      ...nextProps.amenities
+    });
+  }
+
   render() {
     return (
       <Section>
@@ -30,7 +37,7 @@ export default class Amenities extends Component {
             <Checkbox
               name="heating"
               checked={this.state.heating}
-              onChange={this.updateState}
+              onChange={this.handleChange}
             >
               Heating
             </Checkbox>
@@ -39,7 +46,7 @@ export default class Amenities extends Component {
             <Checkbox
               name="kitchen"
               checked={this.state.kitchen}
-              onChange={this.updateState}
+              onChange={this.handleChange}
             >
               Kitchen
             </Checkbox>
@@ -50,7 +57,7 @@ export default class Amenities extends Component {
             <Checkbox
               name="tv"
               checked={this.state.tv}
-              onChange={this.updateState}
+              onChange={this.handleChange}
             >
               TV
             </Checkbox>
@@ -58,8 +65,8 @@ export default class Amenities extends Component {
           <Col>
             <Checkbox
               name="wifi"
-              checked={this.props.wifi}
-              onChange={this.updateState}
+              checked={this.state.wifi}
+              onChange={this.handleChange}
             >
               Wireless Internet
             </Checkbox>

@@ -45,7 +45,7 @@ const Text = styled.span`
   }
 
   ${Control}:focus + &:before {
-    outline: -webkit-focus-ring-color auto 5px;
+    outline: #4d90fe auto 5px;
   }
 
   ${Control}:checked + &:after {

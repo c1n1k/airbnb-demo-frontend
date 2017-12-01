@@ -3,21 +3,6 @@ import Toggle from "../../UI/Toggle";
 import { Section, Title, Row, Label, Col, Remark, FilterLink } from "./styled";
 
 export default class Superhost extends Component {
-  state = {
-    superhost: this.props.superhost || false
-  };
-
-  updateState = (name, value) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      () => {
-        this.props.onChange(this.props.name, this.state);
-      }
-    );
-  };
-
   render() {
     return (
       <Section>
@@ -33,8 +18,8 @@ export default class Superhost extends Component {
           <Col>
             <Toggle
               name="superhost"
-              onChange={this.updateState}
-              isActive={this.state.superhost}
+              onChange={this.props.onChange}
+              isActive={this.props.superhost}
             />
           </Col>
         </Row>

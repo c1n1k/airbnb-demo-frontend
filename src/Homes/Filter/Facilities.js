@@ -10,7 +10,7 @@ export default class Facilities extends Component {
     wheelchair: this.props.facilities.wheelchair || false
   };
 
-  updateState = (name, value) => {
+  handleChange = (name, value) => {
     this.setState(
       {
         [name]: value
@@ -21,6 +21,13 @@ export default class Facilities extends Component {
     );
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ...this.state,
+      ...nextProps.facilities
+    });
+  }
+
   render() {
     return (
       <Section>
@@ -30,7 +37,7 @@ export default class Facilities extends Component {
             <Checkbox
               name="elevator"
               checked={this.state.elevator}
-              onChange={this.updateState}
+              onChange={this.handleChange}
             >
               Elevator
             </Checkbox>
@@ -39,7 +46,7 @@ export default class Facilities extends Component {
             <Checkbox
               name="parking"
               checked={this.state.parking}
-              onChange={this.updateState}
+              onChange={this.handleChange}
             >
               Free parking on premises
             </Checkbox>
@@ -50,7 +57,7 @@ export default class Facilities extends Component {
             <Checkbox
               name="pool"
               checked={this.state.pool}
-              onChange={this.updateState}
+              onChange={this.handleChange}
             >
               Pool
             </Checkbox>
@@ -59,7 +66,7 @@ export default class Facilities extends Component {
             <Checkbox
               name="wheelchair"
               checked={this.state.wheelchair}
-              onChange={this.updateState}
+              onChange={this.handleChange}
             >
               Wheelchair accessible
             </Checkbox>

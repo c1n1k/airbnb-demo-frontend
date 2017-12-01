@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Input from "../../../UI/Input";
 import Counter from "../../../UI/Counter";
-import SingleCalendar from "../../../UI/Calendar/SingleCalendar";
+import RangeCalendar from "../../../UI/Calendar/RangeCalendar";
 import {
   Wrap,
   Header,
@@ -42,17 +41,15 @@ const formatLabel = guest => {
 };
 
 export default class Book extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-      guest: {
-        adults: 1,
-        children: 0,
-        infants: 0
-      }
-    };
-  }
+  state = {
+    isOpen: false,
+    guest: {
+      adults: 1,
+      children: 0,
+      infants: 0
+    },
+    dates: null
+  };
 
   toggle = () => {
     this.setState(prevState => ({
@@ -72,6 +69,13 @@ export default class Book extends Component {
         ...this.state.guest,
         [name]: name === "adults" && count < 1 ? 1 : count
       }
+    });
+  };
+
+  onChangeDate = value => {
+    this.setState({
+      ...this.state,
+      dates: value
     });
   };
 
@@ -96,12 +100,11 @@ export default class Book extends Component {
           <Row>
             <Col>
               <Label>Check In</Label>
-              <SingleCalendar />
             </Col>
             <Col>
               <Label>Check Out</Label>
-              <SingleCalendar />
             </Col>
+            <RangeCalendar onChangeDate={this.onChangeDate} />
           </Row>
           <Row>
             <Label>Guests</Label>
@@ -150,7 +153,7 @@ export default class Book extends Component {
             </Dropdown>
           </Row>
           <RowSubmit>
-            <Request primary={true}>Request to Book</Request>
+            <Request primary>Request to Book</Request>
             <Remark>You won’t be charged</Remark>
           </RowSubmit>
         </Body>

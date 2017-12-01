@@ -29,6 +29,7 @@ class Popup extends Component {
           isOpen={this.props.isOpen}
           openFilter={this.props.openedFilter}
           bodyLike={this.props.bodyLike}
+          height={this.props.height}
         >
           <Header>
             <MobileClose onClick={closePopup} type="button" />

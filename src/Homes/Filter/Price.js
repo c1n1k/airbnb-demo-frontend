@@ -12,12 +12,7 @@ export default class extends Component {
     values: this.props.values || [0, 1000]
   };
 
-  constructor(props) {
-    super(props);
-    this.updatePrice = this.updatePrice.bind(this);
-  }
-
-  updatePrice(sliderState) {
+  updatePrice = sliderState => {
     this.setState(
       {
         values: sliderState.values
@@ -26,20 +21,20 @@ export default class extends Component {
         this.props.onValuesUpdated(this.props.name, this.state);
       }
     );
-  }
+  };
 
   render() {
     return (
       <Price>
         <div>
-          <PriceMin>{this.props.values[0]} $</PriceMin> —{" "}
-          <PriceMax>{this.props.values[1]} $</PriceMax>
+          <PriceMin>{this.state.values[0]} $</PriceMin> —{" "}
+          <PriceMax>{this.state.values[1]} $</PriceMax>
         </div>
         <PriceRemark>The average nightly price is 75$</PriceRemark>
         <Rheostat
-          min={this.props.minPrice}
-          max={this.props.maxPrice}
-          values={this.props.values}
+          min={this.state.minPrice}
+          max={this.state.maxPrice}
+          values={this.state.values}
           onValuesUpdated={this.updatePrice}
         />
       </Price>

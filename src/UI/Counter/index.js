@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  white-space: nowrap;
+`;
 
 const Button = styled.button`
   position: relative;

@@ -10,7 +10,6 @@ export default class Dates extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({
       startDate: nextProps.dates.startDate,
       endDate: nextProps.dates.endDate

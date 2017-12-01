@@ -54,6 +54,17 @@ const roomTypeLabelFormat = values => {
   return "Room type";
 };
 
+const moreLabelFormat = (keys, value, initialValues) => {
+  const count = keys.reduce((prevCount, key) => {
+    // console.log(Object.is(value[key], initialValues[key]));
+    return Object.is(value[key], initialValues[key])
+      ? prevCount
+      : prevCount + 1;
+  }, 0);
+
+  return count > 0 ? `More filters \u0387 ${count}` : "More filters";
+};
+
 class Filters extends Component {
   constructor(props) {
     super(props);
@@ -105,14 +116,9 @@ class Filters extends Component {
   };
 
   updateFilter = (name, value) => {
-    this.setState(
-      {
-        [name]: value
-      },
-      () => {
-        console.log(this.state[name]);
-      }
-    );
+    this.setState({
+      [name]: value
+    });
   };
 
   toggle = key => {
@@ -133,6 +139,13 @@ class Filters extends Component {
     this.setState({
       [name]: this.initialValues[name]
     });
+  };
+
+  resetMore = () => {
+    this.reset("rooms");
+    this.reset("superhost");
+    this.reset("amenities");
+    this.reset("facilities");
   };
 
   render() {
@@ -233,7 +246,11 @@ class Filters extends Component {
             />
           </FilterWrap>
           <FilterMore
-            label="More filters"
+            label={moreLabelFormat(
+              ["rooms", "superhost", "amenities", "facilities"],
+              this.state,
+              this.initialValues
+            )}
             openedFilter="moreFilter"
             isOpen={
               this.state.isOpen && this.state.openedFilter === "moreFilter"
@@ -241,6 +258,7 @@ class Filters extends Component {
             toggle={this.toggle}
             bodyLike={true}
             onApply={this.close}
+            reset={this.resetMore}
           >
             <More
               rooms={this.state.rooms}

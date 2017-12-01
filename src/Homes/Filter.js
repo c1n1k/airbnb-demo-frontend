@@ -3,18 +3,21 @@ import Popup from "../UI/Popup";
 import { Wrap, FilterToggler } from "./styled";
 
 const autofitMoreFilter = element => {
-  console.log(element);
   const box = element.getBoundingClientRect();
   const top = box.top;
   return window.innerHeight - top - element.offsetHeight - 12;
 };
 
 class Filter extends Component {
+  state = {
+    height: 0
+  };
+
   handleToggle = e => {
     if (this.props.bodyLike) {
-      const dropdown = e.target.nextSibling.firstChild;
-      const height = autofitMoreFilter(e.target);
-      dropdown.style.height = height + "px";
+      this.setState({
+        height: autofitMoreFilter(e.target)
+      });
     }
     this.props.toggle(this.props.openedFilter);
   };
@@ -38,6 +41,7 @@ class Filter extends Component {
           isOpen={this.props.isOpen}
           forClose={this.props.toggle}
           bodyLike={this.props.bodyLike}
+          height={this.state.height}
           name={this.props.openedFilter}
           onReset={this.props.reset}
           onApply={this.props.onApply}

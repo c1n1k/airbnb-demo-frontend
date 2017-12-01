@@ -16,7 +16,7 @@ export default class extends Component {
     });
   }
 
-  changeState = (name, checked) => {
+  handleChange = (name, checked) => {
     this.setState(
       {
         [name]: checked
@@ -34,7 +34,7 @@ export default class extends Component {
           <Checkbox
             name="entire"
             checked={this.state.entire}
-            onChange={this.changeState}
+            onChange={this.handleChange}
           >
             Entire home
             <span>Have a place to yourplace</span>
@@ -45,7 +45,7 @@ export default class extends Component {
           <Checkbox
             name="private"
             checked={this.state.private}
-            onChange={this.changeState}
+            onChange={this.handleChange}
           >
             Private room
             <span>Have your own room and share some common space</span>
@@ -56,7 +56,7 @@ export default class extends Component {
           <Checkbox
             name="shared"
             checked={this.state.shared}
-            onChange={this.changeState}
+            onChange={this.handleChange}
           >
             Shared room
             <span>Stay in a shared space, like a common room</span>
