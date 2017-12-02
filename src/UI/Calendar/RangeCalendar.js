@@ -32,7 +32,6 @@ export default class RangeCalendar extends React.Component {
   render() {
     return (
       <DateRangePicker
-        // {...this.props}
         startDatePlaceholderText=""
         endDatePlaceholderText=""
         startDateId="startDate"
@@ -44,7 +43,6 @@ export default class RangeCalendar extends React.Component {
         focusedInput={this.state.focusedInput}
         onDatesChange={this.onDatesChange}
         onFocusChange={this.onFocusChange}
-        onChangeDate={this.props.onChangeDate}
       />
     );
   }
