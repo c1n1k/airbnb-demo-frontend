@@ -18,12 +18,11 @@ export const Switcher = styled.button`
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(72, 72, 72, 0.08);
 
-  ${props => {
-    if (props.isOpen)
-      return `
+  ${props =>
+    props.isOpen &&
+    `
       border-radius: 4px 4px 0 0;
-    `;
-  }};
+    `};
 `;
 
 const DropdownWrap = styled.div`
@@ -41,16 +40,15 @@ const DropdownWrap = styled.div`
   visibility: hidden;
   transition: max-height 0.3s ease-in-out;
 
-  ${props => {
-    if (props.isOpen)
-      return `
+  ${props =>
+    props.isOpen &&
+    `
       max-height: 1000px;
       visibility: visible;
       border-radius: 0 0 4px 4px;
       border-color: #d8d8d8;
       box-shadow: 0 2px 4px rgba(72, 72, 72, 0.08);
-    `;
-  }};
+    `};
 `;
 
 const Inner = styled.div`

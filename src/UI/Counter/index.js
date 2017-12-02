@@ -31,14 +31,12 @@ const ButtonMinus = styled(Button)`
     border-radius: 1px;
   }
 
-  ${props => {
-    if (props.disabled) {
-      return `
-        opacity: .5;
-        cursor: default;
-      `;
-    }
-  }};
+  ${props =>
+    props.disabled &&
+    `
+      opacity: .5;
+      cursor: default;
+    `};
 `;
 
 const ButtonPlus = styled(Button)`

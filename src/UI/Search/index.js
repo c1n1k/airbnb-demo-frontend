@@ -11,15 +11,13 @@ const Search = styled.div`
 const SearchInput = styled(Input)`
   padding-left: 50px;
 
-  ${props => {
-    if (props.size === "s") {
-      return `
+  ${props =>
+    props.size === "s" &&
+    `
         padding-left:34px;
         height: 32px;
         font-size: 14px;
-      `;
-    }
-  }};
+      `};
 `;
 
 const SearchIcon = styled.span`
@@ -33,16 +31,14 @@ const SearchIcon = styled.span`
   height: 22px;
   pointer-events: none;
 
-  ${props => {
-    if (props.size === "s") {
-      return `
+  ${props =>
+    props.size === "s" &&
+    `
         top: 8px;
         left: 10px;
         width: 16px;
         height: 16px;
-      `;
-    }
-  }};
+      `};
 `;
 
 const SearchIconSearch = props => {

@@ -10,14 +10,12 @@ const Input = styled.input`
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(72, 72, 72, 0.08);
 
-  ${props => {
-    if (props.size === "s") {
-      return `
+  ${props =>
+    props.size === "s" &&
+    `
         height: 40px;
         border-radius: 0;
-      `;
-    }
-  }};
+      `};
 
   &:focus {
     z-index: 1;

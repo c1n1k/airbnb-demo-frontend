@@ -33,21 +33,19 @@ export const Wrap = styled.div`
     transform: none;
   }
 
-  ${props => {
-    if (props.isOpen) {
-      return `
-        transform: translate3D(0, 0, 0);
+  ${props =>
+    props.isOpen &&
+    `
+      transform: translate3D(0, 0, 0);
 
-        @media (min-width: 768px) {
-          left: 0;
-        }
-      `;
-    }
-  }};
+      @media (min-width: 768px) {
+        left: 0;
+      }
+    `};
 
-  ${props => {
-    if (props.bodyLike) {
-      return `
+  ${props =>
+    props.bodyLike &&
+    `
 
         @media (min-width: 768px) {
           margin-top: 13px;
@@ -62,9 +60,7 @@ export const Wrap = styled.div`
         @media (min-width: 980px) {
           width: calc(100% / 3 * 2)
         }
-      `;
-    }
-  }};
+      `};
 `;
 
 export const Body = styled.div`
@@ -74,15 +70,13 @@ export const Body = styled.div`
     height: auto;
   }
 
-  ${props => {
-    if (props.bodyLike) {
-      return `
+  ${props =>
+    props.bodyLike &&
+    `
         @media (min-width: 768px) {
           height:100%;
         }
-      `;
-    }
-  }};
+      `};
 `;
 
 export const Inner = styled.div`
@@ -96,18 +90,17 @@ export const Inner = styled.div`
     overflow: visible;
   }
 
-  ${props => {
-    if (props.bodyLike) {
-      return `
+  ${props =>
+    props.bodyLike &&
+    `
         @media (min-width: 768px) {
           height: 100%;
           overflow-y: auto;
           padding-left: 0;
           padding-right: 0;
         }
-      `;
-    }
-  }};
+      `}
+  };
 `;
 
 export const Footer = styled.div`
@@ -127,9 +120,9 @@ export const Footer = styled.div`
     border-top: none;
   }
 
-  ${props => {
-    if (props.bodyLike) {
-      return `
+  ${props =>
+    props.bodyLike &&
+    `
         @media (min-width: 768px) {
           position: absolute;
           right: 0;
@@ -139,9 +132,7 @@ export const Footer = styled.div`
           justify-content: flex-end;
           border-top: 1px solid rgba(72, 72, 72, 0.3);
         }
-      `;
-    }
-  }};
+      `};
 `;
 
 export const Header = styled.div`
