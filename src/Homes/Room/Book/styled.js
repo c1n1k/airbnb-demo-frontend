@@ -5,7 +5,7 @@ import Dropdown from "../../../UI/Dropdown";
 import Button from "../../../UI/Button";
 
 export const Wrap = styled.div`
-  margin: 20px;
+  margin: 20px 0;
   padding: 15px 24px;
   border: 1px solid rgba(118, 118, 118, 0.2);
 `;

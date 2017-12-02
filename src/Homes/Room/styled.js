@@ -57,22 +57,37 @@ export const ImgRoom = styled.img`
 `;
 
 export const Content = styled.div`
-  width: calc(100% / 3 * 2 - 16px);
+  width: 100%;
+
+  @media (min-width: 980px) {
+    width: calc(100% / 3 * 2 - 16px);
+  }
 
   @supports (display: grid) {
     width: auto;
-    grid-column: span 8;
+    grid-column: 1 / -1;
+
+    @media (min-width: 980px) {
+      width: auto;
+      grid-column: span 8;
+    }
   }
 `;
 
 export const Aside = styled.div`
-  position: relative;
-  width: calc(100% / 3 - 16px);
+  display: none;
 
-  @supports (display: grid) {
-    width: auto;
-    grid-column: span 4;
-    align-self: stretch;
+  @media (min-width: 980px) {
+    display: block;
+    position: relative;
+    width: calc(100% / 3 - 16px);
+    border: none;
+
+    @supports (display: grid) {
+      width: auto;
+      grid-column: span 4;
+      align-self: stretch;
+    }
   }
 `;
 
