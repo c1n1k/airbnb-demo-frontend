@@ -32,7 +32,7 @@ export default class RangeCalendar extends React.Component {
   render() {
     return (
       <DateRangePicker
-        {...this.props}
+        // {...this.props}
         startDatePlaceholderText=""
         endDatePlaceholderText=""
         startDateId="startDate"
