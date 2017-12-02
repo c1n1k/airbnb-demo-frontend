@@ -20,7 +20,7 @@ class Popup extends Component {
   };
 
   render() {
-    const closePopup = this.props.forClose;
+    const closePopup = this.props.onClose;
 
     return (
       <div>

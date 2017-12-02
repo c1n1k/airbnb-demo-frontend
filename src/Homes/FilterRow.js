@@ -123,14 +123,14 @@ class Filters extends Component {
 
   toggle = key => {
     this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-      openedFilter: key
+      // isOpen: !prevState.isOpen,
+      openedFilter: prevState.openedFilter === key ? null : key
     }));
   };
 
   close = () => {
     this.setState(prevState => ({
-      isOpen: false,
+      // isOpen: false,
       openedFilter: null
     }));
   };
@@ -157,11 +157,12 @@ class Filters extends Component {
               this.state.dates.startDate,
               this.state.dates.endDate
             )}
-            isOpen={this.state.isOpen && this.state.openedFilter === "dates"}
+            isOpen={this.state.openedFilter === "dates"}
             openedFilter="dates"
             toggle={this.toggle}
             isFill={this.state.dates.startDate && this.state.dates.endDate}
             reset={this.reset}
+            onClose={this.close}
             onApply={this.close}
           >
             <Dates
@@ -173,12 +174,13 @@ class Filters extends Component {
           <FilterWrap
             label={guestLabelFormat(this.state.guest)}
             openedFilter="guest"
-            isOpen={this.state.isOpen && this.state.openedFilter === "guest"}
+            isOpen={this.state.openedFilter === "guest"}
             toggle={this.toggle}
             isFill={
               this.state.guest.adults > 1 || this.state.guest.children > 0
             }
             reset={this.reset}
+            onClose={this.close}
             onApply={this.close}
           >
             <Guest
@@ -190,12 +192,13 @@ class Filters extends Component {
           <FilterWrap
             label={roomTypeLabelFormat(this.state.roomType)}
             openedFilter="roomType"
-            isOpen={this.state.isOpen && this.state.openedFilter === "roomType"}
+            isOpen={this.state.openedFilter === "roomType"}
             toggle={this.toggle}
             isFill={roomTypeLabelFormat(this.state.roomType) !== "Room type"}
             reset={this.reset}
-            hideOnTablet
+            onClose={this.close}
             onApply={this.close}
+            hideOnTablet
           >
             <RoomType
               name="roomType"
@@ -209,15 +212,16 @@ class Filters extends Component {
               this.initialValues.price.values
             )}
             openedFilter="price"
-            isOpen={this.state.isOpen && this.state.openedFilter === "price"}
+            isOpen={this.state.openedFilter === "price"}
             toggle={this.toggle}
             isFill={
               this.state.price.values[0] !== this.state.price.minPrice ||
               this.state.price.values[1] !== this.state.price.maxPrice
             }
             reset={this.reset}
-            hideOnTablet
             onApply={this.close}
+            onClose={this.close}
+            hideOnTablet
           >
             <Price
               name="price"
@@ -230,14 +234,13 @@ class Filters extends Component {
           <FilterWrap
             label="Instant book"
             openedFilter="instantbook"
-            isOpen={
-              this.state.isOpen && this.state.openedFilter === "instantbook"
-            }
+            isOpen={this.state.openedFilter === "instantbook"}
             toggle={this.toggle}
             isFill={this.state.instantBook}
             reset={this.reset}
-            hideOnTablet
             onApply={this.close}
+            onClose={this.close}
+            hideOnTablet
           >
             <InstantBook
               name="instantBook"
@@ -252,13 +255,12 @@ class Filters extends Component {
               this.initialValues
             )}
             openedFilter="moreFilter"
-            isOpen={
-              this.state.isOpen && this.state.openedFilter === "moreFilter"
-            }
+            isOpen={this.state.openedFilter === "moreFilter"}
             toggle={this.toggle}
             bodyLike={true}
             onApply={this.close}
             reset={this.resetMore}
+            onClose={this.close}
           >
             <More
               rooms={this.state.rooms}
@@ -269,7 +271,7 @@ class Filters extends Component {
             />
           </FilterMore>
         </FilterRow>
-        <Overlay isOpen={this.state.isOpen} onClick={this.close} />
+        <Overlay isOpen={this.state.openedFilter} onClick={this.close} />
       </div>
     );
   }

@@ -36,18 +36,21 @@ class Filter extends Component {
         >
           {this.props.label}
         </FilterToggler>
-        <Popup
-          label={this.props.label}
-          isOpen={this.props.isOpen}
-          forClose={this.props.toggle}
-          bodyLike={this.props.bodyLike}
-          height={this.state.height}
-          name={this.props.openedFilter}
-          onReset={this.props.reset}
-          onApply={this.props.onApply}
-        >
-          {this.props.children}
-        </Popup>
+        {this.props.isOpen && (
+          <Popup
+            label={this.props.label}
+            isOpen={this.props.isOpen}
+            forClose={this.props.toggle}
+            bodyLike={this.props.bodyLike}
+            height={this.state.height}
+            name={this.props.openedFilter}
+            onReset={this.props.reset}
+            onApply={this.props.onApply}
+            onClose={this.props.onClose}
+          >
+            {this.props.children}
+          </Popup>
+        )}
       </Wrap>
     );
   }
