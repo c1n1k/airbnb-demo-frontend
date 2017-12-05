@@ -17,12 +17,12 @@ const dateLabelFormat = (startDate, endDate) => {
 };
 
 const guestLabelFormat = guest => {
-  const guestCount = guest.adults + guest.children;
+  const guestCount = guest.adults + guest.children + guest.infants;
 
   if (guestCount > 1) {
     return guest.adults && guest.infants
-      ? `${guestCount} guest, ${guest.infants} infant`
-      : `${guestCount} guest`;
+      ? `${guest.adults + guest.children} guest, ${guest.infants} infant`
+      : `${guest.adults + guest.children} guest`;
   }
 
   return "Guest";
