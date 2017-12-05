@@ -11,6 +11,8 @@ const Wrap = styled.section`
 `;
 
 const Head = styled.div`
+  display: flex;
+
   @supports (display: grid) {
     width: auto;
     display: grid;
@@ -20,11 +22,21 @@ const Head = styled.div`
 `;
 
 const HeadData = styled.div`
-  grid-column: span 6;
+  width: calc(100% / 8 * 6);
+
+  @supports (display: grid) {
+    width: auto;
+    grid-column: span 6;
+  }
 `;
 
 const HeadBadge = styled.div`
-  grid-column: span 2;
+  width: calc(100% / 8 * 2);
+
+  @supports (display: grid) {
+    width: auto;
+    grid-column: span 2;
+  }
 `;
 
 const Title = styled.h2`
