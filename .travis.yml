@@ -16,11 +16,10 @@ before_install:
 
 before_deploy:
   - yarn run build
-  - rm build/static/js/main.*.js.map
 
 deploy:
   provider: script
   script: now alias `now build -t=$NOW_TOKEN --public` $URL_PROD -t=$NOW_TOKEN
   on:
-    branch: master
+    branch: travis
   skip_cleanup: true
