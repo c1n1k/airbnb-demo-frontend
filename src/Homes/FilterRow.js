@@ -12,33 +12,45 @@ const dateLabelFormat = (startDate, endDate) => {
   const endDateString = endDate && endDate.format("MMM DD");
 
   return startDateString && endDateString
-    ? `${startDateString} - ${endDateString}`
-    : "Dates";
+    ? { text: `${startDateString} - ${endDateString}`, isFill: true }
+    : { text: "Dates", isFill: false };
 };
 
 const guestLabelFormat = guest => {
   const guestCount = guest.adults + guest.children;
 
   if (guestCount > 1) {
-    return guest.adults && guest.infants
-      ? `${guestCount} guest, ${guest.infants} infant`
-      : `${guestCount} guest`;
+    const text =
+      guest.adults && guest.infants
+        ? `${guestCount} guest, ${guest.infants} infant`
+        : `${guestCount} guest`;
+    return { text: text, isFill: true };
   }
 
-  return "Guest";
+  return { text: "Guest", isFill: false };
 };
 
 const priceLabelFormat = (values, initialValues) => {
   if (values[0] !== initialValues[0] && values[1] !== initialValues[1]) {
-    return `${values[0]}$ \u2013 ${values[1]}$`;
+    return {
+      text: `${values[0]}$ \u2013 ${values[1]}$`,
+      isFill: true
+    };
   }
   if (values[0] !== initialValues[0] && values[1] === initialValues[1]) {
-    return `${values[0]}$+`;
+    return {
+      text: `${values[0]}$+`,
+      isFill: true
+    };
   }
   if (values[0] === initialValues[0] && values[1] !== initialValues[1]) {
-    return `Up to ${values[1]}$`;
+    return {
+      text: `Up to ${values[1]}$`,
+      isFill: true
+    };
   }
-  return "Price";
+
+  return { text: "Price", isFill: false };
 };
 
 const roomTypeLabelFormat = values => {
@@ -46,23 +58,26 @@ const roomTypeLabelFormat = values => {
     return values[current] ? prev + 1 : prev;
   }, 0);
   if (count > 1) {
-    return `Room type \u0387 ${count}`;
+    return { text: `Room type \u0387 ${count}`, isFill: true };
   }
-  if (values.entire) return "Entire home";
-  if (values.private) return "Private room";
-  if (values.shared) return "Shared room";
-  return "Room type";
+
+  if (values.entire) return { text: "Entire home", isFill: true };
+  if (values.private) return { text: "Private room", isFill: true };
+  if (values.shared) return { text: "Shared room", isFill: true };
+
+  return { text: "Room type", isFill: false };
 };
 
 const moreLabelFormat = (keys, value, initialValues) => {
   const count = keys.reduce((prevCount, key) => {
-    // console.log(Object.is(value[key], initialValues[key]));
     return Object.is(value[key], initialValues[key])
       ? prevCount
       : prevCount + 1;
   }, 0);
 
-  return count > 0 ? `More filters \u0387 ${count}` : "More filters";
+  return count > 0
+    ? { text: `More filters \u0387 ${count}`, isFill: true }
+    : { text: "More filters", isFill: false };
 };
 
 class Filters extends Component {
@@ -123,7 +138,6 @@ class Filters extends Component {
 
   toggle = key => {
     this.setState(prevState => ({
-      // isOpen: !prevState.isOpen,
       openedFilter: prevState.openedFilter === key ? null : key
     }));
   };
@@ -160,7 +174,6 @@ class Filters extends Component {
             isOpen={this.state.openedFilter === "dates"}
             openedFilter="dates"
             toggle={this.toggle}
-            isFill={this.state.dates.startDate && this.state.dates.endDate}
             reset={this.reset}
             onClose={this.close}
             onApply={this.close}
@@ -176,9 +189,6 @@ class Filters extends Component {
             openedFilter="guest"
             isOpen={this.state.openedFilter === "guest"}
             toggle={this.toggle}
-            isFill={
-              this.state.guest.adults > 1 || this.state.guest.children > 0
-            }
             reset={this.reset}
             onClose={this.close}
             onApply={this.close}
@@ -194,7 +204,6 @@ class Filters extends Component {
             openedFilter="roomType"
             isOpen={this.state.openedFilter === "roomType"}
             toggle={this.toggle}
-            isFill={roomTypeLabelFormat(this.state.roomType) !== "Room type"}
             reset={this.reset}
             onClose={this.close}
             onApply={this.close}
@@ -214,10 +223,6 @@ class Filters extends Component {
             openedFilter="price"
             isOpen={this.state.openedFilter === "price"}
             toggle={this.toggle}
-            isFill={
-              this.state.price.values[0] !== this.state.price.minPrice ||
-              this.state.price.values[1] !== this.state.price.maxPrice
-            }
             reset={this.reset}
             onApply={this.close}
             onClose={this.close}
@@ -232,11 +237,10 @@ class Filters extends Component {
             />
           </FilterWrap>
           <FilterWrap
-            label="Instant book"
+            label={{ text: "Instant book", isFill: this.state.instantBook }}
             openedFilter="instantbook"
             isOpen={this.state.openedFilter === "instantbook"}
             toggle={this.toggle}
-            isFill={this.state.instantBook}
             reset={this.reset}
             onApply={this.close}
             onClose={this.close}
