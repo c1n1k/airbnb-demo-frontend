@@ -5,6 +5,7 @@ import imgOwner from "./owner.png";
 
 const Summary = styled.div`
   margin-bottom: 32px;
+  display: flex;
 
   @supports (display: grid) {
     width: auto;
@@ -15,6 +16,8 @@ const Summary = styled.div`
 `;
 
 const SummaryText = styled.div`
+  width: calc(100% / 8 * 6);
+
   @supports (display: grid) {
     width: auto;
     grid-column: span 6;
@@ -22,6 +25,7 @@ const SummaryText = styled.div`
 `;
 const SummaryOwner = styled.div`
   padding-top: 16px;
+  width: calc(100% / 8 * 2);
 
   @supports (display: grid) {
     width: auto;
