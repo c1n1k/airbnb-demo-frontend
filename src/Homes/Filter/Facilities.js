@@ -23,7 +23,6 @@ export default class Facilities extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      ...this.state,
       ...nextProps.facilities
     });
   }

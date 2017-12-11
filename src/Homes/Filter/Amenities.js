@@ -23,7 +23,6 @@ export default class Amenities extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      ...this.state,
       ...nextProps.amenities
     });
   }
