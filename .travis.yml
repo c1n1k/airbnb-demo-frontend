@@ -15,7 +15,7 @@ before_install:
   - npm install -g now
 
 before_deploy:
-  - yarn run build
+  - yarn build
 
 deploy:
   provider: script
