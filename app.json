@@ -1,7 +1,11 @@
 {
   "name": "airbnb-demo-frontend",
   "scripts": {},
-  "env": {},
+  "env": {
+    "REACT_APP_MAP_APIKEY": {
+      "required": true
+    }
+  },
   "formation": {},
   "addons": [],
   "repository": "https://github.com/c1n1k/airbnb-demo-frontend",
