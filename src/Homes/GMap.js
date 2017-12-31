@@ -84,7 +84,8 @@ class GMap extends Component {
       <Wrap className={this.props.className}>
         <MapInner isOpen={this.state.isOpen}>
           <GoogleMap
-            apiKey={process.env.REACT_APP_MAP_APIKEY}
+            bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_APIKEY }}
+            // apiKey={process.env.REACT_APP_MAP_APIKEY}
             center={[59.938043, 30.337157]}
             zoom={9}
           />
