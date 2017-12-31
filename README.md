@@ -10,3 +10,5 @@
 Запуск в режиме разработки: `yarn start`
 
 Сборка проекта: `yarn build`
+
+add heroku
