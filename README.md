@@ -12,3 +12,5 @@
 Сборка проекта: `yarn build`
 
 add heroku
+
+[https://denisov-airbnb-demo.herokuapp.com](https://denisov-airbnb-demo.herokuapp.com)
