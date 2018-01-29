@@ -32,9 +32,9 @@ class Filter extends Component {
           type="button"
           onClick={this.handleToggle}
           isOpen={this.props.isOpen}
-          isFill={this.props.isFill}
+          isFill={this.props.label.isFill}
         >
-          {this.props.label}
+          {this.props.label.text}
         </FilterToggler>
         {this.props.isOpen && (
           <Popup

@@ -33,7 +33,7 @@ class Popup extends Component {
         >
           <Header>
             <MobileClose onClick={closePopup} type="button" />
-            {this.props.label}
+            {this.props.label.text}
             <MobileReset onClick={this.handleReset} type="button">
               Reset
             </MobileReset>

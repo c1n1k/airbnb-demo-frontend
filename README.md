@@ -1,6 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+Демо проект созданный с помощью
+[Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## airbnb demo project
+
+## Установка
+
+Для установки понадобиться [yarn](https://yarnpkg.com/lang/en/)
+
+Запуск в режиме разработки: `yarn start`
+
+Сборка проекта: `yarn build`
+
+add heroku
+
+[https://denisov-airbnb-demo.herokuapp.com](https://denisov-airbnb-demo.herokuapp.com)

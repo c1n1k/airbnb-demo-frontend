@@ -22,7 +22,7 @@ const SearchInput = styled(Input)`
 
 const SearchIcon = styled.span`
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   top: 13px;
   left: 16px;
   display: inline-block;
