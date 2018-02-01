@@ -1,0 +1,32 @@
+.DateRangePickerInput {
+  display: flex;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(72, 72, 72, 0.08);
+}
+
+.DateInput {
+  width: 50%;
+  border-radius: 4px 0 0 4px;
+}
+
+.DateInput:last-child {
+  border-radius: 0 4px 4px 0;
+  border-left: 1px solid #d8d8d8;
+}
+
+.DateRangePickerInput_arrow {
+  display: none;
+}
+
+.DateInput_input {
+  padding: 0 10px;
+  height: 38px;
+  font-size: 16px;
+  color: #383838;
+  border-radius: 4px 0 0 4px;
+}
+
+.DateInput:last-child .DateInput_input {
+  border-radius: 0 4px 4px 0;
+}

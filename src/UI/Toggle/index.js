@@ -57,6 +57,10 @@ const Slider = styled.span`
     transform: rotate(45deg);
   }
 
+  ${Control}:focus + & {
+    outline: #4d90fe auto 5px;
+  }
+
   ${Control}:checked + & {
     color: #fff;
     background-color: #008489;
@@ -80,7 +84,7 @@ const Slider = styled.span`
 
 export default props => {
   const toggle = e => {
-    props.onChange(e.target.checked);
+    props.onChange(props.name, e.target.checked);
   };
   return (
     <Toggle>

@@ -13,6 +13,8 @@ const SelectIcon = styled.span`
   top: 13px;
   right: 8px;
   display: inline-block;
+  width: 16px;
+  height: 9px;
   pointer-events: none;
 
   @media (min-width: 768px) {
@@ -24,7 +26,7 @@ const SelectIcon = styled.span`
 const SelectIconDown = props => {
   return (
     <SelectIcon>
-      <Icon icon="down" width="16" height="9" fill="#484848" />
+      <Icon icon="down" fill="#484848" />
     </SelectIcon>
   );
 };

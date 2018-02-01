@@ -20,26 +20,32 @@ const CopyrightRow = Inner.extend`
   }
 
   @media (min-width: 980px) {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
   }
 `;
 
 const Logo = styled.div`
   position: relative;
   top: 5px;
-  display: inline-block;
   margin-right: 10px;
+  display: inline-block;
+  width: 21px;
+  height: 24px;
 `;
 
 const LogoIcon = () => {
   return (
     <Logo>
-      <Icon icon="logo" width="21" height="24" fill="#767676" />
+      <Icon icon="logo" fill="#767676" />
     </Logo>
   );
 };
 
-const CopyText = styled.div`@media (min-width: 768px) {margin-top: -10px;}`;
+const CopyText = styled.div`
+  @media (min-width: 768px) {
+    margin-top: -10px;
+  }
+`;
 
 const Nav = styled.div`
   font-size: 14px;
@@ -67,13 +73,15 @@ const LinkSocial = styled.a`
   top: 4px;
   margin-left: 15px;
   display: inline-block;
+  width: 20px;
+  height: 20px;
   text-decoration: none;
 `;
 
 const LinkSocialFb = props => {
   return (
     <LinkSocial href={props.href}>
-      <Icon icon="facebook" width="20" height="20" fill="#767676" />
+      <Icon icon="facebook" fill="#767676" />
     </LinkSocial>
   );
 };
@@ -81,7 +89,7 @@ const LinkSocialFb = props => {
 const LinkSocialTwi = props => {
   return (
     <LinkSocial href={props.href}>
-      <Icon icon="twitter" width="19" height="17" fill="#767676" />
+      <Icon icon="twitter" fill="#767676" />
     </LinkSocial>
   );
 };

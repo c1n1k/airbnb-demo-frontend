@@ -37,6 +37,7 @@ const MapInner = styled.div`
 
 const ToggleIcon = styled.span`
   position: absolute;
+  z-index: 1;
   top: 9px;
   left: 11px;
   width: 16px;
@@ -55,6 +56,7 @@ const ToggleMap = styled.button`
   position: fixed;
   bottom: 12px;
   right: 15px;
+  overflow: hidden;
   width: 40px;
   height: 40px;
   background-color: #fff;
@@ -84,7 +86,7 @@ class GMap extends Component {
       <Wrap className={this.props.className}>
         <MapInner isOpen={this.state.isOpen}>
           <GoogleMap
-            apiKey={process.env.REACT_APP_MAP_APIKEY}
+            bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_APIKEY }}
             center={[59.938043, 30.337157]}
             zoom={9}
           />

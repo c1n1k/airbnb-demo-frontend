@@ -9,7 +9,9 @@ const Card = styled(Link)`
   color: inherit;
 `;
 
-const Fig = styled.figure`margin-bottom: 8px;`;
+const Fig = styled.figure`
+  margin-bottom: 8px;
+`;
 
 const About = styled.div`
   margin: 0 0 5px;
@@ -38,15 +40,17 @@ const Review = styled.div``;
 
 const CardIcon = styled.span`
   position: relative;
-  top: 1px;
+  top: 0px;
   margin-right: 3px;
   display: inline-block;
+  width: 12px;
+  height: 13px;
 `;
 
 const CardIconStar = props => {
   return (
     <CardIcon>
-      <Icon icon="star" width="12" height="13" fill="#008489" />
+      <Icon icon="star" fill="#008489" />
     </CardIcon>
   );
 };

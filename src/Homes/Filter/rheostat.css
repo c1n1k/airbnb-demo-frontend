@@ -1,9 +1,13 @@
 .rheostat-horizontal {
   height: 6px;
+  margin: 0 16px 30px;
 }
 
 .rheostat-horizontal .rheostat-background {
+  width: auto;
   height: 6px;
+  margin-left: -16px;
+  margin-right: -16px;
   border: none;
   background-color: #d8d8d8;
 }
@@ -22,6 +26,10 @@
   /* background-color: #fff; */
   border: 1px solid #008489;
   border-radius: 50%;
+}
+
+.rheostat-handle:focus {
+  outline: #4d90fe auto 5px;
 }
 
 .rheostat-handle::before,

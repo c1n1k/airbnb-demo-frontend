@@ -10,7 +10,6 @@ import linksDiscover from "./linksDiscover";
 import linksHosting from "./linksHosting";
 import optionLang from "./optionLang";
 import optionCurrency from "./optionCurrency";
-import { withRouter } from "react-router-dom";
 
 const Wrap = styled.div``;
 
@@ -156,16 +155,12 @@ class Footer extends Component {
     super(props);
     this.state = {
       isOpen: false,
-      isHiddble: true
+      isHiddble: false
     };
-    // this.toggle = this.toggle.bind(this);
   }
 
   componentWillMount() {
-    const pathname = this.props.location.pathname;
-    const check = pathname !== "/";
-
-    this.setState({ isHiddble: check });
+    this.setState({ isHiddble: this.props.isHiddble || false });
   }
 
   toggle = () => {
@@ -212,4 +207,4 @@ class Footer extends Component {
   }
 }
 
-export default withRouter(Footer);
+export default Footer;

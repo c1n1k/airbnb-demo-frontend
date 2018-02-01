@@ -32,21 +32,23 @@ const ButtonIcon = styled.span`
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -9px;
+  margin-top: -8px;
   margin-left: -1px;
   display: inline-block;
+  width: 6px;
+  height: 10px;
   line-height: 1;
 `;
 const PrevIcon = styled(ButtonIcon)`
   transform: rotate(180deg);
-  margin-top: -7px;
+  margin-top: -1px;
   margin-left: -4px;
 `;
 
 const IconRight = () => {
   return (
     <ButtonIcon>
-      <Icon icon="rightSmall" width="6" height="10" fill="currentColor" />
+      <Icon icon="right" fill="currentColor" />
     </ButtonIcon>
   );
 };
@@ -54,12 +56,14 @@ const IconRight = () => {
 const IconLeft = () => {
   return (
     <PrevIcon>
-      <Icon icon="rightSmall" width="6" height="10" fill="currentColor" />
+      <Icon icon="right" fill="currentColor" />
     </PrevIcon>
   );
 };
 
-const Pagination = styled.div`text-align: center;`;
+const Pagination = styled.div`
+  text-align: center;
+`;
 
 const Count = styled.p`
   margin-top: 16px;
@@ -82,9 +86,11 @@ export default props => {
       <Next to="">
         <IconRight />
       </Next>
-      <Count>
-        <Range>1 - 8</Range> of {props.all} Rentals
-      </Count>
+      {props.all && (
+        <Count>
+          <Range>1 - 8</Range> of {props.all} Rentals
+        </Count>
+      )}
     </Pagination>
   );
 };

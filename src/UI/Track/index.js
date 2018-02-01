@@ -17,31 +17,30 @@ const Pager = styled.span`
 `;
 
 const TrackRow = styled.div`
-  padding-bottom: 30px;
   display: flex;
   width: 100%;
-
-  @media (min-width: 980px) {
-    padding-bottom: 0;
-  }
-`;
-
-const TrackInner = styled.div`
+  padding-bottom: 30px;
   margin-bottom: -30px;
-  display: flex;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
   @media (min-width: 980px) {
     margin-bottom: 0;
+    padding-bottom: 0;
     overflow: visible;
   }
 `;
 
+const TrackInner = styled.div`
+  display: flex;
+  overflow: hidden;
+`;
+
 const Track = styled.div`
+  position: relative;
   margin: 0 -8px;
-  overflow-y: hidden;
+  overflow: hidden;
   min-width: 100%;
   flex-grow: 1;
 
@@ -59,7 +58,7 @@ export default props => {
         <TrackRow>{props.children}</TrackRow>
       </TrackInner>
       {hasPager && (
-        <Pager>
+        <Pager className="pager">
           <NextPage href="" />
         </Pager>
       )}

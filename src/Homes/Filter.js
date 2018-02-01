@@ -1,23 +1,24 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import Button from "../UI/Button";
 import Popup from "../UI/Popup";
+import { Wrap, FilterToggler } from "./styled";
 
-const Wrap = styled.div``;
-
-const FilterToggler = styled(Button)`
-  ${props => {
-    if (props.isOpen) {
-      return `
-        color: #fff;
-        background-color: #008489;
-      `;
-    }
-  }};
-`;
+const autofitMoreFilter = element => {
+  const box = element.getBoundingClientRect();
+  const top = box.top;
+  return window.innerHeight - top - element.offsetHeight - 12;
+};
 
 class Filter extends Component {
-  handleToggle = () => {
+  state = {
+    height: 0
+  };
+
+  handleToggle = e => {
+    if (this.props.bodyLike) {
+      this.setState({
+        height: autofitMoreFilter(e.target)
+      });
+    }
     this.props.toggle(this.props.openedFilter);
   };
 
@@ -31,16 +32,25 @@ class Filter extends Component {
           type="button"
           onClick={this.handleToggle}
           isOpen={this.props.isOpen}
+          isFill={this.props.label.isFill}
         >
-          {this.props.label}
+          {this.props.label.text}
         </FilterToggler>
-        <Popup
-          isOpen={this.props.isOpen}
-          forClose={this.props.toggle}
-          bodyLike={this.props.bodyLike}
-        >
-          {this.props.children}
-        </Popup>
+        {this.props.isOpen && (
+          <Popup
+            label={this.props.label}
+            isOpen={this.props.isOpen}
+            forClose={this.props.toggle}
+            bodyLike={this.props.bodyLike}
+            height={this.state.height}
+            name={this.props.openedFilter}
+            onReset={this.props.reset}
+            onApply={this.props.onApply}
+            onClose={this.props.onClose}
+          >
+            {this.props.children}
+          </Popup>
+        )}
       </Wrap>
     );
   }

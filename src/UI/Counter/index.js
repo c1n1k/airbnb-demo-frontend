@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  white-space: nowrap;
+`;
 
 const Button = styled.button`
   position: relative;
@@ -9,6 +11,7 @@ const Button = styled.button`
   height: 32px;
   line-height: 30px;
   text-align: center;
+  cursor: pointer;
   background-color: transparent;
   color: #008489;
   border: 1px solid;
@@ -28,14 +31,12 @@ const ButtonMinus = styled(Button)`
     border-radius: 1px;
   }
 
-  ${props => {
-    if (props.disabled) {
-      return `
-        opacity: .5;
-        cursor: default;
-      `;
-    }
-  }};
+  ${props =>
+    props.disabled &&
+    `
+      opacity: .5;
+      cursor: default;
+    `};
 `;
 
 const ButtonPlus = styled(Button)`
@@ -72,21 +73,25 @@ const Count = styled.span`
 
 class Counter extends Component {
   incCounter = () => {
-    this.props.onChange(this.props.counter + 1, this.props.name);
+    this.props.onChange(this.props.name, this.props.counter + 1);
   };
 
   decCounter = () => {
     const value = this.props.counter > 0 ? this.props.counter - 1 : 0;
-    this.props.onChange(value, this.props.name);
+    this.props.onChange(this.props.name, value);
   };
 
   render() {
     const isDisable = this.props.counter === 0;
     return (
       <Wrap>
-        <ButtonMinus onClick={this.decCounter} disabled={isDisable} />
+        <ButtonMinus
+          type="button"
+          onClick={this.decCounter}
+          disabled={isDisable}
+        />
         <Count>{this.props.counter}</Count>
-        <ButtonPlus onClick={this.incCounter} />
+        <ButtonPlus type="button" onClick={this.incCounter} />
       </Wrap>
     );
   }

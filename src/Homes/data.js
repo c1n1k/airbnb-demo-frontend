@@ -2,6 +2,7 @@ import tile from "./tile";
 
 export default [
   {
+    id: 1,
     name: "La Salentina, see, nature & relax",
     to: "",
     price: 82,
@@ -12,6 +13,7 @@ export default [
     reviewCount: 97
   },
   {
+    id: 2,
     name: "Your private 3 bedr. riad and exclusi…",
     to: "",
     price: 82,
@@ -22,6 +24,7 @@ export default [
     reviewCount: 161
   },
   {
+    id: 3,
     name: "Dreamy Tropical Tree House",
     to: "",
     price: 200,
@@ -32,6 +35,7 @@ export default [
     reviewCount: 364
   },
   {
+    id: 3,
     name: "Best location old town luxury loft",
     to: "",
     price: 110,
@@ -42,6 +46,7 @@ export default [
     reviewCount: 369
   },
   {
+    id: 4,
     name: "Lussuoso. Vista incantevole",
     to: "",
     price: 83,
@@ -52,6 +57,7 @@ export default [
     reviewCount: 105
   },
   {
+    id: 5,
     name: "In the historical center of Lecce",
     to: "",
     price: 72,

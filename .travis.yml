@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+  - "8"
+
+script:
+  - yarn run test
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+before_install:
+  - npm install -g now
+
+before_deploy:
+  - yarn build
+
+deploy:
+  provider: script
+  script: now build --public --token $NOW_TOKEN --name $URL_PRODUCTION && now alias --token $NOW_TOKEN --force
+  on:
+    branch: room
+  skip_cleanup: true
